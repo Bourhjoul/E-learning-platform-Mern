@@ -1,7 +1,7 @@
 .navbar {
   display: grid;
   background-color: #fafafa;
-  grid-template-columns:  20% 40% 40%;
+  grid-template-columns: 20% 40% 40%;
   height: 70px;
   align-content: center;
   justify-content: center;
@@ -10,14 +10,14 @@
   box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.6);
 }
 .burger {
-    display: none;
-    cursor: pointer;
-    /* position: absolute; */
-    /* left: 0px; */
-    /* margin-right: 12px; */
-    /* display: inline-block; */
-  }
-  
+  display: none;
+  cursor: pointer;
+  /* position: absolute; */
+  /* left: 0px; */
+  /* margin-right: 12px; */
+  /* display: inline-block; */
+}
+
 .burger div {
   border-radius: 99px;
   width: 25px;
@@ -26,21 +26,21 @@
   margin: 6px;
   transition: all 0.3s ease;
 }
-.Categoriespobover{
+.Categoriespobover {
   width: 220px;
   font-size: 16px;
   color: #2f2f2f;
   display: grid;
   row-gap: 0.5px;
 }
-.search_box_container{
+.search_box_container {
   display: flex;
   flex-direction: row;
 }
-.icon_search{
+.icon_search {
   position: relative;
   left: 95%;
-  top: 10px
+  top: 10px;
 }
 .Onright {
   height: 100%;
@@ -50,7 +50,7 @@
   align-items: center;
   grid-template-columns: 30% 20% 15% 35%;
 }
-.carticon{
+.carticon {
   color: #2f2f2f;
   align-self: center;
   justify-self: center;
@@ -70,21 +70,19 @@
 }
 .Navbarbtns:hover {
   color: #0f6ab9;
-
 }
-.ant-btn-primary{
+.ant-btn-primary {
   background: #0f6ab9 !important;
   border-color: #0f6ab9 !important;
 }
-.ant-btn-primary:hover{
+.ant-btn-primary:hover {
   background: #2584d6 !important;
   border-color: #2584d6 !important;
-
 }
-#SignInbtn{
+#SignInbtn {
   color: #0f6ab9;
   border: 1px #0f6ab9 solid;
-  border-radius:2px;
+  border-radius: 2px;
   margin: 0px 20px;
 }
 
@@ -97,22 +95,23 @@
   transition: all 0.35s ease-Out;
   bottom: 0;
 }
-#SignInbtn #spin{
+#SignInbtn #spin {
   background: #0f6ab9;
 }
-#SignInbtn .linkinbtn{
-  color:#0f6ab9;
+#SignInbtn .linkinbtn {
+  color: #0f6ab9;
 }
-#SignUpbtn:hover #spin{
+#SignUpbtn:hover #spin {
   left: 0;
 }
 #SignInbtn:hover #spin {
   left: 0;
 }
-.linkinbtn{
-  color:#0f6ab9;
+.linkinbtn {
+  color: #0f6ab9;
 }
-#SignUpbtn:hover .linkinbtn,#SignInbtn:hover .linkinbtn {
+#SignUpbtn:hover .linkinbtn,
+#SignInbtn:hover .linkinbtn {
   color: rgb(245, 245, 245);
   position: relative;
 }
@@ -126,52 +125,47 @@
     transform: translateX(0px);
   }
 }
-.Phoneonright{
+.Phoneonright {
   display: grid;
   grid-template-columns: 50% 50%;
 }
 
-
-@media screen and (max-width:768px) {
+@media screen and (max-width: 768px) {
   .burger {
     /* position: absolute; */
     /* left: 0px; */
     margin-right: 12px;
     display: inline-block;
   }
-.navbar {
+  .navbar {
+    grid-template-columns: 10% 75% 15%;
+  }
+  .search_box {
+    display: none;
+  }
+  .searchactive {
+    position: absolute;
+    right: 0;
+    top: 80px;
+    opacity: 1;
+    transition: all 0.2s linear 0.2s;
+  }
+  .searchphone {
+    position: absolute;
+    right: 0;
+    top: -30px;
+    opacity: 0;
+    transition: all 0.5s linear 0.5s;
+  }
 
-    grid-template-columns:  10% 75% 15% ;
-}
-.search_box{   
-  display : none;
-}
-.searchactive{
-  position : absolute;
-  right: 0;
-  top: 80px;
-  opacity: 1;
-  transition: all 0.2s linear 0.2s;
-
-}
-.searchphone{
-  position : absolute;
-  right: 0;
-  top: -30px;
-  opacity: 0;
-  transition: all 0.5s linear 0.5s;
-
-}
-
-.onRightphone{
-  align-items: center;
-  display: grid;
-  row-gap: 10px;
-  grid-template-columns: 50% 50% ;
-  transition: all 0.5s linear 0.5s;
-  background-color: #fafafa;
-}
-.onRightphone h4{
-  color: #5a5a5a;
-}
+  .onRightphone {
+    align-items: center;
+    display: grid;
+    row-gap: 10px;
+    grid-template-columns: 50% 50%;
+    transition: all 0.5s linear 0.5s;
+  }
+  .onRightphone h4 {
+    color: #5a5a5a;
+  }
 }
