@@ -1,0 +1,251 @@
+
+.Home_image {
+  position: absolute;
+  height: 500px;
+  object-fit: cover;
+  width: 100%;
+  top: 0px;
+  z-index: -1;
+}
+.Banner_Card{
+    width: auto;
+    position: absolute;
+    top: 30%;
+    left: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+
+}
+.Banner_Card h1{
+    font-weight: 600;
+
+}
+.Banner_Card p{
+    margin-top: 20px;
+    font-size: 16px;
+    
+}
+#discover_btn{
+    color: rgb(233, 231, 231);
+    border: none;
+    font-size: 16px;
+    background-color: #0f6ab9;
+    width: 150px;
+    height: 40px;
+    border-radius:3px;
+
+}
+.ant-tabs-ink-bar{
+    background:#0f6ab9 !important;
+}
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
+    color:#0f6ab9 !important;
+}
+#discover_btn:hover{
+    background-color: #2278c3;
+    box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.3);
+}
+.Menu1{
+    margin-left: 20px;
+    margin-right: 30px;
+    position: relative;
+    top: 500px;
+}
+.Menu1 > h2{
+    font-weight: 700;
+}
+.Tab_Content{
+    display:grid;
+    width:100%;
+    border: 0.2px #c7c7c7 solid;
+
+    box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    /* align-items: center; */
+
+
+}
+.ant-drawer-close {
+    color: #0f6ab9 !important;
+}
+.Tab_Content #paragraphbtn {
+        text-align: justify;
+    margin-bottom: 20px;
+        width:70%;
+}
+
+.coursecards{
+  padding: 8px;
+  width: 100%;
+}
+.slick-list{
+    display:grid;
+    grid-template-columns: repeat(auto-fill,minmax(350px,1fr));
+    height: 400px;
+}
+
+.coursecard{
+    width: 252px;
+    border: 1px #dfdfdf solid;
+
+}
+.slick-active{
+        margin: 0 10px;
+        margin-left: 20px;
+}
+.slick-prev::before,.slick-next::before{
+    font-size: 25px;
+    color: #000a13;
+    z-index: 8;
+    
+}
+.slick-prev{
+        z-index: 8;
+}
+.coursecards h3,.coursecards h4{
+    position: relative;
+    bottom: 10px;
+    right: 10px;
+}
+.coursecards h4{
+    color: #5a5a5a;
+}
+.rating{
+    position: relative;
+        bottom: 10px;
+    right: 8px;
+}
+#ReadMorebtn{
+    width: fit-content;
+    background-color : #0f6ab9;
+    padding: 0px 10px;
+    color: #eeeded;
+    border-radius: 2px;
+} 
+#ReadMorebtn:hover{
+    background-color : #0960ac;
+}
+.ant-rate-star ,.ant-rate-star-full{
+    width:15px
+}
+.Courses_Popular{
+    margin-left: 30px;
+    margin-right: 30px;
+    position: relative;
+    top: 550px;
+}
+.Courses_Popular h2{
+        font-weight: 700;
+}
+.Categorys_Popular{
+        /* text-align: center; */
+    /* margin-left: 30px;
+    margin-right: 30px; */
+    position: relative;
+    top: 550px;
+}
+.Categorys_Popular h2{
+    font-weight: 700;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+.Become_Teacher{
+    position: relative;
+    top: 600px;
+
+}
+.background{
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background-color: rgba(218, 218, 218, 0.2);
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+.Become_Teacher img{
+    margin: 30px 270px;
+    /* position: relative; */
+    object-fit: cover;
+    height: 400px;
+    justify-self: center;
+    width: 400px;
+    box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.2);
+}
+.Become_Teacher h2{
+    font-size: 23px;
+}
+.Become_Teacher div{
+    /* justify-self: center; */
+    align-self: center;
+    z-index:8;
+
+}
+.Become_Teacher p{
+    font-size: 16px;
+}
+
+#Joinusbtn{
+    position: relative;
+    color: rgb(233, 231, 231);
+    border: none;
+    font-size: 16px;
+    background-color: #0f6ab9;
+    width: 150px;
+    height: 40px;
+    border-radius:3px;
+    cursor: pointer;
+}
+#Joinusbtn:hover{
+    background-color: rgb(8, 75, 134);
+}
+.ant-card-cover img{
+    transition: all 0.3s linear 0.3s;
+
+}
+.ant-card-cover img:hover{
+    filter: rgb(92, 92, 92);
+    -webkit-filter: grayscale(70%);
+}
+.Categorycards{
+    /* margin : 0 20px; */
+    display: grid;
+    text-align: center;
+    row-gap: 20px;
+    grid-template-columns:repeat(auto-fill,minmax(300px,1fr))
+}
+@media screen and (max-width:768px)   {
+    .Become_Teacher img{
+                margin-left: 10px;
+                margin-right : 90px;
+
+        height: 300px;
+        width: 300px;
+
+    }
+    .Become_Teacher .paragraph{
+        /* grid-column:1/1; */
+        margin-left: 20px;
+    }
+    .Home_image{
+         object-position: 80%;
+
+    }
+    .Banner_Card{
+    left: 5px;
+    width: 80%;
+    top: 26%;
+    }
+    .slick-list{
+        width:100%;
+        grid-template-columns: repeat(auto-fill,550px);
+    }
+    .Courses_Popular{
+    margin-left: 0;
+    margin-right: 0;
+}
+.Courses_Popular h2{
+        margin-left: 20px;
+}
+    
+}

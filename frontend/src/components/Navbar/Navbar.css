@@ -1,0 +1,177 @@
+.navbar {
+  display: grid;
+  background-color: #fafafa;
+  grid-template-columns:  20% 40% 40%;
+  height: 70px;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10px;
+  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.6);
+}
+.burger {
+    display: none;
+    cursor: pointer;
+    /* position: absolute; */
+    /* left: 0px; */
+    /* margin-right: 12px; */
+    /* display: inline-block; */
+  }
+  
+.burger div {
+  border-radius: 99px;
+  width: 25px;
+  height: 2px;
+  background-color: #0f6ab9;
+  margin: 6px;
+  transition: all 0.3s ease;
+}
+.Categoriespobover{
+  width: 220px;
+  font-size: 16px;
+  color: #2f2f2f;
+  display: grid;
+  row-gap: 0.5px;
+}
+.search_box_container{
+  display: flex;
+  flex-direction: row;
+}
+.icon_search{
+  position: relative;
+  left: 95%;
+  top: 10px
+}
+.Onright {
+  height: 100%;
+  margin-left: 20px;
+  display: grid;
+  align-content: center;
+  align-items: center;
+  grid-template-columns: 30% 20% 15% 35%;
+}
+.carticon{
+  color: #2f2f2f;
+  align-self: center;
+  justify-self: center;
+}
+.logo {
+  font-size: 20px;
+  font-weight: 800;
+  text-align: center;
+}
+.Navbarbtns {
+  background-color: transparent;
+  border: none;
+  color: #2f2f2f;
+  font-weight: 500;
+  transition: all 0.5s linear 0.5s;
+  cursor: pointer;
+}
+.Navbarbtns:hover {
+  color: #0f6ab9;
+
+}
+.ant-btn-primary{
+  background: #0f6ab9 !important;
+  border-color: #0f6ab9 !important;
+}
+.ant-btn-primary:hover{
+  background: #2584d6 !important;
+  border-color: #2584d6 !important;
+
+}
+#SignInbtn{
+  color: #0f6ab9;
+  border: 1px #0f6ab9 solid;
+  border-radius:2px;
+  margin: 0px 20px;
+}
+
+#spin {
+  width: 100%;
+  height: 100%;
+  left: -200px;
+  background: #0f6ab9;
+  position: absolute;
+  transition: all 0.35s ease-Out;
+  bottom: 0;
+}
+#SignInbtn #spin{
+  background: #0f6ab9;
+}
+#SignInbtn .linkinbtn{
+  color:#0f6ab9;
+}
+#SignUpbtn:hover #spin{
+  left: 0;
+}
+#SignInbtn:hover #spin {
+  left: 0;
+}
+.linkinbtn{
+  color:#0f6ab9;
+}
+#SignUpbtn:hover .linkinbtn,#SignInbtn:hover .linkinbtn {
+  color: rgb(245, 245, 245);
+  position: relative;
+}
+@keyframes moving {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+.Phoneonright{
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+
+@media screen and (max-width:768px) {
+  .burger {
+    /* position: absolute; */
+    /* left: 0px; */
+    margin-right: 12px;
+    display: inline-block;
+  }
+.navbar {
+
+    grid-template-columns:  10% 75% 15% ;
+}
+.search_box{   
+  display : none;
+}
+.searchactive{
+  position : absolute;
+  right: 0;
+  top: 80px;
+  opacity: 1;
+  transition: all 0.2s linear 0.2s;
+
+}
+.searchphone{
+  position : absolute;
+  right: 0;
+  top: -30px;
+  opacity: 0;
+  transition: all 0.5s linear 0.5s;
+
+}
+
+.onRightphone{
+  align-items: center;
+  display: grid;
+  row-gap: 10px;
+  grid-template-columns: 50% 50% ;
+  transition: all 0.5s linear 0.5s;
+  background-color: #fafafa;
+}
+.onRightphone h4{
+  color: #5a5a5a;
+}
+}

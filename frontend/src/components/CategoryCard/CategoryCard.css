@@ -1,0 +1,32 @@
+.CategoryCard{
+    background-color:rgb(252, 252, 252);
+    width:302px;
+    border:1px rgb(228, 228, 228) solid ;
+    border-radius:4px;
+    justify-self: center;
+    cursor: pointer;
+}
+
+.CategoryCard img{
+    object-fit: cover;
+    height: 300px;
+    width: 100%;
+        overflow: hidden;
+        transition: all 0.5s linear 0.1s;
+}
+.limiter_img{
+    width: 300px;
+        height: 300px;
+            overflow: hidden;
+
+
+}
+.CategoryCard img:hover{
+    transform: scale(1.1);
+}
+.CategoryCard h2{
+    margin:20px 10px ;
+    font-size : 18px;
+    font-weight: 600;
+
+}
