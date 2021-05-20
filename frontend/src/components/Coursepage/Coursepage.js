@@ -145,8 +145,6 @@ const Coursepage = () => {
 
                             Static Generation
 
-                            CSS Styling
-
                             Image Optimization
 
                             In our main project, we will also be working with...
