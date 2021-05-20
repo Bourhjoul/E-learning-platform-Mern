@@ -1,0 +1,462 @@
+* {
+	margin-top: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+}
+
+.descriptionPart {
+	display: flex;
+	justify-content: space-between;
+	background-color: rgb(27, 25, 25);
+	color: white;
+	padding: 35px 70px;
+}
+
+.CategorieCourse h4 {
+	color: rgb(89, 159, 180);
+}
+
+.courseAbout {
+	font-size: 20px;
+}
+
+.ratingCourse {
+	display: flex;
+	color: rgb(255, 236, 62);
+	margin-bottom: 10px;
+}
+
+a {
+	color: rgb(89, 159, 180);
+}
+
+.course-rating {
+	margin-left: 10px;
+}
+
+.wish-share {
+	position: relative;
+	display: flex;
+}
+
+.buttonsCourse {
+	max-width: 200px;
+	align-items: center;
+	border: 1px solid white;
+	background-color: transparent;
+	color: rgb(241, 241, 241);
+	border-radius: 10px;
+	font-size: 17px;
+	outline: none;
+	font-weight: 600;
+	margin: 10px 5px;
+	padding: 11px 20px;
+	cursor: pointer;
+}
+
+.learnAbout {
+	display: grid;
+	position: relative;
+
+	border: 1px solid rgb(209, 209, 209);
+	border-radius: 5px;
+
+	padding: 30px 30px;
+	background-color: rgba(241, 241, 241, 0.562);
+	color: rgb(94, 94, 94);
+}
+
+.learnAbout h2 {
+	color: rgb(73, 73, 73);
+}
+
+.learnAbout div ul {
+	display: grid;
+	grid-column: auto;
+	grid-template-columns: 50% 50%;
+}
+
+.whatlearn ul li {
+	list-style-type: none;
+}
+
+.checkIcon {
+	margin-right: 10px;
+}
+
+.allAboutCourse {
+	display: flex;
+	margin: 20px 30px;
+}
+
+.otherInformations {
+	position: relative;
+
+	width: 60%;
+}
+
+.toAddCart {
+	position: relative;
+	width: 40%;
+	display: flex;
+	justify-content: center;
+	justify-items: center;
+}
+
+.contenuCours {
+	margin-top: 20px;
+}
+.courseContent {
+	position: relative;
+
+	color: rgb(51, 51, 51);
+}
+.courseContent b {
+	font-size: 18px;
+}
+.contentC {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 15px 30px;
+	cursor: pointer;
+	background-color: rgba(241, 241, 241, 0.562);
+	border: 1px solid rgb(209, 209, 209);
+	border-radius: 5px;
+}
+
+.iconArrowDown {
+	margin-right: 15px;
+}
+
+.iconCourseC {
+	display: flex;
+	align-items: center;
+}
+
+.allCourseContent {
+	margin-top: 20px;
+}
+.sessionName div {
+	display: flex;
+	margin-bottom: 20px;
+}
+
+.sessionName .session {
+	display: block;
+	margin-bottom: 10px;
+}
+
+.playIcon {
+	margin-right: 15px;
+}
+
+.sessionsContent {
+	border: 1px solid rgb(209, 209, 209);
+	border-radius: 5px;
+	padding: 15px 30px;
+}
+
+.pre-requis {
+	margin-top: 20px;
+}
+
+.descriptionCourse p {
+	color: rgb(43, 43, 43);
+}
+
+.coursePage h2 {
+	margin-left: 30px;
+	font-size: 30px;
+}
+
+.coursePageRight {
+	position: relative;
+}
+
+.last-price {
+	text-decoration: line-through;
+	color: rgb(92, 92, 92);
+}
+
+.btnsShop ul li {
+	display: flex;
+	justify-content: center;
+
+	cursor: pointer;
+	width: 100%;
+}
+.btnsShop ul {
+	list-style: none;
+}
+
+.btnaddToCart {
+	position: relative;
+	font-size: 20px;
+	padding: 10px 10px;
+	color: white;
+	border-radius: 5px;
+	width: 100%;
+	border: none;
+	background-color: rgb(223, 66, 66);
+}
+
+.btnaddToCart:hover {
+	background-color: rgb(255, 57, 57);
+}
+
+.btnShopNow {
+	position: relative;
+	margin-top: 2px;
+	width: 100%;
+	font-size: 20px;
+	padding: 10px 10px;
+	color: rgb(34, 127, 202);
+	border-radius: 5px;
+	border: 1px solid rgb(34, 127, 202);
+	background-color: transparent;
+}
+
+.toAddCart {
+	background-color: rgb(255, 255, 255);
+	margin: 10px 40px;
+	padding: 30px 10px;
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+	height: 35.5%;
+	width: 100%;
+	opacity: 0;
+	transition: opacity 0.5s ease-in-out;
+}
+
+.toAddCart.active {
+	top: 20%;
+	height: 69%;
+	position: fixed;
+	width: 35.6%;
+	opacity: 1;
+	transition: opacity 0.5s ease-in-out;
+}
+.toAddCart.disable {
+	visibility: hidden;
+	opacity: 0;
+	transition: all 0.5s ease;
+}
+.garantie {
+	margin-top: 20px;
+	display: flex;
+	justify-content: center;
+	font-style: italic;
+}
+
+.courseImage {
+	margin-bottom: 10px;
+}
+.formateur h2 {
+	margin-left: 0;
+}
+
+.formateur {
+	width: 60%;
+	margin: 20px 30px;
+	padding-right: 50px;
+}
+.formateurName {
+	margin-left: 30px;
+}
+.formateur b {
+	color: rgb(89, 159, 180);
+	font-size: 20px;
+}
+.instructorProfession {
+	margin-top: 5px;
+	color: gray;
+}
+.comments {
+	position: relative;
+	width: 60%;
+	margin: 20px 30px;
+	padding-right: 50px;
+}
+.comment h3 {
+	margin-left: 10px;
+}
+.commentRating {
+	color: rgb(228, 137, 33);
+	display: flex;
+	font-size: 20px;
+}
+
+.commentDate {
+	color: rgb(73, 73, 73);
+	margin-left: 20px;
+}
+
+.commentOfParti {
+	color: rgb(70, 70, 70);
+}
+
+.bilike {
+	color: rgb(89, 159, 180);
+	font-size: 50px;
+	border: 1px solid rgb(89, 159, 180);
+	padding: 10px;
+	border-radius: 50%;
+	margin-right: 10px;
+	cursor: pointer;
+}
+.bilike:hover {
+	border: 1px solid rgb(124, 124, 124);
+}
+.bidislike {
+	color: rgb(89, 159, 180);
+	font-size: 50px;
+	border: 1px solid rgb(89, 159, 180);
+	padding: 10px;
+	border-radius: 50%;
+	cursor: pointer;
+}
+.bidislike:hover {
+	border: 1px solid rgb(124, 124, 124);
+}
+
+.contentOfSections-parent {
+	height: 0px;
+	overflow: hidden;
+	transition: height ease 0.7s;
+}
+
+.contentOfSections-parent.show {
+	height: auto;
+	transition: height ease 0.7s;
+}
+.buttonsCourse.Video {
+	display: none;
+}
+.Link {
+	color: white;
+	text-decoration: none;
+}
+.Link:hover {
+	text-decoration: underline;
+}
+
+/* CART */
+
+.cartfull {
+	display: grid;
+	position: relative;
+	margin: 20px 150px;
+	grid-template-columns: 70% 30%;
+}
+.totalName {
+	color: rgb(90, 90, 90);
+	font-weight: 100;
+}
+.totalcart {
+	height: 250px;
+	width: 100%;
+}
+.totalcart .totalprice {
+	color: rgb(46, 46, 46);
+	font-size: 40px;
+
+	font-weight: 700;
+}
+.validationBtn {
+	display: grid;
+	width: 100%;
+	grid-column: 1/3;
+	background-color: #1890ff;
+	color: rgb(255, 255, 255);
+	border: none;
+	padding: 30px 10px;
+	align-content: center;
+	font-size: 16px;
+	outline-style: none;
+	height: 40px;
+	cursor: pointer;
+	font-weight: 500;
+	transition: all 0.2s linear;
+}
+.validationBtn:hover {
+	background-color: #0b2f50;
+}
+.courseNaame {
+	color: white;
+}
+.cart h1 {
+	font-size: 23px;
+}
+.productsoncart {
+	margin-right: 30px;
+}
+
+.imageCart {
+	width: 110px;
+	height: 60px;
+}
+.productoncart {
+	display: grid;
+	position: relative;
+
+	grid-template-columns: 17% 53% 26% 4%;
+	align-items: center;
+	border: 1px solid rgba(204, 204, 204, 0.534);
+	padding: 20px;
+	box-shadow: 0.4px 0.4px 0.2px 0.2px rgb(151, 151, 151);
+}
+.productNameAFounder b {
+	font-size: 18px;
+}
+.productNameAFounder p {
+	color: gray;
+}
+.totalpriceCart {
+	color: rgb(46, 46, 46);
+	font-size: 35px;
+
+	font-weight: 700;
+}
+
+.deletecart {
+	justify-self: flex-end;
+
+	cursor: pointer;
+}
+.deletecart:hover {
+	transition: all 1s ease-in-out;
+	color: #dd4141;
+}
+@media screen and (max-width: 1208px) {
+	.toAddCart {
+		display: none;
+	}
+
+	.descriptionPart {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+	.otherInformations {
+		width: 100%;
+	}
+
+	.formateur {
+		position: relative;
+		width: auto;
+	}
+	.comments {
+		position: relative;
+		width: auto;
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	.windowToBuy {
+		display: none;
+	}
+
+	.buttonsCourse.Video {
+		display: block;
+	}
+}
