@@ -60,6 +60,9 @@
   font-weight: 800;
   text-align: center;
 }
+.logo a {
+  color: #2f2f2f;
+}
 .Navbarbtns {
   background-color: transparent;
   border: none;
@@ -114,6 +117,27 @@
 #SignInbtn:hover .linkinbtn {
   color: rgb(245, 245, 245);
   position: relative;
+
+}
+nav ul li{
+  display: inline-block;
+  width: 190px;
+  padding: 10px 20px;
+  transform: translateY(13px);
+  text-decoration: none;
+}
+nav ul li img{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.Profilepobover{
+  
+  width: 100px;
+  font-size: 16px;
+  color: #2f2f2f;
+  display: grid;
+  row-gap: 0.5px;
 }
 @keyframes moving {
   from {
@@ -130,6 +154,7 @@
   grid-template-columns: 50% 50%;
 }
 
+
 @media screen and (max-width: 768px) {
   .burger {
     /* position: absolute; */
@@ -137,6 +162,7 @@
     margin-right: 12px;
     display: inline-block;
   }
+  
   .navbar {
     grid-template-columns: 10% 75% 15%;
   }
@@ -165,7 +191,11 @@
     grid-template-columns: 50% 50%;
     transition: all 0.5s linear 0.5s;
   }
+
   .onRightphone h4 {
     color: #5a5a5a;
+  }
+  .drop-nav{
+    list-style: none;
   }
 }

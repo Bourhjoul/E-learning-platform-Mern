@@ -31,12 +31,6 @@ const Coursepage = () => {
 
     window.addEventListener('scroll',Disable)
 
-
-    
-            
-
-      
-        
         return (
         <div className="coursePage">
            <div>

@@ -4,8 +4,42 @@ import { Input, Popover ,Drawer, Button, Radio, Space} from 'antd';
 import { CgShoppingCart,AiOutlineSearch,AiOutlineClose } from 'react-icons/all'
 import {Link} from 'react-router-dom'
 import useWindowDimensions from '../../useWindowDimensions';
+import axios from 'axios'
+import {useSelector,useDispatch} from 'react-redux'
 const Navbar = () => {
+    const auth = useSelector(state => state.auth)
+    const {user,isLogged} = auth
+    const handleLogout = async () => {
+        try {
+            await axios.get('/user/logout')
+            localStorage.removeItem('firstLogin')
+            window.location.href = "/";
+        } catch (err) {
+            window.location.href = "/";
+        }
+    }
+    const userLink = () => {
+        return <li className="drop-nav">
+            <Popover content={contentProfile} style={{ cursor: "pointer" }}>
+             <Link to="/" className="avatar"> 
+             <img src= {user.avatar}/> {user.name}  <i className="fas fa-angle-down"></i>
+             </Link>       
+             </Popover>
+             </li>       
+        }
+    const userLinkDrawer = () => {
+        return <li className="drop-nav"> 
+             <img src={user.avatar}/>
+             <h4> {user.name} <i className="fas fa-angle-down"></i> <hr/> </h4>
+             {contentProfile} 
+                 
+             </li>       
+        }
+        const transForm = {
+                          transform: isLogged ? "translateY(-5px)" : "translateY(8px)"
+                      }
     
+
     const [visbile, setvisbile] = useState(false)
     const showDrawer = () => {
       setvisbile(true)
@@ -13,14 +47,18 @@ const Navbar = () => {
 
     const onClose = () => {
         setvisbile(false)
-
-
     };
 
     const { height, width } = useWindowDimensions()
     const [ showsearch, setshowsearch ] = useState(false)
     const [showicons, setshowicons] = useState(false)
     const { Search } = Input;
+    const contentProfile = (
+        <div className="Profilepobover"> 
+          <Link to ="/profile">Profile</Link> <br />    
+          <Link to="/" onClick={handleLogout}>Logout</Link>
+        </div>
+         );
     const content = (
                 <div className = 'Categoriespobover'>
                     <Link>Devlopement</Link> <br />
@@ -57,7 +95,7 @@ const Navbar = () => {
                 <div className = 'line3'></div>
             </div>
             <div className='logo'>
-                EDUSPACE
+                <Link to="/" >EDUSPACE</Link>
             </div>
             {showicons &&
                 <div className = 'Phoneonright'>
@@ -90,13 +128,22 @@ const Navbar = () => {
                     <Popover content={content} style={{ cursor: "pointer" }}>
                         <button className='Navbarbtns' id='Categoriesbtn'>Categories</button>
                     </Popover>
-                    <CgShoppingCart size='22' className='carticon' />
-                    <button className='Btn' id='SignInbtn'>
-                        <div id="spin"></div>
-                        <Link className='linkinbtn'> Log in</Link>
-                    </button>
+                        <CgShoppingCart size='22' className='carticon' />
+                    <ul style={transForm}>
+                    {
+                         isLogged 
+                         ?  userLink()
+                         : 
+                             <button className='Btn' id='SignInbtn'>
+                                  <div id="spin"></div>
+                            <Link to='/login' className='linkinbtn'> Log in</Link>
+                            </button>
+                    }
+                </ul>
                 </div>}
             </nav>
+            <section>
+
             <Drawer
                     title="EDUSPACE"
                     placement={'left'}
@@ -104,17 +151,24 @@ const Navbar = () => {
                     onClose={onClose}
                     visible={visbile}
                     key={'left'}>
-            <div className = 'onRightphone'>
+            <div className = {isLogged ? '' : 'onRightphone'}>
                     <button className='Navbarbtns' id='Teacherbtn'>Become a Teacher</button>
+                        { isLogged 
+                         ?  userLinkDrawer()
+                         :
                     <button className='Btn' id='SignInbtn'>
                         <div id="spin"></div>
-                        <Link className='linkinbtn'> Log in</Link>
+                       <Link to='/login' className='linkinbtn'> Log in</Link>
                     </button>
+                    }
+                  
+                    
                    <h4>Most visited :</h4> <hr/>
                     {content}
             </div>
 
         </Drawer>
+            </section>
 
         </>
     )
