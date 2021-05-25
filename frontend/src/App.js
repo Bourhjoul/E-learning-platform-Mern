@@ -9,7 +9,6 @@ import "slick-carousel/slick/slick-theme.css";
 import Navbar from './components/Navbar/Navbar';
 
 import Footer from './components/Footer/Footer';
-import Coursepage from './components/Coursepage/Coursepage';
 
 import Login from './components/body/auth/Login'
 import Register from './components/body/auth/Register'
@@ -20,6 +19,7 @@ import {dispatchLogin, dispatchGetUser, fetchUser} from './redux/actions/authAct
 import NotFound from './components/utils/NotFound/NotFound'
 import ForgotPass from './components/body/auth/ForgotPassword';
 import ResetPass from './components/body/auth/ResetPassword';
+import Coursepage from './pages/Coursepage/Coursepage';
 
 
 function App() {

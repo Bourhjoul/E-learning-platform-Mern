@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "description": "\"# E-learning MERN\"",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon backend/server",
+    "client": "npm start --prefix frontend",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"npm run server\" \"npm run client\" "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bourhjoul/E-learning-platform-Mern.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bourhjoul/E-learning-platform-Mern/issues"
+  },
+  "homepage": "https://github.com/Bourhjoul/E-learning-platform-Mern#readme",
+  "dependencies": {
+    "concurrently": "^6.1.0"
+  }
+}

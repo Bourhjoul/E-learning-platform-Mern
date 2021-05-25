@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+// import mongoose from 'mongoose';
 
 
 const userSchema = new mongoose.Schema({
@@ -23,7 +24,7 @@ const userSchema = new mongoose.Schema({
     },
     avatar: {
         type: String,
-        default: "https://res.cloudinary.com/devatchannel/image/upload/v1602752402/avatar/avatar_cugq40.png"
+        default: "https://i.imgur.com/tJOSejv.png"
     }
 }, {
     timestamps: true

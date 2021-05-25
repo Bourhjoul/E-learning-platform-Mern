@@ -1,7 +1,9 @@
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css");
 * {
 	margin-top: 0;
 	box-sizing: border-box;
 	font-family: 'Poppins', sans-serif;
+
 }
 
 .descriptionPart {
@@ -74,10 +76,13 @@ a {
 	display: grid;
 	grid-column: auto;
 	grid-template-columns: 50% 50%;
+	grid-template-rows: 60px;
 }
 
 .whatlearn ul li {
+	list-style: outside;
 	list-style-type: none;
+
 }
 
 .checkIcon {
@@ -86,21 +91,16 @@ a {
 
 .allAboutCourse {
 	display: flex;
-	margin: 20px 30px;
+	margin: 30px 70px;
+}
+.bottom-infos{
+		margin: 30px 30px;
 }
 
 .otherInformations {
 	position: relative;
 
 	width: 60%;
-}
-
-.toAddCart {
-	position: relative;
-	width: 40%;
-	display: flex;
-	justify-content: center;
-	justify-items: center;
 }
 
 .contenuCours {
@@ -164,6 +164,22 @@ a {
 .descriptionCourse p {
 	color: rgb(43, 43, 43);
 }
+.descriptionCourse li , .pre-requis li {
+  list-style:none;
+  /* position: relative; */
+  padding-left:10px;
+  /* line-height: 2; */
+  font-size:15px;
+}
+.descriptionCourse li:before , .pre-requis li::before{
+ content:"\f111"; 
+  font-family:FontAwesome;
+  margin: 5px;
+  /* position: absolute;
+  left: 0; */
+  color:#318ca0;
+  font-size:13px;
+}
 
 .coursePage h2 {
 	margin-left: 30px;
@@ -178,11 +194,14 @@ a {
 	text-decoration: line-through;
 	color: rgb(92, 92, 92);
 }
+.btnsShop{
+		text-align: center;
+		margin-top: 20px;
 
+}
 .btnsShop ul li {
 	display: flex;
 	justify-content: center;
-
 	cursor: pointer;
 	width: 100%;
 }
@@ -191,13 +210,16 @@ a {
 }
 
 .btnaddToCart {
-	position: relative;
-	font-size: 20px;
-	padding: 10px 10px;
+	/* position: relative; */
+	font-size: 16px;
+	padding: 9px 10px;
 	color: white;
 	border-radius: 5px;
-	width: 100%;
+	width: 80%;
 	border: none;
+	margin: 0px 20px;
+	margin-bottom: 5px;
+	cursor: pointer;
 	background-color: rgb(223, 66, 66);
 }
 
@@ -206,40 +228,62 @@ a {
 }
 
 .btnShopNow {
-	position: relative;
 	margin-top: 2px;
-	width: 100%;
-	font-size: 20px;
-	padding: 10px 10px;
+	width: 80%;
+	font-size: 16px;
+	padding: 9px 10px;
 	color: rgb(34, 127, 202);
 	border-radius: 5px;
-	border: 1px solid rgb(34, 127, 202);
+	border: 0.5px solid rgb(34, 127, 202);
 	background-color: transparent;
-}
+	transition: all 0.5s linear;
+	cursor: pointer;
 
+}
+.btnShopNow:hover{
+	background-color: rgba(34, 126, 202, 0.061);
+}
+.price{
+	margin: 0;
+	margin-left: 20px;
+	height : fit-content;
+	
+}
+.new-price{
+	font-size: 25px;
+	font-weight: 600;	
+	margin: 0;
+}
 .toAddCart {
 	background-color: rgb(255, 255, 255);
-	margin: 10px 40px;
-	padding: 30px 10px;
-	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-	height: 35.5%;
-	width: 100%;
+	margin: 0px 100px;
+	padding: 0px 2px;
+	/* height: 80%; */
+	box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.103);
+	position: relative;
+	justify-content: center;
+	justify-items: center;
 	opacity: 0;
 	transition: opacity 0.5s ease-in-out;
 }
-
+.bottom_card{
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 50px 194px;
+}
 .toAddCart.active {
 	top: 20%;
-	height: 69%;
+	height: fit-content;
 	position: fixed;
-	width: 35.6%;
+	width: 320px;
 	opacity: 1;
 	transition: opacity 0.5s ease-in-out;
 }
 .toAddCart.disable {
 	visibility: hidden;
 	opacity: 0;
-	transition: all 0.5s ease;
+	transition: opacity 0.5s ease;
+	width: 0px;
 }
 .garantie {
 	margin-top: 20px;
@@ -249,7 +293,9 @@ a {
 }
 
 .courseImage {
+	width: 100%;
 	margin-bottom: 10px;
+	object-fit: cover;
 }
 .formateur h2 {
 	margin-left: 0;
@@ -259,17 +305,36 @@ a {
 	width: 60%;
 	margin: 20px 30px;
 	padding-right: 50px;
+	border-left: 3px solid rgb(128, 128, 128);
+	background-color: rgba(128, 128, 128, 0.041);	
+	padding : 2px 10px;
+}
+#avatar_insrtuctor{
+	object-fit:contain;
+    width : 120px;
+    height : 105px;
 }
 .formateurName {
 	margin-left: 30px;
+		display: inline;
+
 }
 .formateur b {
 	color: rgb(89, 159, 180);
 	font-size: 20px;
 }
+.name_job{
+	display: grid;
+	height: 80%;
+	align-self: center;
+	
+}
 .instructorProfession {
-	margin-top: 5px;
+	/* margin-top: 5px; */
 	color: gray;
+}
+.commentsUsers{
+	margin-top: 20px;
 }
 .comments {
 	position: relative;
@@ -440,7 +505,6 @@ a {
 	.otherInformations {
 		width: 100%;
 	}
-
 	.formateur {
 		position: relative;
 		width: auto;
@@ -448,6 +512,16 @@ a {
 	.comments {
 		position: relative;
 		width: auto;
+	}
+	.allAboutCourse {
+	display: flex;
+	margin: 20px 20px;
+	}
+	.bottom-infos{
+		margin: 30px 0px;
+	}
+	.name_job{
+		margin-left: 10px;
 	}
 }
 

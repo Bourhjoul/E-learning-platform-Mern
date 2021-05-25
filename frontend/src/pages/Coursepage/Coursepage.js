@@ -30,14 +30,13 @@ const Coursepage = () => {
     }
 
     window.addEventListener('scroll',Disable)
-
         return (
         <div className="coursePage">
            <div>
             <div className="descriptionPart">
                 <div className="descriptionPartText">
                 <div className="CategorieCourse">
-                    <h4><Link to="/">Développement</Link> <IoIosArrowForward color="white" size="10"/> <Link to="/">Développement Web</Link> <IoIosArrowForward color="white" size="10"/> Next.js </h4>
+                    <h4><Link to="/">Developpement</Link> <IoIosArrowForward color="white" size="10"/> <Link to="/">Développement Web</Link> <IoIosArrowForward color="white" size="10"/> Next.js </h4>
                 </div>
                 <div>
                     <h1 className="courseNaame">Next.js Dev to Deployment</h1>
@@ -50,7 +49,6 @@ const Coursepage = () => {
                     <div className="informationCourse">
                         <p>Crée par <a href="#">Brad Traversy</a></p>
                         <div className="wish-share">
-                            
                                 <button className="buttonsCourse"><Link className="Link" to="/cart">Add to Cart</Link></button>
                                 <button className="buttonsCourse"><Link className="Link" to="/">Shop Now</Link></button>
                                 <button className="buttonsCourse Video"><Link className="Link" to="/">Watch Video</Link></button>
@@ -64,8 +62,7 @@ const Coursepage = () => {
                 <YoutubePlayer
                 src="https://www.youtube.com/watch?v=zueyEdRZQlk" // Reqiured
                 width={480}
-                height={250}
-            />
+                height={250}/>
                 </div>
             </div>
             <div>
@@ -73,7 +70,7 @@ const Coursepage = () => {
                     <div className="otherInformations">
             <div>
             <div className="learnAbout">
-                <h2>What you gonna learn</h2>
+                <h3>What you gonna learn</h3>
                 <div className="whatlearn">
                     <ul>
                     <li><BsCheck className="checkIcon"/>
@@ -115,8 +112,6 @@ const Coursepage = () => {
                     <Collapsible  title="Seance 3" sessions="4" minutes="20" content="Welcome to the seance3 course HI!"/>
                     <Collapsible  title="Seance 4" sessions="8" minutes="69" content="Welcome to the seance4 course HI!"/>
                     <Collapsible  title="Seance 5" sessions="3" minutes="70" content="Welcome to the seance5 course HI!"/>
-         
-
                     <div className="pre-requis">
                         <h2>Prerequisite</h2>
                         <ul>
@@ -166,9 +161,6 @@ const Coursepage = () => {
                             You should know JavaScript basics and modern JavaScript features like arrow functions, restructuring, the spread operator
 
                             You should also know the basics of React. I will not be explaining things like components, props, JSX
-
-
-
                             Resources:
 
                             All of the final code will be provided in the project repos and all needed resources will be provided in the sections</p>   
@@ -186,41 +178,51 @@ const Coursepage = () => {
            
          </div>  
          <div className="afafa">
-         <div className={`toAddCart ${add ? 'active' : ''} : ${disable ? 'disable' :''} `}>
-             
-                        
-             
-            <div className="informationsToBuyCourse">
-            <img src="./images/react.jpg" width="400" height="175" className="courseImage"/>
-            <h1 className = "new-price">New Price: <span>$12,44</span></h1>
-            <h4 className = "last-price">Old Price: <span>$94,99</span></h4>
+         <div className={`toAddCart ${disable ? 'disable' : add ? 'active'  : 'disable'}`}>
+            {/* <div className="informationsToBuyCourse"> */}
+            <img src="./images/react.jpg" width="400" alt ='' height="175" className="courseImage"/>
+            <div className = 'bottom_card'>
+                <div className = 'price'>
+                    <p className = "new-price"> <span>$12,44</span></p>
+                    <h4 className = "last-price">Old Price: <span>$94,99</span></h4> 
+                </div>
+         
                 <div className="btnsShop">
-                    
                         <button className="btnaddToCart">Add to Cart</button>
                         <button className="btnShopNow">Shop Now</button>
-                        <p className="garantie">Garantie satisfait ou remboursé de 30 jours</p>
-                    
+                        <p className="garantie">Money-Back Guarantee</p>
+
                 </div>
+                                    
+                                        
+
                         
             </div>
+
         </div>
         </div>
 
         
     </div> 
-    <div>
+    <div className = 'bottom-infos'>
         <div className="formateur">
             <div className="formateurName">
-                <h2>Formateur</h2>
-                <b>Brad Traversy</b>
-        
+                <h2>Insrtuctor</h2>
+                <div style = {{display : 'flex'}}>
+                <img src='https://i.imgur.com/tJOSejv.png' id='avatar_insrtuctor' alt='avatar' />
+                <div className = 'name_job'>
+                    <b>Brad Traversy</b>
                     <p className="instructorProfession">Full Stack Web Developer & Instructor at Traversy Media</p>
+                </div>              
+                </div>
+
+                
             </div>
                     <p>Brad Traversy has been programming for around 12 years and teaching for almost 5 years. He is the owner of Traversy Media which is a successful web development YouTube channel and specializes in everything from HTML5 to front end frameworks like Angular as well as server side technologies like Node.js, PHP and Python. Brad has mastered explaining very complex topics in a simple manner that is very understandable. Invest in your knowledge by watching Brad's courses.</p>
                     
         </div>
             <div className="commentsUsers">
-                <h2 className="commentOfParti">Comments of Participants</h2>
+                <h2 className="commentOfParti">Comments of Students</h2>
                 <Comments commentPerson="ZAAM Soufiane" commentMessage="As always, Brad over-delivered on another course. I've taken courses from plenty of other educators. Brad does such an amazing job at not just how to use the technologies presented, but why to use them. Looking forward to learning more from my favorite Udemy educator. Thanks Brad!" />
                 <Comments commentPerson="ZAAM Soufiane" commentMessage="As always, Brad over-delivered on another course. I've taken courses from plenty of other educators. Brad does such an amazing job at not just how to use the technologies presented, but why to use them. Looking forward to learning more from my favorite Udemy educator. Thanks Brad!" />
             </div>

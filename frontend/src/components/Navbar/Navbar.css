@@ -48,7 +48,7 @@
   display: grid;
   align-content: center;
   align-items: center;
-  grid-template-columns: 30% 20% 15% 35%;
+  grid-template-columns: 30% 20% 10% 40%;
 }
 .carticon {
   color: #2f2f2f;
@@ -129,15 +129,32 @@ nav ul li{
 nav ul li img{
   width: 30px;
   height: 30px;
-  border-radius: 50%;
 }
 .Profilepobover{
-  
   width: 100px;
   font-size: 16px;
   color: #2f2f2f;
   display: grid;
   row-gap: 0.5px;
+}
+.profile_pic{
+  object-fit: cover;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+.phonedropdown{
+  margin-left: 50px;
+  background-color:rgb(255, 255, 255);
+  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.6);
+  padding: 20px;
+}
+.dropdownic{
+  display: grid;
+  grid-template-columns : 20% 50% 30%;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 @keyframes moving {
   from {

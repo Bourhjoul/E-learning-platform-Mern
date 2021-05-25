@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import './Navbar.css'
-import { Input, Popover ,Drawer, Button, Radio, Space} from 'antd';
-import { CgShoppingCart,AiOutlineSearch,AiOutlineClose } from 'react-icons/all'
+import { Input, Popover ,Drawer, Button, Radio, Space, Dropdown} from 'antd';
+import { CgShoppingCart,AiOutlineSearch,AiOutlineClose,RiArrowDropDownLine } from 'react-icons/all'
 import {Link} from 'react-router-dom'
 import useWindowDimensions from '../../useWindowDimensions';
 import axios from 'axios'
 import {useSelector,useDispatch} from 'react-redux'
 const Navbar = () => {
+    const { height, width } = useWindowDimensions()
+    const [ showsearch, setshowsearch ] = useState(false)
+    const [showicons, setshowicons] = useState(false)
+    const { Search } = Input;
     const auth = useSelector(state => state.auth)
     const {user,isLogged} = auth
     const handleLogout = async () => {
@@ -18,26 +22,40 @@ const Navbar = () => {
             window.location.href = "/";
         }
     }
+    const contentProfile = (
+        <div className="Profilepobover"> 
+          <Link to ="/profile">Profile</Link> <br />    
+          <Link to="/" onClick={handleLogout}>Logout</Link>
+        </div>
+    );
+    const contentProfilephone = (
+        <div className="Profilepobover phonedropdown"> 
+          <Link to ="/profile">Profile</Link> <br />    
+          <Link to="/" onClick={handleLogout}>Logout</Link>
+        </div>
+         );
     const userLink = () => {
-        return <li className="drop-nav">
-            <Popover content={contentProfile} style={{ cursor: "pointer" }}>
-             <Link to="/" className="avatar"> 
-             <img src= {user.avatar}/> {user.name}  <i className="fas fa-angle-down"></i>
+        return <Popover content={contentProfile} style={{ cursor: "pointer" }}>
+            <Link to="/" className="avatar">
+                <div className='dropdownic'>
+                    <img src={user.avatar} className='profile_pic' /> {user.name}
+                    <RiArrowDropDownLine  size='24' />
+                </div>
              </Link>       
-             </Popover>
-             </li>       
+            </Popover> 
         }
     const userLinkDrawer = () => {
-        return <li className="drop-nav"> 
-             <img src={user.avatar}/>
-             <h4> {user.name} <i className="fas fa-angle-down"></i> <hr/> </h4>
-             {contentProfile} 
-                 
-             </li>       
+        return <Dropdown overlay = {contentProfilephone} trigger={['click']}>
+                <div className='dropdownic' style = {{ margin: '20px 0px'}}>
+                    <img src={user.avatar} className='profile_pic' /> {user.name}
+                    <RiArrowDropDownLine  size='24' />
+                </div> 
+        </Dropdown>
+     
         }
-        const transForm = {
-                          transform: isLogged ? "translateY(-5px)" : "translateY(8px)"
-                      }
+        // const transForm = {
+        //                   transform: isLogged ? "translateY(-5px)" : "translateY(8px)"
+        //               }
     
 
     const [visbile, setvisbile] = useState(false)
@@ -49,16 +67,8 @@ const Navbar = () => {
         setvisbile(false)
     };
 
-    const { height, width } = useWindowDimensions()
-    const [ showsearch, setshowsearch ] = useState(false)
-    const [showicons, setshowicons] = useState(false)
-    const { Search } = Input;
-    const contentProfile = (
-        <div className="Profilepobover"> 
-          <Link to ="/profile">Profile</Link> <br />    
-          <Link to="/" onClick={handleLogout}>Logout</Link>
-        </div>
-         );
+
+
     const content = (
                 <div className = 'Categoriespobover'>
                     <Link>Devlopement</Link> <br />
@@ -129,7 +139,7 @@ const Navbar = () => {
                         <button className='Navbarbtns' id='Categoriesbtn'>Categories</button>
                     </Popover>
                         <CgShoppingCart size='22' className='carticon' />
-                    <ul style={transForm}>
+                    {/* <ul style={transForm}> */}
                     {
                          isLogged 
                          ?  userLink()
@@ -139,12 +149,11 @@ const Navbar = () => {
                             <Link to='/login' className='linkinbtn'> Log in</Link>
                             </button>
                     }
-                </ul>
+                {/* </ul> */}
                 </div>}
             </nav>
-            <section>
-
-            <Drawer
+            {showicons &&
+                <Drawer
                     title="EDUSPACE"
                     placement={'left'}
                     closable={true}
@@ -161,14 +170,13 @@ const Navbar = () => {
                        <Link to='/login' className='linkinbtn'> Log in</Link>
                     </button>
                     }
-                  
-                    
                    <h4>Most visited :</h4> <hr/>
                     {content}
             </div>
 
-        </Drawer>
-            </section>
+                </Drawer> 
+            }
+
 
         </>
     )

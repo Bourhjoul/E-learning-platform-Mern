@@ -1,10 +1,10 @@
-require("dotenv").config();
+const dotenv = require("dotenv");
 const express = require('express');
 const mongoose = require('mongoose')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const fileUpoad = require('express-fileupload')
-
+const res = dotenv.config();
 const app = express()
 app.use(express.json())
 app.use(cors());
@@ -14,7 +14,6 @@ app.use(fileUpoad({ useTempFiles: true }))
 //Routes
 app.use('/user', require('./routes/userRouter'))
 app.use('/api', require('./routes/upload'))
-
 
 
 

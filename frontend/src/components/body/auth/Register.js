@@ -39,7 +39,8 @@ const initialState = {
               try {
              
              
-            const res = await axios.post('/user/register', {name ,email, password})
+                const res = await axios.post('/user/register', { name, email, password })
+                console.log(res)
               setFormDataUser({ ...formDataUser,  err: '' , success: res.data.msg})
       
             } catch (err) {
@@ -59,7 +60,7 @@ const initialState = {
         
         function remcl(){
           let parent = this.parentNode.parentNode;
-          if(this.value == ""){
+          if(this.value === ""){
             parent.classList.remove("focus");
           }
         }
@@ -74,7 +75,7 @@ const initialState = {
 
     return (
        <div>
-  <img className="wave" src="https://i.imgur.com/FKKMfGt.png" preview={false} />
+  <img className="wave" alt ='wave' src="https://i.imgur.com/FKKMfGt.png" preview={false} />
   <div className="container">
     <div className="img">
       <Image src="https://i.imgur.com/UtQtlTN.png" preview={false} />
