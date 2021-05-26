@@ -20,7 +20,7 @@ import NotFound from './components/utils/NotFound/NotFound'
 import ForgotPass from './components/body/auth/ForgotPassword';
 import ResetPass from './components/body/auth/ResetPassword';
 import Coursepage from './pages/Coursepage/Coursepage';
-import CourseCard from './components/CourseCard/CourseCard'
+
 
 function App() {
   //Get Acces token
@@ -63,7 +63,7 @@ function App() {
           <Switch>
               <Route path="/" exact component={Home} />
               <Route path="/Course"  component={Coursepage} />
-              <Route path="/cart" component={CourseCard} />
+              
              <Route exact path='/login' component={ isLogged ? NotFound : Login}/>     
              <Route exact path='/register' component={isLogged ? NotFound : Register}/>  
              <Route exact path='/user/activate/:activation_token' component={ActivationEmail}/> 

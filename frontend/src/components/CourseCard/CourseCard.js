@@ -1,70 +1,22 @@
+import { Card, Rate } from 'antd'
 import React from 'react'
-import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
-import Productcart from './Productcart'
-import { Input, Space } from 'antd';
-import './CourseCard.css'
 
-
-const CourseCard = () => {
-   
-
-    const { Search } = Input;
-
+const CourseCard = ({title,Creator,price,image,rating}) => {
     return (
-        <>
-        
-        
-        <div className ='cartfull'>
-        <div className = 'cart'>
-            <h1>3 courses in your cart</h1>
-            <div className ='productsoncart'>
-                <Productcart />
-            
-            
-                <Productcart />
-           
-            
-                <Productcart />
-            
+        <div className = 'coursecard'>
+            <Card
+                style={{ width: 250,marginRight:'10px' }}
+                 cover={<img style = {{height : '150px',objectFit : 'cover'}} alt="example" src="https://images.unsplash.com/photo-1551034549-befb91b260e0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=334&q=80" />} 
+                                >
+            <h3>{title ? title : 'C++ for beginners'}</h3>
+                <h4>Creator</h4>
+                <h4>$40</h4>
+                <div className = 'rating'>
+                <Rate disabled  width = '2' allowHalf defaultValue={2.5} />
                 </div>
-        </div>
-        
-        <div className = 'totalcart'>
-            <h3 className="totalName">
-            Total :
-
-            </h3>
-            <b className = 'totalprice'>
-            224,98 $US
-            </b>
-            <br></br>
-            <b className="pricebefore">600,00 $US</b>
-            
-            <button className = 'validationBtn'>
-                VALIDATION
-            </button>
-            <br></br>
-            <hr></hr>
-            <br></br>
-            <Search
-      placeholder="Enter the coupon"
-      className="buttonCoupon"
-      enterButton="Apply"
-      
-      size="large"
-      
-    />
-            
+            </Card>
         </div>
 
-
-
-
-
-        
-        </div>
-        
-        </>
     )
 }
 
