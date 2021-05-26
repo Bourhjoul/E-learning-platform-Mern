@@ -1,0 +1,132 @@
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css');
+
+.cartfull {
+	display: grid;
+	position: relative;
+	margin: 20px 100px;
+	grid-template-columns: 70% 30%;
+}
+.totalName {
+	color: rgb(90, 90, 90);
+	font-weight: 500;
+	font-size: 23px;
+}
+.totalcart {
+	height: auto;
+	width: 100%;
+	margin-top: 40px;
+}
+.totalcart .totalprice {
+	color: rgb(46, 46, 46);
+	font-size: 40px;
+
+	font-weight: 700;
+}
+.validationBtn {
+	display: grid;
+	width: 100%;
+	grid-column: 1/3;
+	background-color: #1890ff;
+	color: rgb(255, 255, 255);
+	border: none;
+	padding: 30px 10px;
+	align-content: center;
+	font-size: 16px;
+	outline-style: none;
+	height: 40px;
+	cursor: pointer;
+	font-weight: 500;
+	transition: all 0.2s linear;
+}
+.validationBtn:hover {
+	background-color: #0b2f50;
+}
+
+.cart h1 {
+	font-size: 23px;
+}
+.productsoncart {
+	margin-right: 30px;
+}
+
+.imageCart {
+	width: 110px;
+	height: 60px;
+}
+.productoncart {
+	display: grid;
+	position: relative;
+	align-items: center;
+	grid-template-columns: 20% 50% 26% 4%;
+
+	border: 1px solid rgba(233, 233, 233, 0.534);
+	padding: 20px;
+	box-shadow: 0.2px 0.2px 0.2px 0.2px rgb(218, 215, 215);
+	border-radius: 2px;
+	transition: all 0.5s linear 0.1s;
+	margin-bottom: 10px;
+}
+
+.productNameAFounder b {
+	font-size: 18px;
+	transition: all 0.2s linear;
+}
+.productNameAFounder b:hover {
+	color: #1890ff;
+	cursor: pointer;
+}
+
+.productNameAFounder p {
+	color: gray;
+}
+.totalpriceCart {
+	color: rgb(46, 46, 46);
+	font-size: 35px;
+
+	font-weight: 700;
+}
+
+.deletecart {
+	justify-self: flex-end;
+
+	cursor: pointer;
+	transition: all 0.3s linear;
+}
+.deletecart:hover {
+	color: #1890ff;
+	transform: scale(0.8);
+}
+
+.priceOfCourseb {
+	color: #dd4141;
+	text-decoration: line-through;
+}
+.productNameAFounder {
+	margin-left: 15px;
+}
+.productImgCart img {
+	object-fit: contain;
+	height: auto;
+	width: 100%;
+	overflow: hidden;
+	transition: all 0.5s linear 0.1s;
+}
+.productImgCart img:hover {
+	transform: scale(1.1);
+}
+
+.pricebefore {
+	font-size: 20px;
+	text-decoration: line-through;
+	color: #dd4141;
+}
+
+@media screen and (max-width: 1000px) {
+	.cartfull {
+		grid-template-columns: 100%;
+		margin: 20px 20px;
+	}
+	.productsoncart {
+		margin-right: 0px;
+	}
+}
