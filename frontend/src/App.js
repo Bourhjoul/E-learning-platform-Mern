@@ -20,6 +20,7 @@ import NotFound from './components/utils/NotFound/NotFound'
 import ForgotPass from './components/body/auth/ForgotPassword';
 import ResetPass from './components/body/auth/ResetPassword';
 import Coursepage from './pages/Coursepage/Coursepage';
+import Cart from './pages/Cart/Cart';
 
 
 function App() {
@@ -62,7 +63,9 @@ function App() {
             <Navbar />
           <Switch>
               <Route path="/" exact component={Home} />
-              <Route path="/Course"  component={Coursepage} />
+              <Route path="/Course" component={Coursepage} />
+              <Route path="/cart"  component={Cart} />
+
               
              <Route exact path='/login' component={ isLogged ? NotFound : Login}/>     
              <Route exact path='/register' component={isLogged ? NotFound : Register}/>  
