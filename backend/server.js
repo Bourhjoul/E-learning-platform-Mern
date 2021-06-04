@@ -14,8 +14,7 @@ app.use(fileUpoad({ useTempFiles: true }))
 //Routes
 app.use('/user', require('./routes/userRouter'))
 app.use('/api', require('./routes/upload'))
-
-
+app.use('/courses',require('./routes/courseRouter'))
 
 const PORT = process.env.PORT || 5000;
 

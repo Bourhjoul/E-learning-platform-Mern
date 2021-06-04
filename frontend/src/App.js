@@ -21,6 +21,7 @@ import ForgotPass from './components/body/auth/ForgotPassword';
 import ResetPass from './components/body/auth/ResetPassword';
 import Coursepage from './pages/Coursepage/Coursepage';
 import Cart from './pages/Cart/Cart';
+import Mycourses from './pages/Mycourses/Mycourses';
 
 
 function App() {
@@ -63,10 +64,9 @@ function App() {
             <Navbar />
           <Switch>
               <Route path="/" exact component={Home} />
-              <Route path="/Course" component={Coursepage} />
+              <Route path="/courses/:id" component={Coursepage} />
               <Route path="/cart"  component={Cart} />
-
-              
+              <Route path="/Mycourses"  component={isLogged ? Mycourses : NotFound} />
              <Route exact path='/login' component={ isLogged ? NotFound : Login}/>     
              <Route exact path='/register' component={isLogged ? NotFound : Register}/>  
              <Route exact path='/user/activate/:activation_token' component={ActivationEmail}/> 

@@ -4,7 +4,7 @@ import Rating from './Rating'
 import { Image } from 'antd';
 import {Link } from 'react-router-dom'
 import { IoIosArrowDown, AiFillPlayCircle, RiArrowUpSLine, RiArrowDownSLine} from 'react-icons/all'
-const Collapsible = (props) => {
+const Collapsible = ({section}) => {
     const [isOpen, setIsOpen] = useState(false)
     const parentRef = useRef();
     if(parentRef.current) console.log(parentRef.current.scrollHeight)
@@ -18,10 +18,10 @@ const Collapsible = (props) => {
             
                     <div className="contentC"  onClick={() => setIsOpen(!isOpen)}>
                         <div className="iconCourseC">
-                        {!isOpen ? <RiArrowDownSLine size="20" className="iconArrowDown"/> : <RiArrowUpSLine size="20" className="iconArrowDown" />} <b>{props.title}</b>
+                        {!isOpen ? <RiArrowDownSLine size="20" className="iconArrowDown"/> : <RiArrowUpSLine size="20" className="iconArrowDown" />} <b>{section.name}</b>
                         </div>
                         <div className="nbrSessionsCourseC">
-                            <i>{props.sessions} sessions / {props.minutes}min</i>
+                            <i>x sessions / x min</i>
                         </div>
                     </div>
                    
@@ -33,17 +33,10 @@ const Collapsible = (props) => {
                         <div className="contentOf">
                             <div className="sessionsContent">
                                 <div className="sessionName">
-                                    
-                                        
-                                       <Link to="/" className="session">{i++} - {props.content}</Link>
-                                
-                                        <Link to="/" className="session">{i++} - {props.content}</Link>
-                                    
-                                  
-                                        <Link to="/" className="session">{i++} - {props.content}</Link>
-                                     
-                                        <Link to="/" className="session">{i++} - {props.content}</Link>
-                                    
+                            {section.lectures.map(lecture => (
+                                <Link to="/" className="session">{i++} - {lecture.name}</Link>
+                            ))}
+                        
                                 </div>
                             </div>
                         </div> 

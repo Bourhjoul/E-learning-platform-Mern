@@ -20,6 +20,8 @@
     "react-slick": "^0.28.1",
     "reactjs-media": "^1.5.1",
     "redux": "^4.1.0",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.3.0",
     "slick-carousel": "^1.8.1",
     "web-vitals": "^1.1.1"
   },

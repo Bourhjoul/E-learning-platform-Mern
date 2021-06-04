@@ -1,7 +1,7 @@
 import React from 'react'
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 import Productcart from './Productcart'
-import { Input, Space } from 'antd';
+import { Input } from 'antd';
 import './Cart.css'
 
 

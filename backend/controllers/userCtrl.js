@@ -13,15 +13,16 @@ const {CLIENT_URL} = process.env
 
 const userCtrl = {
     register: async (req, res) => {
-            //console.log(req.body);
-      //get email and the password from the frontend
-      //whenever have a post request u get all the data through the req.body
-     // create the user but first hash the pwd
+        let newUser
+        //console.log(req.body);
+        //get email and the password from the frontend
+        //whenever have a post request u get all the data through the req.body
+        //create the user but first hash the pwd
 
     try {
-       // http://localhost:5000/user/register
-        const {name, email, password} = req.body
-        
+        // http://localhost:5000/user/register
+        const {name, email, password,isTeacher,description,headline} = req.body
+        console.log(isTeacher)
         if(!name || !email || !password)
             return res.status(400).json({msg: "Please fill in all fields."})
 
@@ -35,11 +36,16 @@ const userCtrl = {
             return res.status(400).json({msg: "Password must be at least 6 characters."})
 
         const passwordHash = await bcrypt.hash(password, 12)
-
-        const newUser = {
+        if (isTeacher) {
+             newUser = {
+            name, email, password: passwordHash,Teacher : isTeacher,description,headline
+            }
+        }else{
+             newUser = {
             name, email, password: passwordHash
+            }
         }
-
+        console.log(newUser)
         const activation_token = createActivationToken(newUser)
 
         const url = `${CLIENT_URL}/user/activate/${activation_token}`
@@ -61,6 +67,7 @@ const userCtrl = {
            */
             const {activation_token} = req.body
             const user = jwt.verify(activation_token, process.env.ACTIVATION_TOKEN_SECRET)
+            console.log(user);
             /*console.log(user);
             //that user contain all fields {
             name: 'User 01',
@@ -69,14 +76,21 @@ const userCtrl = {
              iat: 1620786747,
              exp: 1620787347
             }*/
-            const {name, email, password} = user
+            const { name, email, password, Teacher, description, headline } = user
             //check if the user already registred
             const check = await Users.findOne({email})
             if(check)   return res.status(400).json({msg: "This email already exist"})
             //if not create one and save it to DB
-            const newUser = new Users({name, email, password})
-            await newUser.save()
-            res.json({msg: "Account has been activated!"})
+            if (Teacher) {
+                const newUser = new Users({name, email, password,Teacher, description, headline})
+                await newUser.save()
+                res.json({msg: "Account has been activated!"})
+            } else {
+                const newUser = new Users({name, email, password})
+                await newUser.save()
+                res.json({msg: "Account has been activated!"})
+            }
+
 
         } catch (err) {
             return res.status(500).json({msg: err.message})
@@ -159,6 +173,7 @@ const userCtrl = {
     getUserInfor: async (req, res) => {
         try {
             const user = await Users.findById(req.user.id).select('-password')
+            console.log(user);
             res.json(user)
         } catch (err) {
             return res.status(500).json({msg: err.message})
@@ -167,12 +182,12 @@ const userCtrl = {
     getUsersAllInfor: async (req, res) => {
         try {
             const user = await Users.find().select('-password')
-
             res.json(user)
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }
     },
+
     logout: async (req, res) => {
         try {
             res.clearCookie('refreshtoken', {path: '/user/refresh_token'})

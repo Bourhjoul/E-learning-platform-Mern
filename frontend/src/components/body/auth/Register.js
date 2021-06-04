@@ -5,20 +5,26 @@ import axios from "axios"
 import {showErrMsg, showSuccessMsg} from '../../utils/notification/Notification'
 import {useDispatch} from 'react-redux'
 import {isEmpty,isEmail,isMatch,isLength} from '../../utils/validation/Validation'
+import { Checkbox } from 'antd';
+import { useEffect } from 'react';
 
 const initialState = {
-     name: '',
-     email: '',  
-     password: '',
-     cf_password: '',
-     err:'',
-     success: ''}
+    name: '',
+    email: '',  
+    password: '',
+    cf_password: '',
+    description: '',
+    headline : '', 
+    err:'',
+    success: ''}
      
-     const Register = () => {
-         const[formDataUser,setFormDataUser] = useState(initialState)
+const Register = () => {
+      const { TextArea } = Input;
+      const [isTeacher, setisTeacher] = useState(false);
+      const[formDataUser,setFormDataUser] = useState(initialState)
          const dispatch = useDispatch()
       
-         const {name,email,password,cf_password,err,success} = formDataUser
+         const {name,email,password,cf_password,description,headline,err,success} = formDataUser
          const handleChange = e => {
             //place of do that onChange={(e) => setEmail(e.target.value) for each field (input) we do that
             setFormDataUser({ ...formDataUser, [e.target.name]: e.target.value , err : '',success: ''})
@@ -36,12 +42,16 @@ const initialState = {
               
               if(!isMatch(password, cf_password))
               return  setFormDataUser({ ...formDataUser,  err: 'Password did not match' , success: ''})
-              try {
-             
-             
-                const res = await axios.post('/user/register', { name, email, password })
-                console.log(res)
+          try {
+            if (isTeacher) {
+                    const res = await axios.post('/user/register', { name, email, password,isTeacher,description,headline })
+                    setFormDataUser({ ...formDataUser,  err: '' , success: res.data.msg})
+            }
+            else {
+              const res = await axios.post('/user/register', { name, email, password })
               setFormDataUser({ ...formDataUser,  err: '' , success: res.data.msg})
+            }
+
       
             } catch (err) {
               err.response.data.msg &&
@@ -71,10 +81,15 @@ const initialState = {
           inputa.addEventListener("blur", remcl);
         });
         
-        
+        useEffect(() => {
+                console.log(isTeacher)
+
+          return () => {
+          }
+        }, [isTeacher])
 
     return (
-       <div>
+       <div className = 'container_login'>
   <img className="wave" alt ='wave' src="https://i.imgur.com/FKKMfGt.png" preview={false} />
   <div className="container">
     <div className="img">
@@ -119,6 +134,12 @@ const initialState = {
                  <input  name="cf_password" value={cf_password} type="password" className="input" placeholder='Confirm Password' onChange={handleChange} />
           </div>
         </div>
+        <Checkbox onChange={(e) => setisTeacher(e.target.checked)} >Sign me up as a teacher</Checkbox>
+              {isTeacher && <div className='teacherdetails'>
+                Description : <TextArea rows={4} name = 'description' onChange={handleChange} value={description} placeholder='write about few lines' />
+                Headline : <TextArea rows={2} name = 'headline' onChange = {handleChange} value = {headline} maxLength = '30' placeholder='give yourself a headline' />
+              </div>}
+              
         <button type='submit' className="btn" >Register</button>
       <p>Already an account? <Link className="register" to="/login">Login</Link></p>
       </form>

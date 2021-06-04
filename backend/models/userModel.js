@@ -22,9 +22,19 @@ const userSchema = new mongoose.Schema({
         type: Number,
         default: 0 // 0 = user, 1 = admin
     },
+    Teacher:{
+        type : Boolean,
+        required : true,
+        default : false
+    },
     avatar: {
         type: String,
         default: "https://i.imgur.com/tJOSejv.png"
+    },description:{
+        type : String
+    },
+    headline: {
+        type : String
     }
 }, {
     timestamps: true

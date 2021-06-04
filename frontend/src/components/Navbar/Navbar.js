@@ -12,7 +12,7 @@ const Navbar = () => {
     const [showicons, setshowicons] = useState(false)
     const { Search } = Input;
     const auth = useSelector(state => state.auth)
-    const {user,isLogged} = auth
+    const { user, isLogged } = auth
     const handleLogout = async () => {
         try {
             await axios.get('/user/logout')
@@ -25,7 +25,8 @@ const Navbar = () => {
     const contentProfile = (
         <div className="Profilepobover"> 
           <Link to ="/profile">Profile</Link> <br />    
-          <Link to="/" onClick={handleLogout}>Logout</Link>
+            <Link to="/" onClick={handleLogout}>Logout</Link><br />
+            {user.Teacher && <Link to="/courses">Dashboard</Link>}
         </div>
     );
     const contentProfilephone = (
@@ -47,15 +48,12 @@ const Navbar = () => {
     const userLinkDrawer = () => {
         return <Dropdown overlay = {contentProfilephone} trigger={['click']}>
                 <div className='dropdownic' style = {{ margin: '20px 0px'}}>
-                    <img src={user.avatar} className='profile_pic' /> {user.name}
+                    <img src={user.avatar} className='profile_pic' alt = 'profilpic' /> {user.name}
                     <RiArrowDropDownLine  size='24' />
                 </div> 
         </Dropdown>
      
         }
-        // const transForm = {
-        //                   transform: isLogged ? "translateY(-5px)" : "translateY(8px)"
-        //               }
     
 
     const [visbile, setvisbile] = useState(false)
@@ -105,7 +103,7 @@ const Navbar = () => {
                 <div className = 'line3'></div>
             </div>
             <div className='logo'>
-                <Link to="/" >EDUSPACE</Link>
+                <Link to="/" ><img src = 'https://i.imgur.com/4jq68uE.png' alt = 'Logo' className = 'logo_header'/></Link>
             </div>
             {showicons &&
                 <div className = 'Phoneonright'>

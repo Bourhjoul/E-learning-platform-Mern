@@ -1,4 +1,12 @@
-
+.teacherdetails{
+	margin-top : 10px;
+	display : grid;
+	text-align: left;
+	font-weight: 600;
+}
+.container_login{
+	display : table;
+}
 .wave {
 	position: fixed;
 	bottom: 0;
@@ -7,6 +15,7 @@
 	z-index: -1;
   }
 .container{
+	margin-bottom: 100px;
 	margin-top: 100px;
 	width: 96vw;
 	height: 80px;

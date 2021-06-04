@@ -220,11 +220,11 @@ a {
 	margin: 0px 20px;
 	margin-bottom: 5px;
 	cursor: pointer;
-	background-color: rgb(223, 66, 66);
+	background-color: #ff9f3e;
 }
 
 .btnaddToCart:hover {
-	background-color: rgb(255, 57, 57);
+	background-color: #f18c26;
 }
 
 .btnShopNow {

@@ -21,11 +21,9 @@ const oauth2Client = new OAuth2(
 
 // send mail
 const sendEmail = (to, url, txt) => {
-    console.log(MAILING_SERVICE_REFRESH_TOKEN)
     oauth2Client.setCredentials({
         // access_token : MAILING_SERVICE_CLIENT_SECRET,
         refresh_token: MAILING_SERVICE_REFRESH_TOKEN,
-            // expiry_date: 1451721044161
 
     })
 
@@ -63,7 +61,7 @@ const sendEmail = (to, url, txt) => {
     }
 
     smtpTransport.sendMail(mailOptions, (err, infor) => {
-
+        console.log(err)
         if(err) return err;
         return infor
     })

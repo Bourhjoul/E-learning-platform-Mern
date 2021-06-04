@@ -2,6 +2,7 @@ const router = require('express').Router()
 const userCtrl = require('../controllers/userCtrl')
 const auth = require('../middleware/auth')
 const authAdmin = require('../middleware/authAdmin')
+const isTeacher = require('../middleware/isTeacher')
 // http://localhost:5000/user/register not http://localhost:5000/signin cuz of rout in server.js
  
 /*Next, we go for the POST request. We create a 

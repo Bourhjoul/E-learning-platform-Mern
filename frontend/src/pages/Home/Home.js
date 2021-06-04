@@ -1,15 +1,23 @@
 import { Card, } from 'antd'
-import React, { useRef } from 'react'
-import Navbar from '../../components/Navbar/Navbar'
+import React, { useEffect, useRef } from 'react'
+import { Empty } from 'antd';
+
 import Slider from "react-slick";
 import { Tabs } from 'antd';
-
+import { Skeleton } from 'antd';
 import './Home.css'
 import CourseCard from '../../components/CourseCard/CourseCard';
 import CategoryCard from '../../components/CategoryCard/CategoryCard';
 import Footer from '../../components/Footer/Footer';
+import { useDispatch, useSelector } from 'react-redux';
+import { Listcoursesbypobularity, ListcoursesbyTopic } from '../../redux/actions/courseActions';
 
 const Home = () => {
+        const dispatch = useDispatch()
+        const ListCoursesReducer = useSelector(state => state.ListCoursesReducer)
+        const { loading, courses, error } = ListCoursesReducer
+        const ListCoursesbyPobularityReducer = useSelector(state => state.ListCoursesbyPobularityReducer)
+        const { loading : loadingpobular, courses : coursespobular, error : errorpobular } = ListCoursesbyPobularityReducer
         const menuref = useRef(null)
         const pobularref = useRef(null)
         var settings = {
@@ -51,16 +59,56 @@ const Home = () => {
         const executeScrolltwo = () => pobularref.current.scrollIntoView({behavior: 'smooth'})
         
         const { TabPane } = Tabs;
+
+        useEffect(() => {
+                dispatch(ListcoursesbyTopic('Devlopement'))
+                dispatch(Listcoursesbypobularity())
+                console.log(coursespobular)
+
+                return () => {
+                        
+                }
+        }, [])
+        const changetopic = (key) => {
+                switch (key) {
+                        case '1':
+                                dispatch(ListcoursesbyTopic('Devlopement'))
+                                break;
+                        case '2':
+                                dispatch(ListcoursesbyTopic('marketing'))
+                                console.log('case 2')
+                                break;
+                        case '3':
+                                dispatch(ListcoursesbyTopic('Self dev'))
+                                console.log('case 3')
+                                break;
+                        case '4':
+                                dispatch(ListcoursesbyTopic('photography'))
+                                console.log('case 4')
+                                break;
+                        case '5':
+                                dispatch(ListcoursesbyTopic('music'))
+                                console.log('case 5')
+                                break;
+                        case '6':
+                                dispatch(ListcoursesbyTopic('design'))
+                                console.log('case 6')
+                                break;
+                        default:
+                                break;
+                }
+        }
+
     return (
             <div>
-                            
+                
 
                 <div>
                 <div className = 'Banner_Card'>
                     <Card >
                         <h1>I want to learn</h1><hr/>
                         <p>Ambition accepted. Learn the latest skills to reach your professional goals.</p>
-                        <button className='Btn' id = 'discover_btn' onClick = {executeScrolltwo}>DISCOVER</button>
+                        <button className='Btn' id = 'discover_btn' onClick = {executeScroll}>DISCOVER</button>
                     </Card>
                 </div>
                 <img className='Home_image' alt='' src='https://i.imgur.com/I8XiMP1.jpg' />
@@ -69,8 +117,8 @@ const Home = () => {
                 <h2>For Newbies :</h2>
                 <h3>We Recommend this for you to start.</h3>
 
-            <Tabs defaultActiveKey="1">
-                    <TabPane tab="Devlopement" key='1'>
+            <Tabs defaultActiveKey="1" onTabClick = {changetopic} >
+                    <TabPane tab="Devlopement" key='1' >
                         <div className='Tab_Content'>
                         <h2>Become a Devloper</h2>
 
@@ -80,14 +128,18 @@ const Home = () => {
                                 <button className='Btn' id = 'ReadMorebtn'>Discover More</button>
                         </div>
                         <div className='coursecards'>
+                        {loading ? <Skeleton /> : error ? 
+                        <div> Error </div> :
+                                                                    courses.length === 0 ?
+                                <Empty /> :
                                 <Slider {...settings}>
-                                <CourseCard data-index = '1' title = 'someshit1'/>
-                                <CourseCard  data-index = '2' title = 'someshit2'/>
-                                <CourseCard data-index = '3' title = 'someshit3' />
-                                <CourseCard  data-index = '4' title = 'someshit4'/>
-                                <CourseCard data-index = '5' title = 'someshit5'/>   
-                                <CourseCard data-index = '6'title = 'someshit6' />   
+                                        {courses.map((course, index) => (
+                                                <>
+                                                <CourseCard key={course._id} data-index={index} course={course}/>
+                                                </>
+                                        ))}                   
                                 </Slider>
+                                }
                         </div>
                         </div>
 
@@ -101,55 +153,65 @@ const Home = () => {
                                     <p>Marketing is more than a concentration within a business major. More accurately, it describes a collection of skills that are useful in any career. As a professional discipline, marketing is a vital function of any business’ operation. It explores customer perceptions and journeys as primary sources of profit. It also utilizes various data to make smart and insightful business decisions.</p>
                                     <button className='Btn' id = 'ReadMorebtn'>Discover More</button>
                             </div>
-                        <div className = 'coursecards'>
+                        <div className='coursecards'>
+                        {loading ? <Skeleton /> : error ? 
+                        <div> Error </div> :
+                                                                    courses.length === 0 ?
+                                <Empty /> :
                                 <Slider {...settings}>
-                                <CourseCard data-index = '1' title = 'someshit1'/>
-                                <CourseCard  data-index = '2' title = 'someshit2'/>
-                                <CourseCard data-index = '3' title = 'someshit3' />
-                                <CourseCard  data-index = '4' title = 'someshit4'/>
-                                <CourseCard data-index = '5' title = 'someshit5'/>   
-                                <CourseCard data-index = '6'title = 'someshit6' />   
+                                        {courses.map((course, index) => (
+                                                <>
+                                                <CourseCard key={course._id} data-index={index} course={course}/>
+                                                </>
+                                        ))}                   
                                 </Slider>
+                                }
                         </div>
                         </div>
                 </TabPane>
                 <TabPane tab="Self Dev" key='3'>
                         <div className='Tab_Content'>
                         <h2>Become a Markter</h2>
-
                             <div id = 'paragraphbtn'>
                                     <p>Marketing is more than a concentration within a business major. More accurately, it describes a collection of skills that are useful in any career. As a professional discipline, marketing is a vital function of any business’ operation. It explores customer perceptions and journeys as primary sources of profit. It also utilizes various data to make smart and insightful business decisions.</p>
                                     <button className='Btn' id = 'ReadMorebtn'>Discover More</button>
                             </div>
                         <div className = 'coursecards'>
+                        {loading ? <Skeleton /> : error ? 
+                        <div> Error </div> :
+                                                                    courses.length === 0 ?
+                                <Empty /> :
                                 <Slider {...settings}>
-                                <CourseCard data-index = '1' title = 'someshit1'/>
-                                <CourseCard  data-index = '2' title = 'someshit2'/>
-                                <CourseCard data-index = '3' title = 'someshit3' />
-                                <CourseCard  data-index = '4' title = 'someshit4'/>
-                                <CourseCard data-index = '5' title = 'someshit5'/>   
-                                <CourseCard data-index = '6'title = 'someshit6' />   
+                                        {courses.map((course, index) => (
+                                                <>
+                                                <CourseCard key={course._id} data-index={index} course={course}/>
+                                                </>
+                                        ))}                   
                                 </Slider>
+                                }                                
                         </div>
                         </div>
                 </TabPane>
                 <TabPane tab="Photography" key = '4'>
                         <div className='Tab_Content'>
                         <h2>Become a Photographer</h2>
-
                             <div id = 'paragraphbtn'>
                                     <p>Marketing is more than a concentration within a business major. More accurately, it describes a collection of skills that are useful in any career. As a professional discipline, marketing is a vital function of any business’ operation. It explores customer perceptions and journeys as primary sources of profit. It also utilizes various data to make smart and insightful business decisions.</p>
                                     <button className='Btn' id = 'ReadMorebtn'>Discover More</button>
                             </div>
                         <div className = 'coursecards'>
+                        {loading ? <Skeleton /> : error ? 
+                        <div> Error </div> :
+                                                                    courses.length === 0 ?
+                                <Empty /> :
                                 <Slider {...settings}>
-                                <CourseCard data-index = '1' title = 'someshit1'/>
-                                <CourseCard  data-index = '2' title = 'someshit2'/>
-                                <CourseCard data-index = '3' title = 'someshit3' />
-                                <CourseCard  data-index = '4' title = 'someshit4'/>
-                                <CourseCard data-index = '5' title = 'someshit5'/>   
-                                <CourseCard data-index = '6'title = 'someshit6' />   
+                                        {courses.map((course, index) => (
+                                                <>
+                                                <CourseCard key={course._id} data-index={index} course={course}/>
+                                                </>
+                                        ))}                   
                                 </Slider>
+                                }    
                         </div>
                         </div>
                 </TabPane>
@@ -162,15 +224,19 @@ const Home = () => {
                                     <button className='Btn' id = 'ReadMorebtn'>Discover More</button>
                             </div>
                         <div className = 'coursecards'>
-                                <Slider {...settings}>
-                                <CourseCard data-index = '1' title = 'someshit1'/>
-                                <CourseCard  data-index = '2' title = 'someshit2'/>
-                                <CourseCard data-index = '3' title = 'someshit3' />
-                                <CourseCard  data-index = '4' title = 'someshit4'/>
-                                <CourseCard data-index = '5' title = 'someshit5'/>   
-                                <CourseCard data-index = '6'title = 'someshit6' />   
-                                </Slider>
                         </div>
+                        {loading ? <Skeleton /> : error ? 
+                        <div> Error </div> :
+                                                                    courses.length === 0 ?
+                                <Empty /> :
+                                <Slider {...settings}>
+                                        {courses.map((course, index) => (
+                                                <>
+                                                <CourseCard key={course._id} data-index={index} course={course}/>
+                                                </>
+                                        ))}                   
+                                </Slider>
+                                }
                         </div>
                 </TabPane>
                 <TabPane tab="Design" key = '6'>
@@ -181,14 +247,18 @@ const Home = () => {
                                     <button className='Btn' id = 'ReadMorebtn'>Discover More</button>
                             </div>
                         <div className = 'coursecards'>
+                        {loading ? <Skeleton /> : error ? 
+                        <div> Error </div> :
+                                                                    courses.length === 0 ?
+                                <Empty /> :
                                 <Slider {...settings}>
-                                <CourseCard data-index = '1' title = 'someshit1'/>
-                                <CourseCard  data-index = '2' title = 'someshit2'/>
-                                <CourseCard data-index = '3' title = 'someshit3' />
-                                <CourseCard  data-index = '4' title = 'someshit4'/>
-                                <CourseCard data-index = '5' title = 'someshit5'/>   
-                                <CourseCard data-index = '6'title = 'someshit6' />   
+                                        {courses.map((course, index) => (
+                                                <>
+                                                <CourseCard key={course._id} data-index={index} course={course}/>
+                                                </>
+                                        ))}                   
                                 </Slider>
+                                }
                         </div>
                         </div>
                 </TabPane>
@@ -196,15 +266,19 @@ const Home = () => {
                 </section>
                 <section className='Courses_Popular' ref={pobularref}>
                             <h2>Pobular Courses </h2>
-                                <div className = 'coursecards'>
-                                        <Slider {...settings}>
-                                        <CourseCard data-index = '1' title = 'someshit1'/>
-                                        <CourseCard  data-index = '2' title = 'someshit2'/>
-                                        <CourseCard data-index = '3' title = 'someshit3' />
-                                        <CourseCard  data-index = '4' title = 'someshit4'/>
-                                        <CourseCard data-index = '5' title = 'someshit5'/>   
-                                        <CourseCard data-index = '6'title = 'someshit6' />   
+                            <div className='coursecards'>
+                                {loadingpobular ? <Skeleton /> : errorpobular ? 
+                                <div> Error </div> :
+                                coursespobular.length === 0 ?
+                                <Empty /> :
+                                <Slider {...settings}>
+                                        {coursespobular.map((course, index) => (
+                                                <>
+                                                <CourseCard key={course._id} data-index={index} course={course}/>
+                                                </>
+                                        ))}                   
                                 </Slider>
+                                }                                  
                                 </div>
                 </section>
                 <section className = 'Categorys_Popular'>
@@ -230,8 +304,8 @@ const Home = () => {
                                         <button className = 'Btn' id = 'Joinusbtn'>Join Us</button>
                                     </div>
                             </div>
-
                     </section>
+
 
         </div>
     )

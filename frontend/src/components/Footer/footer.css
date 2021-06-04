@@ -1,7 +1,7 @@
 .footer{
-  border-top: 1.5px solid #A5A5A5;
+    margin-top: 15%;
   position: relative;
-  top: 600px;
+  /* top: 600px; */
   height: fit-content;
   display: grid;
   background-color :#373737; 

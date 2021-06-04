@@ -66,7 +66,7 @@ const initialState = {
         
 
     return (
-       <div>
+       <div className = 'container_login'>
          
     <img className="wave" src="https://i.imgur.com/FKKMfGt.png"  />
      <div className="container">
