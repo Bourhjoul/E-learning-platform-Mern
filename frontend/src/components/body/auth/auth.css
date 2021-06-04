@@ -5,7 +5,7 @@
 	font-weight: 600;
 }
 .container_login{
-	display : table;
+	display : inline-block;
 }
 .wave {
 	position: fixed;
