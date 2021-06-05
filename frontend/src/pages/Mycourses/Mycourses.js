@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
-import { Table, Tag, Button } from 'antd';
+import { Table, Tag, Button, Skeleton } from 'antd';
 import { Link } from 'react-router-dom'
 import {listMyCourses} from '../../redux/actions/courseActions'
 import {AiOutlineEdit,TiDeleteOutline} from 'react-icons/all'
 import { useDispatch, useSelector } from 'react-redux';
+import Error from '../../components/utils/Error';
 const Mycourses = ({history}) => {
     const { Column } = Table;
     let crs = []
@@ -27,7 +28,7 @@ const Mycourses = ({history}) => {
                 price: element.price,
                 rating: element.rating,
                 nmbr_stu: element.numStudents,
-                category : element.category[0]
+                category : element.category
             })
             });
   }
@@ -53,7 +54,8 @@ const Mycourses = ({history}) => {
     // ];
   return (
   <>
-    {(!loading) &&
+      {loading ? <Skeleton active /> : error ?
+        <Error error = {error} /> :
        <Table dataSource={crs}>  
                      <Column title="Name" dataIndex="name" key="_id" />
                      <Column title="Price" dataIndex="price" key="price" />

@@ -10,6 +10,7 @@ import { Skeleton } from 'antd';
 import './Coursepage.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { Getcoursedetails } from '../../redux/actions/courseActions';
+import Error from '../../components/utils/Error';
 
 const Coursepage = ({ match, history }) => {
     const dispatch = useDispatch();
@@ -42,7 +43,7 @@ const Coursepage = ({ match, history }) => {
     return (
     <>
         {
-                loading ? <Skeleton active /> : error ? <h2>error</h2> :
+                loading ? <Skeleton active /> : error ? <Error error = {error} /> :
                     
         <div className="coursePage">
                 

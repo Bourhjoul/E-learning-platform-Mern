@@ -26,7 +26,7 @@ const Navbar = () => {
         <div className="Profilepobover"> 
           <Link to ="/profile">Profile</Link> <br />    
             <Link to="/" onClick={handleLogout}>Logout</Link><br />
-            {user.Teacher && <Link to="/courses">Dashboard</Link>}
+            {user.Teacher && <Link to="/Mycourses">Dashboard</Link>}
         </div>
     );
     const contentProfilephone = (

@@ -45,11 +45,9 @@ const userCtrl = {
             name, email, password: passwordHash
             }
         }
-        console.log(newUser)
         const activation_token = createActivationToken(newUser)
 
         const url = `${CLIENT_URL}/user/activate/${activation_token}`
-        console.log('here');
         sendMail(email, url, "Verify your email address")
 
         res.json({msg: "Register Success! Please activate your email to start."})
@@ -67,7 +65,6 @@ const userCtrl = {
            */
             const {activation_token} = req.body
             const user = jwt.verify(activation_token, process.env.ACTIVATION_TOKEN_SECRET)
-            console.log(user);
             /*console.log(user);
             //that user contain all fields {
             name: 'User 01',
@@ -161,7 +158,6 @@ const userCtrl = {
             const {password} = req.body
             const passwordHash = await bcrypt.hash(password, 12)
             //{ id: '609b416cbed92c4798c17f49', iat: 1620867631, exp: 1620868531 }
-            console.log(req.user);
             await Users.findOneAndUpdate({_id: req.user.id},{
                 password : passwordHash
             })
