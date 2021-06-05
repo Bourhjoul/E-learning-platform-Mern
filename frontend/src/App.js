@@ -22,7 +22,7 @@ import ResetPass from './components/body/auth/ResetPassword';
 import Coursepage from './pages/Coursepage/Coursepage';
 import Cart from './pages/Cart/Cart';
 import Mycourses from './pages/Mycourses/Mycourses';
-
+import CourseFilter from './pages/CourseFilter/CourseFilter';
 
 function App() {
   //Get Acces token
@@ -66,6 +66,7 @@ function App() {
               <Route path="/" exact component={Home} />
               <Route path="/courses/:id" component={Coursepage} />
               <Route path="/cart"  component={Cart} />
+              <Route path="/coursesfilter/:topic" component={CourseFilter} />
               <Route path="/Mycourses"  component={isLogged ? Mycourses : NotFound} />
              <Route exact path='/login' component={ isLogged ? NotFound : Login}/>     
              <Route exact path='/register' component={isLogged ? NotFound : Register}/>  

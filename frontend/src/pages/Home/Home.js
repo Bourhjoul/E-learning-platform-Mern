@@ -1,7 +1,7 @@
 import { Card, } from 'antd'
 import React, { useEffect, useRef } from 'react'
 import { Empty } from 'antd';
-
+import {Link} from 'react-router-dom'
 import Slider from "react-slick";
 import { Tabs } from 'antd';
 import { Skeleton } from 'antd';

@@ -1,0 +1,53 @@
+.courseContentFilter {
+	position: relative;
+
+	color: rgb(51, 51, 51);
+}
+.courseContentFilter b {
+	font-size: 18px;
+}
+.contentCFilter {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 15px 30px;
+	cursor: pointer;
+	background-color: rgb(255, 255, 255);
+	border-top: 1px solid rgb(207, 207, 207);
+}
+
+.iconArrowDownFilter {
+	margin-right: 15px;
+}
+
+.iconCourseCFilter {
+	display: flex;
+	align-items: center;
+}
+
+.allCourseContentFilter {
+	margin-top: 20px;
+}
+.sessionNameFilter div {
+	display: flex;
+	margin-bottom: 20px;
+}
+
+.sessionNameFilter .session {
+	display: block;
+	margin-bottom: 10px;
+}
+
+.playIconFilter {
+	margin-right: 15px;
+}
+
+.sessionsContentFilter {
+	border-top: 1px solid rgb(207, 207, 207);
+
+	padding: 15px 30px;
+}
+.start {
+	margin: 0 7px;
+	color: rgb(245, 197, 39);
+}

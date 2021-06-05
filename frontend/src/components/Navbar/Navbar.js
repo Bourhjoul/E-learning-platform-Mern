@@ -69,14 +69,14 @@ const Navbar = () => {
 
     const content = (
                 <div className = 'Categoriespobover'>
-                    <Link>Devlopement</Link> <br />
-                    <Link>Marketing</Link><br />
-                    <Link>Design</Link><br />
-                    <Link>Education</Link><br />
-                    <Link>Photography</Link><br />
-                    <Link>Music</Link><br />
-                    <Link>Self Devlopement</Link><br />
-                    <Link>Business</Link><br />
+                    <Link to="/coursesfilter/development">Devlopement</Link> <br />
+                    <Link to="/coursesfilter/marketing">Marketing</Link><br />
+                    <Link to="/coursesfilter/design">Design</Link><br />
+                    <Link to="/coursesfilter/education">Education</Link><br />
+                    <Link to="/coursesfilter/photography">Photography</Link><br />
+                    <Link to="/coursesfilter/music">Music</Link><br />
+                    <Link to="/coursesfilter/selfdev">Self Devlopement</Link><br />
+                    <Link to="/coursesfilter/business">Business</Link><br />
                     <Link>Cg 1</Link><br />
                     <Link>Cg 1</Link><br />
                 </div>
