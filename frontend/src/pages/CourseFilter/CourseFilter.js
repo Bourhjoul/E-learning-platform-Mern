@@ -73,46 +73,9 @@ let {topic} = useParams()
 
 useEffect(() => {
  
-    switch (topic) {
-    case 'development':
-            
-            dispatch(ListcoursesbyTopic('Devlopement'))
-            console.log('1')
-            break;
-    case 'marketing':
-            dispatch(ListcoursesbyTopic('marketing'))
-            
-            console.log('case 2')
-            break;
-    case 'selfdev':
-            dispatch(ListcoursesbyTopic('Self dev'))
-            console.log('case 3')
-            break;
-
-    case 'design':
-      dispatch(ListcoursesbyTopic('design'))
-      console.log('case 3')
-      break;
-
-      case 'music':
-    dispatch(ListcoursesbyTopic('music'))
-    console.log('case 3')
-    break;
-
-    case 'photography':
-    dispatch(ListcoursesbyTopic('photography'))
-    console.log('case 3')
-    break;
-
-
-    case 'education':
-    dispatch(ListcoursesbyTopic('education'))
-    console.log('case 3')
-    break;
+   dispatch(ListcoursesbyTopic(topic))
     
-   default: break;
-    
-    }
+   
   return () => {
           
   }
