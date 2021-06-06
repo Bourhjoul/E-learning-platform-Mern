@@ -136,7 +136,9 @@ const Navbar = () => {
                     <Popover content={content} style={{ cursor: "pointer" }}>
                         <button className='Navbarbtns' id='Categoriesbtn'>Categories</button>
                     </Popover>
-                        <CgShoppingCart size='22' className='carticon' />
+                    <Link to="/cart"><CgShoppingCart  size='22' className='carticon' />
+                    </Link>
+                        
                     {/* <ul style={transForm}> */}
                     {
                          isLogged 

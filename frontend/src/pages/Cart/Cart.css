@@ -118,7 +118,39 @@
 	text-decoration: line-through;
 	color: #dd4141;
 }
+/* empty cart */
 
+.Emptycart {
+	position: relative;
+	display: grid;
+	grid-template-columns: 40% 60%;
+	height: 600px;
+	
+  }
+  .illustration {
+	position: relative;
+	right: 50px;
+	transform: scale(0.5);
+  }
+  .arrow {
+	display: inline;
+  }
+  .textempty {
+	align-self: center;
+	justify-self: center;
+	font-size: 30px;
+  }
+  .textempty h1 {
+	font-weight: 600;
+	font-size: 40px;
+  }
+  .textempty .goshop {
+	transition: all 0.5s linear;
+	opacity: 0.7;
+  }
+  .textempty .goshop:hover {
+	opacity: 1;
+  }
 @media screen and (max-width: 1000px) {
 	.cartfull {
 		grid-template-columns: 100%;

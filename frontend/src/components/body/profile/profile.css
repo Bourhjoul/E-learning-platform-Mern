@@ -1,0 +1,188 @@
+.profile-page{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    
+}
+.profile-page .col-left{
+    max-width: 400px;
+    min-width: 300px;
+    margin: auto;
+    margin-top: 3px;
+    padding: 0 10px;
+}
+.profile-page .col-left .avatar{
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid gray;
+    border-radius: 50%;
+    margin: 15px auto;
+    position: relative;
+}
+.profile-page .col-left .disable-avatar{
+   display: none;
+}
+.profile-page .col-left img{
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+   
+}
+.profile-page .col-left .avatar span{
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: #2583d6b6;
+    text-align: center;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: white;
+    transition: 0.6s ease-in-out;
+}
+.profile-page .col-left .avatar:hover span{
+    bottom: -15%;
+}
+
+.profile-page .col-left #file_up {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    opacity: 0;
+}
+.profile-page .col-left h2{
+    text-align: center;
+    font-size: 1.7rem;
+    text-transform: uppercase;
+    color: #333;
+    margin: 10px 0px;
+}
+.profile-page .col-left label{
+    display: block;
+    margin-top: 5px;
+}
+.profile-page .col-left input{
+    width: 100%;
+    height: 40px;
+    margin: 5px 0;
+    border: none;
+    outline: none;
+    background-color: rgb(238, 246, 255);
+    padding: 0 5px;
+}
+.btn-update{
+    background: #2584D6;
+    color: white;
+    padding: 10px 25px;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+/* ----------- Col Right----------- */
+.profile-page .col-right{
+    padding: 0 10px;
+    flex: 1;
+    min-width: 300px;
+}
+.profile-page .col-right h2{
+    font-size: 1.7rem;
+    text-transform: uppercase;
+    color: #333;
+    margin: 10px 0;
+}
+.btn-edit{
+    display: block;
+	width: 100%;
+	height: 50px;
+	text-transform: uppercase;
+	margin: 1rem 0;
+}
+.btn-delete{
+    display: block;
+	width: 100%;
+	height: 50px;
+	text-transform: uppercase;
+}
+
+.admin {
+    color: rgb(29, 223, 45);
+    font-weight: 800;
+  }
+  .notadmin {
+    color: brown;
+    font-weight: 800;
+  }
+  .loading {
+    z-index: 20;
+    text-align: center;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 300px;
+  }
+  /* -------------- Edit User ----------------- */
+.edit-page{
+    width: 100%;
+    display: grid;
+   
+}
+.edit-page .col-left{
+    margin-top: 50px;
+    width: 100%;
+    display: grid;
+   justify-content: center;
+}
+.edit-page .col-left label{
+    display: block;
+    margin-top: 5px;
+}
+.edit-page .col-left input{
+    width: 300px;
+    height: 40px;
+    margin: 5px 0;
+    border: none;
+    outline: none;
+    background-color: rgb(238, 246, 255);
+    padding: 0 5px;
+}
+.btn-back{
+    margin: 10px;
+}
+.btn-update-user{
+    width: 200px;
+    height: 40px;
+    margin-top: 10px;
+    justify-self: center;
+}
+.edit-page .col-left .isAdmin{
+    width: 20px;
+    height: 20px;
+    transform: translateY(3px);
+    margin: 10px 0;
+}
+.edit-page .col-left .isAdmin{
+    
+    margin-left: 115px;
+}
+.ant-checkbox{
+    display: inline-block;
+    margin-right: 8px;
+}
+@media screen and (max-width: 1050px){
+	.profile-page{
+		grid-template-columns: repeat(auto-fill,minmax(350px,1fr));
+	}
+}
+
+

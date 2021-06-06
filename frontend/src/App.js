@@ -24,12 +24,15 @@ import Cart from './pages/Cart/Cart';
 import Mycourses from './pages/Mycourses/Mycourses';
 import CourseFilter from './pages/CourseFilter/CourseFilter';
 
+import Profile from './components/body/profile/Profile';
+import EditUser from './components/body/profile/EditUser';
+
 function App() {
   //Get Acces token
   const dispatch = useDispatch()
   const token = useSelector(state => state.token)
   const auth = useSelector(state => state.auth)
-  const {isLogged} = auth
+  const {isLogged,isAdmin} = auth
 
   useEffect(() => {
     const firstLogin = localStorage.getItem('firstLogin')
@@ -65,7 +68,7 @@ function App() {
           <Switch>
               <Route path="/" exact component={Home} />
               <Route path="/courses/:id" component={Coursepage} />
-              <Route path="/cart"  component={Cart} />
+              <Route path="/cart/:id?"  component={Cart} />
               <Route path="/coursesfilter/:topic" component={CourseFilter} />
               <Route path="/Mycourses"  component={isLogged ? Mycourses : NotFound} />
              <Route exact path='/login' component={ isLogged ? NotFound : Login}/>     
@@ -73,7 +76,8 @@ function App() {
              <Route exact path='/user/activate/:activation_token' component={ActivationEmail}/> 
              <Route exact path='/forgot_password' component={isLogged ? NotFound : ForgotPass}/>     
              <Route path="/user/reset/:token" component={isLogged ? NotFound : ResetPass} exact />
-
+             <Route path="/profile" component={isLogged ? Profile : NotFound} exact />
+             <Route path="/edit_user/:id" component={isAdmin ? EditUser : NotFound} exact />
           </Switch>
         </>
         </Router>

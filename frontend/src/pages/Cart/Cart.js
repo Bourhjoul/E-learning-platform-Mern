@@ -1,41 +1,45 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 import Productcart from './Productcart'
 import { Input } from 'antd';
 import './Cart.css'
+import {addToCart} from '../../redux/actions/cartActions'
+import {useDispatch,useSelector} from 'react-redux'
+import Empty from './Empty';
 
-
-const Cart = () => {
-   
+const Cart = ({match}) => {
+   const dispatch = useDispatch()
+   const cartReducer = useSelector(state => state.cartReducer)
+   const {cartItems} = cartReducer
+   const {id} = match.params
+   useEffect(() => {
+       if(id){
+           dispatch(addToCart(id))
+       }
+   }, [id,dispatch]);
 
     const { Search } = Input;
 
     return (
         <>
-        
-        
+         {cartItems.length === 0 ? <Empty /> :
         <div className ='cartfull'>
-        <div className = 'cart'>
-            <h1>3 courses in your cart</h1>
-            <div className ='productsoncart'>
-                <Productcart />
-            
-            
-                <Productcart />
+            <div className = 'cart'>
            
-            
-                <Productcart />
-            
+            <div className ='productsoncart'>
+                {cartItems.map(course => (<Productcart course={course} />  ))}
+                      
                 </div>
-        </div>
-        
+            
+            </div>
         <div className = 'totalcart'>
             <h3 className="totalName">
-            Total :
-
+            Subtotal ({cartItems.length} items) 
             </h3>
             <b className = 'totalprice'>
-            224,98 $US
+            {cartItems.reduce((acc,item )=>
+                acc + item.price,0
+             ).toFixed(2)}$
             </b>
             <br></br>
             <b className="pricebefore">600,00 $US</b>
@@ -56,14 +60,8 @@ const Cart = () => {
     />
             
         </div>
-
-
-
-
-
-        
         </div>
-        
+}
         </>
     )
 }

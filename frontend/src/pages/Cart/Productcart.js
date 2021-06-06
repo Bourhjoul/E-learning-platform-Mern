@@ -1,31 +1,38 @@
 
 import React,{useRef,useState,useEffect} from 'react'
+import {useDispatch} from 'react-redux'
 
 import { VscChromeClose } from "react-icons/all";
 import './Cart.css'
+import { removeFromCart } from '../../redux/actions/cartActions';
 
 import { Link } from 'react-router-dom';
-
-const Productcart = () => {
+const Productcart = ({course}) => {
+    
+    const dispatch = useDispatch()
+    const removeFromCartHandler = (id) =>{
+        dispatch(removeFromCart(id))
+    }
     return (
         <div className="productsoncart">
             <div className="productoncart">
                 <div className="productImgCart">
-                    <img className="imageCart" src="./images/react.jpg"/>
+                    <img className="imageCart" src={course.image}/>
                 </div>
                 
                 <div className="productNameAFounder">
-                    <b>Next.js Dev to Deployement</b>
-                    <p>By Brad Traversy, Full Stack Web Developer</p>
+                    <b>{course.name}</b>
+                    <p>{course.shortdescription}</p>
+                    <p>By {course.user.name}, {course.user.headline}</p>
                 </div>
                 <div className="priceOfCourse">
                     <h1 className = 'totalpriceCart'>
-                    224,98 $US
+                    {course.price}
                     </h1>
                     <b className="priceOfCourseb">300,00 $US</b>
                 </div>
                 <div>
-                    <VscChromeClose className = 'deletecart' size = '26' />
+                    <VscChromeClose className = 'deletecart' size = '26' onClick={() => removeFromCartHandler(course.course)} />
 
                 </div>
 
