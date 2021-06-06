@@ -21,7 +21,7 @@ const Productcart = ({course}) => {
                 </div>
                 
                 <div className="productNameAFounder">
-                    <b>{course.name}</b>
+                     <Link to = {`/courses/${course.course}`}><b>{course.name}</b></Link>
                     <p>{course.shortdescription}</p>
                     <p>By {course.user.name}, {course.user.headline}</p>
                 </div>

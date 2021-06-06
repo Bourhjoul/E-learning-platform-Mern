@@ -40,6 +40,9 @@ const Coursepage = ({ match, history }) => {
         }
     }, [dispatch,match.params.id])
     window.addEventListener('scroll', Disable)
+    const addToCartHandler = () =>{
+        history.push(`/cart/${match.params.id}`)
+      }
     return (
     <>
         {
@@ -66,7 +69,7 @@ const Coursepage = ({ match, history }) => {
                     <div className="informationCourse">
                     {!loading && !error && <p>Created by <a href="#"> {course.user.name}</a></p>}        
                         <div className="wish-share">
-                                <button className="buttonsCourse"><Link className="Link" to="/cart">Add to Cart</Link></button>
+                                <button className="buttonsCourse" onClick={addToCartHandler}>Add to Cart</button>
                                 <button className="buttonsCourse"><Link className="Link" to="/">Shop Now</Link></button>
                                 <button className="buttonsCourse Video"><Link className="Link" to="/">Watch Video</Link></button>
                         </div>
@@ -140,7 +143,7 @@ const Coursepage = ({ match, history }) => {
                 </div>
          
                 <div className="btnsShop">
-                        <button className="btnaddToCart">Add to Cart</button>
+                        <button className="btnaddToCart"  onClick={addToCartHandler}>Add to Cart</button>
                         <button className="btnShopNow">Shop Now</button>
                         <p className="garantie">Money-Back Guarantee</p>
 
