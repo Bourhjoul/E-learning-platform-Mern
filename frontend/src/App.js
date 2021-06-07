@@ -57,7 +57,9 @@ function App() {
         })
       }
       getUser()
+      
     }
+    
   },[token, dispatch])
   return (
     <>

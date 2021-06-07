@@ -35,6 +35,7 @@ const initialState = {
               setFormDataUser({ ...formDataUser,  err: '' , success: res.data.msg}) // true
               dispatch(dispatchLogin())
               localStorage.setItem('firstLogin',true)
+              
               history.push("/")
             } catch (err) {
               err.response.data.msg &&
