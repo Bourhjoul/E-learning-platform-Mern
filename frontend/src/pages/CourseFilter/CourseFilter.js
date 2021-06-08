@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from 'react'
-import {BsFillPeopleFill,BiLeftArrowCircle, MdFilterList} from 'react-icons/all'
+import {BsFillPeopleFill, MdFilterList} from 'react-icons/all'
 import { Tabs } from 'antd';
 import Slider from "react-slick";
 import './CourseFilter.css'
@@ -10,16 +10,15 @@ import CollapsibleFilter from './CollapsibleFilter'
 import { Skeleton } from 'antd';
 import { Empty } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { Listcoursesbypobularity, ListcoursesbyTopic } from '../../redux/actions/courseActions';
+import { Listcoursesbypobularity, ListcoursesbyTopic, ListnewCourses } from '../../redux/actions/courseActions';
 import Coursesblock from './Coursesblock'
+import Error from '../../components/utils/Error';
 const CourseFilter = () => {
     
 
 
 
       const [isFilter, setIsFilter] = useState(false)
-  
-      
 
       const dispatch = useDispatch()
       const ListCoursesReducer = useSelector(state => state.ListCoursesReducer)
@@ -27,6 +26,8 @@ const CourseFilter = () => {
     
       const ListCoursesbyPobularityReducer = useSelector(state => state.ListCoursesbyPobularityReducer)
       const { loading : loadingpobular, courses : coursespobular, error : errorpobular } = ListCoursesbyPobularityReducer
+      const ListNewCoursesReducer = useSelector(state => state.ListNewCoursesReducer)
+      const { loading : loadingNew, courses : coursesNew, error : errorNew } = ListNewCoursesReducer
 
 
 
@@ -39,84 +40,55 @@ const CourseFilter = () => {
       slidesToScroll: 1,
       
       responsive: [
-{
-breakpoint: 1024,
-settings: {
-  slidesToShow: 3,
-  slidesToScroll: 3,
-  infinite: true,
-  arrows: false,
-}
-},
-{
-breakpoint: 600,
-settings: {
-  slidesToShow: 2,
-  slidesToScroll: 2,
-        initialSlide: 2,
-  arrows: false,
-}
-},
-{
-breakpoint: 480,
-settings: {
-  slidesToShow: 1,
-        slidesToScroll: 1,
-  arrows: false,
-}
-}
-]
-};
+            {
+                breakpoint: 1024,
+                settings: {
+                 slidesToShow: 3,
+                 slidesToScroll: 3,
+                 infinite: true,
+                 arrows: false,}
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2,
+                initialSlide: 2,
+                 arrows: false,}
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: false,}
+            }
+                ]
+                    };
 
 
-let {topic} = useParams()
-
-useEffect(() => {
- 
-    switch (topic) {
-    case 'development':
-            
-            dispatch(ListcoursesbyTopic('Devlopement'))
-            console.log('1')
-            break;
-    case 'marketing':
-            dispatch(ListcoursesbyTopic('marketing'))
-            
-            console.log('case 2')
-            break;
-    case 'selfdev':
-            dispatch(ListcoursesbyTopic('Self dev'))
-            console.log('case 3')
-            break;
-
-    case 'design':
-      dispatch(ListcoursesbyTopic('design'))
-      console.log('case 3')
-      break;
-
-      case 'music':
-    dispatch(ListcoursesbyTopic('music'))
-    console.log('case 3')
-    break;
-
-    case 'photography':
-    dispatch(ListcoursesbyTopic('photography'))
-    console.log('case 3')
-    break;
-
-
-    case 'education':
-    dispatch(ListcoursesbyTopic('education'))
-    console.log('case 3')
-    break;
-    
-   default: break;
-    
+    let { topic } = useParams()
+    const changeTab = (key) => {
+        switch (key) {
+            case '1':
+                dispatch(Listcoursesbypobularity(topic))
+                break;
+            case '2':
+                dispatch(ListnewCourses(topic))
+                break;
+            default:
+                break;
+        }
+        
     }
+    useEffect(() => {
+        console.log(topic)
+        dispatch(Listcoursesbypobularity(topic))
+        dispatch(ListcoursesbyTopic(topic,true))
   return () => {
           
-  }
-}, [dispatch, topic])
+    }
+    },[dispatch,topic])
 
 
 
@@ -127,19 +99,19 @@ useEffect(() => {
         <div className="cartPage">
           
             <div className="courseSurSujet">
-                <h1>Web Development Courses</h1>
-                <h3>Web Development relates to <Link to="/">{topic}, </Link>
+                <h1>{topic} Courses</h1>
+                <h3>{topic} relates to <Link to="/">{topic}, </Link>
                 <Link to="/">IT & Software</Link></h3>
                 <p><BsFillPeopleFill className="iconPeople" color="#848482" size="18"/> 9 000 002 learners</p>
             </div>
             <div className="coursePourCommencer">
                 <h2>Courses to get you started</h2>
-                <Tabs size="large" defaultActiveKey="1">
+                <Tabs size="large" defaultActiveKey="1" onTabClick = {changeTab}>
                     <TabPane tab="Most popular" key="1">
                     <div className='TabContent'>
                         <div className='coursecards'>
                         {loadingpobular ? <Skeleton /> : errorpobular ? 
-                                <div> Error </div> :
+                                <Error error = {errorpobular} /> :
                                 coursespobular.length === 0 ?
                                 <Empty /> :
                                 <Slider {...settings}>
@@ -157,10 +129,10 @@ useEffect(() => {
                     <TabPane tab="New" key="2">
                     <div className='TabContent'>
                         <div className='coursecards'>
-                        {loading ? <Skeleton /> :  error ? <div>Error</div> :courses.length === 0 ? <Empty />
+                        {loadingNew ? <Skeleton /> :  errorNew ? <Error error = {errorNew} /> :coursesNew.length === 0 ? <Empty />
                                           :
                                    <Slider {...settings}>
-                                    {courses.map((course, index) => (
+                                    {coursesNew.map((course, index) => (
                                       <>
                                     <CourseCard key={course._id} data-index={index} course={course}/>
                                   
@@ -263,7 +235,7 @@ useEffect(() => {
 
 
                       
-                      {loading ? <Skeleton /> :  error ? <div>Error</div> :courses.length === 0 ? <Empty />
+                        {loading ? <Skeleton /> : error ? <Error error={error}/> :courses.length === 0 ? <Empty />
                               :
                               
                               courses.map((course, index) => (

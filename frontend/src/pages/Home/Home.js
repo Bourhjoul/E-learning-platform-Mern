@@ -11,6 +11,7 @@ import CategoryCard from '../../components/CategoryCard/CategoryCard';
 import Footer from '../../components/Footer/Footer';
 import { useDispatch, useSelector } from 'react-redux';
 import { Listcoursesbypobularity, ListcoursesbyTopic } from '../../redux/actions/courseActions';
+import Error from '../../components/utils/Error';
 
 const Home = () => {
         const dispatch = useDispatch()
@@ -61,7 +62,7 @@ const Home = () => {
         const { TabPane } = Tabs;
 
         useEffect(() => {
-                dispatch(ListcoursesbyTopic('Devlopement'))
+                dispatch(ListcoursesbyTopic('Development'))
                 dispatch(Listcoursesbypobularity())
                 console.log(coursespobular)
 
@@ -72,14 +73,14 @@ const Home = () => {
         const changetopic = (key) => {
                 switch (key) {
                         case '1':
-                                dispatch(ListcoursesbyTopic('Devlopement'))
+                                dispatch(ListcoursesbyTopic('Development'))
                                 break;
                         case '2':
                                 dispatch(ListcoursesbyTopic('marketing'))
                                 console.log('case 2')
                                 break;
                         case '3':
-                                dispatch(ListcoursesbyTopic('Self dev'))
+                                dispatch(ListcoursesbyTopic('Self-dev'))
                                 console.log('case 3')
                                 break;
                         case '4':
@@ -101,8 +102,6 @@ const Home = () => {
 
     return (
             <div>
-                
-
                 <div>
                 <div className = 'Banner_Card'>
                     <Card >
@@ -129,7 +128,7 @@ const Home = () => {
                         </div>
                         <div className='coursecards'>
                         {loading ? <Skeleton /> : error ? 
-                        <div> Error </div> :
+                        <Error error = {error} /> :
                                                                     courses.length === 0 ?
                                 <Empty /> :
                                 <Slider {...settings}>
@@ -155,7 +154,7 @@ const Home = () => {
                             </div>
                         <div className='coursecards'>
                         {loading ? <Skeleton /> : error ? 
-                        <div> Error </div> :
+                        <Error error = {error} /> :
                                                                     courses.length === 0 ?
                                 <Empty /> :
                                 <Slider {...settings}>
@@ -178,7 +177,7 @@ const Home = () => {
                             </div>
                         <div className = 'coursecards'>
                         {loading ? <Skeleton /> : error ? 
-                        <div> Error </div> :
+                        <Error error = {error}/> :
                                                                     courses.length === 0 ?
                                 <Empty /> :
                                 <Slider {...settings}>
@@ -201,7 +200,7 @@ const Home = () => {
                             </div>
                         <div className = 'coursecards'>
                         {loading ? <Skeleton /> : error ? 
-                        <div> Error </div> :
+                        <Error error = {error} /> :
                                                                     courses.length === 0 ?
                                 <Empty /> :
                                 <Slider {...settings}>
@@ -226,7 +225,7 @@ const Home = () => {
                         <div className = 'coursecards'>
                         </div>
                         {loading ? <Skeleton /> : error ? 
-                        <div> Error </div> :
+                        <Error error = {error} /> :
                                                                     courses.length === 0 ?
                                 <Empty /> :
                                 <Slider {...settings}>
@@ -248,7 +247,7 @@ const Home = () => {
                             </div>
                         <div className = 'coursecards'>
                         {loading ? <Skeleton /> : error ? 
-                        <div> Error </div> :
+                        <Error error = {error} /> :
                                                                     courses.length === 0 ?
                                 <Empty /> :
                                 <Slider {...settings}>
@@ -268,7 +267,7 @@ const Home = () => {
                             <h2>Pobular Courses </h2>
                             <div className='coursecards'>
                                 {loadingpobular ? <Skeleton /> : errorpobular ? 
-                                <div> Error </div> :
+                                <Error error = {errorpobular} /> :
                                 coursespobular.length === 0 ?
                                 <Empty /> :
                                 <Slider {...settings}>

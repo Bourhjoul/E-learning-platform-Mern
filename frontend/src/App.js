@@ -71,13 +71,15 @@ function App() {
               <Route path="/cart/:id?"  component={Cart} />
               <Route path="/coursesfilter/:topic" component={CourseFilter} />
               <Route path="/Mycourses"  component={isLogged ? Mycourses : NotFound} />
-             <Route exact path='/login' component={ isLogged ? NotFound : Login}/>     
-             <Route exact path='/register' component={isLogged ? NotFound : Register}/>  
-             <Route exact path='/user/activate/:activation_token' component={ActivationEmail}/> 
-             <Route exact path='/forgot_password' component={isLogged ? NotFound : ForgotPass}/>     
-             <Route path="/user/reset/:token" component={isLogged ? NotFound : ResetPass} exact />
-             <Route path="/profile" component={isLogged ? Profile : NotFound} exact />
-             <Route path="/edit_user/:id" component={isAdmin ? EditUser : NotFound} exact />
+              <Route exact path='/login' component={ isLogged ? NotFound : Login}/>     
+              <Route exact path='/register' component={isLogged ? NotFound : Register}/>  
+              <Route exact path='/user/activate/:activation_token' component={ActivationEmail}/> 
+              <Route exact path='/forgot_password' component={isLogged ? NotFound : ForgotPass}/>     
+              <Route path="/user/reset/:token" component={isLogged ? NotFound : ResetPass} exact />
+              <Route path="/profile" component={isLogged ? Profile : NotFound} exact />
+              <Route path="/edit_user/:id" component={isAdmin ? EditUser : NotFound} exact />
+              <Route component={NotFound} />
+
           </Switch>
         </>
         </Router>

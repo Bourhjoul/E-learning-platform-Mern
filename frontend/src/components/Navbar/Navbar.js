@@ -75,7 +75,7 @@ const Navbar = () => {
                     <Link to="/coursesfilter/education">Education</Link><br />
                     <Link to="/coursesfilter/photography">Photography</Link><br />
                     <Link to="/coursesfilter/music">Music</Link><br />
-                    <Link to="/coursesfilter/selfdev">Self Devlopement</Link><br />
+                    <Link to="/coursesfilter/Self-Dev">Self Devlopement</Link><br />
                     <Link to="/coursesfilter/business">Business</Link><br />
                     <Link>Cg 1</Link><br />
                     <Link>Cg 1</Link><br />

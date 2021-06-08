@@ -7,11 +7,12 @@ import axios from 'axios'
 import HashLoader from "react-spinners/HashLoader";
 import './profile.css'
 import {FaTimes} from 'react-icons/all'
-import { Table, Button,Divider, Tag } from 'antd';
+import { Table, Button,Divider, Tag, Skeleton } from 'antd';
 import { AiFillDelete, AiOutlineEdit } from 'react-icons/ai';
 import {EditOutlined,DeleteOutlined} from '@ant-design/icons'
 import {listMyCourses} from '../../../redux/actions/courseActions'
 import {Link} from 'react-router-dom'
+import Error from '../../utils/Error'
 const { Column, ColumnGroup } = Table;
 const Profile = () => {
     let crs = []
@@ -52,17 +53,18 @@ const Profile = () => {
       if (isLogged && user.Teacher) {
           dispatch(listMyCourses())
         }
-    }, [dispatch,isLogged,user.Teacher])
+    }, [dispatch, isLogged, user.Teacher])
+  
     if (!loading && !error) {
       courses.forEach((element,index) => {
-  crs.push({
-      key : index,
-      name: element.name,
-      price: element.price,
-      rating: element.rating,
-      nmbr_stu: element.numStudents,
-      category : element.category
-  })
+      crs.push({
+        key : index,
+        name: element.name,
+        price: element.price,
+        rating: element.rating,
+        nmbr_stu: element.numStudents,
+        category : element.category
+      })
   });
 }
     
@@ -162,7 +164,7 @@ const Profile = () => {
                             <HashLoader   color={"#1e1e2c"}  loading={loadingUsers} size={40} />
                               </div>}
                     <div className={loadingUsers ? 'disable-avatar' : 'avatar'}>
-                        <img src={avatar ? avatar : user.avatar}/>
+                        <img alt = 'profile_pic' src={avatar ? avatar : user.avatar}/>
                         <span>
                         <i className="fas fa-camera"></i>
                         <p>Change</p>
@@ -171,7 +173,7 @@ const Profile = () => {
                     </div>
                         <div>
                     <em style={{color: "crimson"}}> 
-                    *Chose your picture,click update to apply the change
+                    *Chose your picture then click update to apply the change
                     </em>
                 </div>
                     <div className="form-group">
@@ -229,7 +231,8 @@ const Profile = () => {
                          )}
                        />
                      </Table>
-                     :  <Table dataSource={crs}>  
+                     : loading ? <Skeleton active /> : error ? <Error error = {error} /> :
+                    <Table dataSource={crs}>  
                      <Column title="Name" dataIndex="name" key="_id" />
                      <Column title="Price" dataIndex="price" key="price" />
                      <Column title="Category" dataIndex="category"  />
@@ -244,14 +247,14 @@ const Profile = () => {
                           <Link to={`/edit_user/${_id}`}>
                               <Button className="btn-edit" 
                                type="primary"  
-                               shape="round" icon = {<EditOutlined  />} size={size} >edit</Button>
+                               shape="round" icon = {<EditOutlined  />} size= 'small' >EDIT</Button>
                           </Link>
-                       
-                          <Button className="btn-delete"   type="danger" shape="round" icon = {<DeleteOutlined  />} size={size}>DELETE</Button>
+                          <Button className="btn-delete"   type="danger" shape="round" icon = {<DeleteOutlined  />} size='small'>DELETE</Button>
                        </span>
                      )}
                    />
-                 </Table>}
+                  </Table>
+            }
                
             
             </div>

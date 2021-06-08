@@ -12,14 +12,33 @@ const coursesCtrl = {
             return res.status(500).json({msg: err.message})
         } 
     },
-    getallcourses: async (req, res) => {
+    getallcoursesbycategory: async (req, res) => {
         try {
-            const Topic = req.query.Topic
-            const courses =  await Courses.find({category : {
-                        $regex : Topic,
-                        $options: 'i',
-            }}).populate('user','id name').limit(6);
-            res.json(courses)
+            const All = req.query.All
+            const Topic = req.query.Topic ? {
+                category: {
+                    $regex: req.query.Topic,
+                    $options : 'i' 
+               } 
+                } : {}
+            const New = req.query.New
+            if (All && New) {
+                const courses = await Courses.find({ ...Topic }).sort('createdAt').populate('user', 'id name').exec()
+                res.json(courses)
+            } else if (!All && New) {
+                const courses = await Courses.find({ ...Topic }).sort('createdAt').populate('user', 'id name').limit(6).exec()
+
+                res.json(courses)
+            } else if (All && !New) {
+                    const courses =  await Courses.find({...Topic}).sort('-rating').populate('user', 'id name').limit(6)
+                    res.json(courses)
+
+            } else {
+                const courses = await Courses.find({ ...Topic }).populate('user','id name')
+                res.json(courses)
+
+            }
+
         } catch (error) {
             console.log('------------all course error---------')
 
@@ -30,7 +49,13 @@ const coursesCtrl = {
     },
     getcoursesbypob: async (req,res) =>{
         try {
-            const courses = await Courses.find({}).sort('-rating').limit(6).exec()
+            const Topic = req.query.Topic ? {
+                category: {
+                    $regex: req.query.Topic,
+                    $options : 'i' 
+               } 
+                } : {}
+            const courses = await Courses.find( {...Topic} ).sort('-rating').limit(6).exec()
             res.json(courses)
         } catch (error) {
             console.log('-----------course pobular error---------')

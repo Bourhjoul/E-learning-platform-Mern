@@ -107,7 +107,7 @@ const userCtrl = {
             res.cookie('refreshtoken', refresh_token, {
                 httpOnly: true,
                 path: '/user/refresh_token',
-                maxAge: 7*24*60*60*1000 // 7 days
+                maxAge: 365*24*60*60*1000 // 7 days
             })
             res.status(200).json({/*result : existingUser,*/ msg: "Login success"})
         } catch (err) {
@@ -240,6 +240,6 @@ const createAccessToken = (payload) => {
 }
 
 const createRefreshToken = (payload) => {
-    return jwt.sign(payload, `${process.env.REFRESH_TOKEN_SECRET}`, {expiresIn: '7d'})
+    return jwt.sign(payload, `${process.env.REFRESH_TOKEN_SECRET}`, {expiresIn: '365d'})
 }
 module.exports = userCtrl

@@ -2,14 +2,15 @@ import React from 'react'
 import { Result, Button } from 'antd';
 import { Link } from 'react-router-dom';
 
-const Error = (error) => {
+const Error = ({error}) => {
+
     return (
     <Result
     status="warning"
-    title={{error}}
+    title={`{${error}}`}
     extra={
-        <Link to = '/'>
-            <Button type="primary" key="console">Go Home</Button>
+        <Link to = ''>
+            <Button type="primary" key="console">Reload</Button>
         </Link>
 
     }
