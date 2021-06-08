@@ -10,6 +10,8 @@ import CourseCard from '../../components/CourseCard/CourseCard';
 import CategoryCard from '../../components/CategoryCard/CategoryCard';
 import Footer from '../../components/Footer/Footer';
 import { useDispatch, useSelector } from 'react-redux';
+import {dispatchLogin, dispatchGetUser, fetchUser} from '../../redux/actions/authAction'
+import axios from "axios"
 import { Listcoursesbypobularity, ListcoursesbyTopic } from '../../redux/actions/courseActions';
 import Error from '../../components/utils/Error';
 
@@ -20,6 +22,8 @@ const Home = () => {
         const ListCoursesbyPobularityReducer = useSelector(state => state.ListCoursesbyPobularityReducer)
         const { loading : loadingpobular, courses : coursespobular, error : errorpobular } = ListCoursesbyPobularityReducer
         const menuref = useRef(null)
+        const token = useSelector(state => state.token)
+        const auth = useSelector(state => state.auth)
         const pobularref = useRef(null)
         var settings = {
                 dots: false,
@@ -60,7 +64,6 @@ const Home = () => {
         const executeScrolltwo = () => pobularref.current.scrollIntoView({behavior: 'smooth'})
         
         const { TabPane } = Tabs;
-
         useEffect(() => {
                 dispatch(ListcoursesbyTopic('Development'))
                 dispatch(Listcoursesbypobularity())
@@ -69,6 +72,26 @@ const Home = () => {
                 return () => {
                         
                 }
+              },[auth.isLogged, dispatch])
+        useEffect(() => {
+                if(token){
+                        const getUser = () => {
+                          dispatch(dispatchLogin())
+                  //Get user infor
+                          return fetchUser(token).then(res => {
+                            dispatch(dispatchGetUser(res))
+                          })
+                        }
+                        getUser()
+                      }
+                   
+
+                              dispatch(ListcoursesbyTopic('Devlopement'))
+                              dispatch(Listcoursesbypobularity())
+                              console.log(coursespobular)
+                      
+
+          
         }, [])
         const changetopic = (key) => {
                 switch (key) {

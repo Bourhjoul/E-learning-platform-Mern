@@ -69,7 +69,7 @@ const Navbar = () => {
 
     const content = (
                 <div className = 'Categoriespobover'>
-                    <Link to="/coursesfilter/development">Devlopement</Link> <br />
+                    <Link to="/coursesfilter/devlopement">Devlopement</Link> <br />
                     <Link to="/coursesfilter/marketing">Marketing</Link><br />
                     <Link to="/coursesfilter/design">Design</Link><br />
                     <Link to="/coursesfilter/education">Education</Link><br />
