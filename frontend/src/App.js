@@ -23,10 +23,10 @@ import Coursepage from './pages/Coursepage/Coursepage';
 import Cart from './pages/Cart/Cart';
 import Mycourses from './pages/Mycourses/Mycourses';
 import CourseFilter from './pages/CourseFilter/CourseFilter';
-
+import CheckoutScreen from './pages/checkout/CheckoutScreen';
 import Profile from './components/body/profile/Profile';
 import EditUser from './components/body/profile/EditUser';
-
+import PlaceOrder from './pages/Placeorderscreen/PlaceOrder';
 function App() {
   //Get Acces token
   const dispatch = useDispatch()
@@ -73,6 +73,8 @@ function App() {
               <Route path="/cart/:id?"  component={Cart} />
               <Route path="/coursesfilter/:topic" component={CourseFilter} />
               <Route path="/Mycourses"  component={isLogged ? Mycourses : NotFound} />
+              <Route path="/checkout" component={isLogged ? CheckoutScreen : Login} />
+              <Route path="/placeorder" component ={isLogged ? PlaceOrder : Login} />
               <Route exact path='/login' component={ isLogged ? NotFound : Login}/>     
               <Route exact path='/register' component={isLogged ? NotFound : Register}/>  
               <Route exact path='/user/activate/:activation_token' component={ActivationEmail}/> 
@@ -81,6 +83,7 @@ function App() {
               <Route path="/profile" component={isLogged ? Profile : NotFound} exact />
               <Route path="/edit_user/:id" component={isAdmin ? EditUser : NotFound} exact />
               <Route component={NotFound} />
+
 
           </Switch>
         </>

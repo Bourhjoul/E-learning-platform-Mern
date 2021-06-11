@@ -7,7 +7,7 @@ import {addToCart} from '../../redux/actions/cartActions'
 import {useDispatch,useSelector} from 'react-redux'
 import Empty from './Empty';
 
-const Cart = ({match}) => {
+const Cart = ({match, history}) => {
    const dispatch = useDispatch()
    const cartReducer = useSelector(state => state.cartReducer)
    const {cartItems} = cartReducer
@@ -20,6 +20,10 @@ const Cart = ({match}) => {
 
     const { Search } = Input;
 
+
+    const checkoutHandler =()=>{
+        history.push('/checkout');
+    }
     return (
         <>
          {cartItems.length === 0 ? <Empty /> :
@@ -44,7 +48,7 @@ const Cart = ({match}) => {
             <br></br>
             <b className="pricebefore">600,00 $US</b>
             
-            <button className = 'validationBtn'>
+            <button className = 'validationBtn'  onClick={checkoutHandler}>
                 VALIDATION
             </button>
             <br></br>

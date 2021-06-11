@@ -6,13 +6,16 @@ import {IoMdClose, BiLike, BiDislike ,IoIosArrowForward, BsExclamationOctagon, B
 import Collapsible from './Collapsible'
 import { ReactVideo, YoutubePlayer } from "reactjs-media";
 import Comments from './Comments'
-import { Skeleton } from 'antd';
+import { Skeleton, Input, Button } from 'antd';
 import './Coursepage.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { Getcoursedetails } from '../../redux/actions/courseActions';
 import Error from '../../components/utils/Error';
 
 const Coursepage = ({ match, history }) => {
+
+    
+const { TextArea } = Input;
     const dispatch = useDispatch();
     const [show, setShow] = useState(0)
     const GetCourseDetailsreducer = useSelector(state => state.GetCourseDetailsreducer)
@@ -180,6 +183,13 @@ const Coursepage = ({ match, history }) => {
                 <h2 className="commentOfParti">Comments of Students</h2>
                 <Comments commentPerson="ZAAM Soufiane" commentMessage="As always, Brad over-delivered on another course. I've taken courses from plenty of other educators. Brad does such an amazing job at not just how to use the technologies presented, but why to use them. Looking forward to learning more from my favorite Udemy educator. Thanks Brad!" />
                 <Comments commentPerson="ZAAM Soufiane" commentMessage="As always, Brad over-delivered on another course. I've taken courses from plenty of other educators. Brad does such an amazing job at not just how to use the technologies presented, but why to use them. Looking forward to learning more from my favorite Udemy educator. Thanks Brad!" />
+                
+            </div>
+            <div className="commentField">
+            <TextArea  />
+            <Button className="sendComment">Send</Button>
+
+
             </div>
     </div>        
         

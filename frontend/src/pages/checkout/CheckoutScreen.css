@@ -1,0 +1,141 @@
+.checkoutPage {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
+	column-gap: 50px;
+	margin: 35px 40px;
+}
+#country {
+	padding: 30px;
+}
+.select-wrap {
+	border: 1px solid #777;
+	border-radius: 4px;
+	margin-bottom: 10px;
+	padding: 6px 7px 15px;
+	width: 320px;
+	background-color: white;
+}
+.imgRadio {
+	display: flex;
+
+	align-items: center;
+}
+
+.select-wrap label {
+	font-size: 10px;
+	text-transform: uppercase;
+	color: rgb(0, 0, 0);
+	padding: 2px 8px 0;
+}
+
+.cardPayment {
+	display: grid;
+	position: relative;
+	grid-template-rows: repeat(auto-fill, minmax(auto, 1fr));
+	row-gap: 20px;
+	margin-top: 20px;
+	border: 15px;
+	border-radius: 15px;
+	background-color: rgb(240, 240, 240);
+	padding: 30px;
+}
+
+.moisSecurity {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(190px, 3fr));
+	column-gap: 3px;
+}
+.imageShippi {
+	object-fit: cover;
+	width: 100%;
+}
+.orderDetails {
+	margin-top: 20px;
+}
+.orderDetailsInfo {
+	display: grid;
+	grid-template-columns: 20% 60% 20%;
+	grid-template-rows: repeat(auto-fill, minmax(65px, 1fr));
+
+	position: relative;
+}
+.orderDetailsInfo .orderName {
+	font-weight: 500;
+}
+.orderPrice {
+	justify-self: flex-end;
+	font-weight: 650;
+	font-size: 13px;
+}
+
+.messageError {
+	font-size: 18px;
+	margin-top: 10px;
+	color: red;
+	font-weight: 500;
+	text-align: center;
+	letter-spacing: 2px;
+}
+
+.priceOfP {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(315px, 1fr));
+	font-size: 20px;
+}
+.priceOfP b {
+	font-weight: 500;
+	color: #295d91;
+}
+.priceOfP h3 {
+	justify-self: flex-end;
+}
+
+.priceOfTotal {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(315px, 1fr));
+	font-size: 20px;
+}
+.priceOfTotal b {
+	color: #295d91;
+}
+.priceOfTotal h3 {
+	justify-self: flex-end;
+}
+.cardPaymentDisabled {
+	display: none;
+}
+
+.summary {
+	padding: 50px 50px;
+	border: 3px solid rgb(209, 209, 209);
+}
+
+.checkoutPage h1 {
+	font-weight: 700;
+}
+
+.countryPayment {
+	border: 3px solid rgb(209, 209, 209);
+	padding: 20px 20px;
+}
+
+.countryPayment b {
+	letter-spacing: 4px;
+	color: #295d91;
+	font-weight: 400;
+}
+
+.countryPayment span {
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.countryPayment div {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(197px, 1fr));
+}
+
+.payParagraph {
+	text-decoration: underline;
+	font-size: 16px;
+}
