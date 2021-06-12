@@ -85,7 +85,7 @@ const initialState = {
             <i className="fas fa-user" />
           </div>
           <div className="div">
-            <input name="email"  value={email} type="text" className="input"  placeholder='Email' onChange={handleChange} />
+          <input name="email"  value={email} type="text" className="input"  placeholder='Email' onChange={handleChange} required/>
           </div>
         </div>
 
@@ -94,7 +94,7 @@ const initialState = {
             <i className="fas fa-lock" />
           </div>
           <div className="div">
-            <input  name="password" value={password} type="password" className="input" placeholder='Password' onChange={handleChange} />
+          <input  name="password" value={password} type="password" className="input" placeholder='Password' onChange={handleChange} required />
           </div>
         </div>
         <Link className="forgot" to="/forgot_password">Forgot Password?</Link>

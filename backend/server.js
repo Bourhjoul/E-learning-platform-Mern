@@ -15,7 +15,14 @@ app.use(fileUpoad({ useTempFiles: true }))
 app.use('/user', require('./routes/userRouter'))
 app.use('/api', require('./routes/upload'))
 app.use('/courses',require('./routes/courseRouter'))
-
+app.use((err,req,res,next)=>{
+  // because err.status is undefined 
+   res.status(404).json({
+       error : {
+           message : err.message
+      }
+   });
+})
 const PORT = process.env.PORT || 5000;
 
 

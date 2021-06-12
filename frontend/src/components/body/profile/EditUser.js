@@ -3,8 +3,9 @@ import {React, useState,useEffect} from 'react'
 import {useSelector} from 'react-redux'
 import axios from 'axios'
 import {ArrowLeftOutlined,RetweetOutlined} from '@ant-design/icons'
-import {Button,Checkbox} from 'antd'
+import {Button,Input,Checkbox} from 'antd'
 import {showSuccessMsg, showErrMsg} from '../../utils/notification/Notification'
+
 const EditUser = () => {
     const [size,setSize] = useState('middle')
 
@@ -21,6 +22,8 @@ const EditUser = () => {
     const [success, setSuccess] = useState(false)
 
     const [checkAdmin,setCheckAdmin] = useState(false)
+
+  
     const handleCheck = () => {
         setSuccess("")
         setErr("")
@@ -43,7 +46,6 @@ const EditUser = () => {
             err.response.data.msg && setErr(err.response.data.msg)
         }
     }
-    
     
     useEffect(() => {
         if(users.length !== 0){
@@ -73,18 +75,20 @@ const EditUser = () => {
                     <h2>Edit User</h2>
                     <div className="form-group">
                         <label>Name </label>
-                        <input type="text" name="name" defaultValue={editUser.name} placeholder="Your name"/>
+                        <Input type="text" name="name" value={editUser.name} placeholder="Your name" disabled/>
                     </div>
                     <div className="form-group">
                         <label>Email </label>
-                        <input type="text" name="email" defaultValue={editUser.email} placeholder="Your email address" disabled/>
+                        <Input type="text" name="email" value={editUser.email} placeholder="Your email address" disabled/>
                             </div>         
-       
+                <div>
+
                 <Checkbox  onChange={handleCheck} checked={checkAdmin}>isAdmin</Checkbox>
- 
-            <Button className="btn-update-user"  shape="round" onClick={handleUpdate} size={size}
+                </div>
+            <>    <Button className="btn-update-user"  shape="round" onClick={handleUpdate} size={size}
                  type="primary"  >Update <RetweetOutlined />
-                </Button>
+                </Button></>
+         
               
             </div>
            

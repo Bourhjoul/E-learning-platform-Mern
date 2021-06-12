@@ -1,4 +1,34 @@
-import { LIST_COURSES_FAIL, LIST_COURSES_POBULAR_FAIL, LIST_COURSES_POBULAR_REQUEST, LIST_COURSES_POBULAR_RESET, LIST_COURSES_POBULAR_SUCCESS, LIST_COURSES_REQUEST, LIST_COURSES_RESET, LIST_COURSES_SUCCESS, LIST_COURSE_DETAILS_FAIL, LIST_COURSE_DETAILS_REQUEST, LIST_COURSE_DETAILS_RESET, LIST_COURSE_DETAILS_SUCCESS, LIST_NEW_COURSES_FAIL, LIST_NEW_COURSES_REQUEST, LIST_NEW_COURSES_RESET, LIST_NEW_COURSES_SUCCESS, MY_COURSES_FAIL, MY_COURSES_REQUEST, MY_COURSES_RESET, MY_COURSES_SUCCESS } from "../constants/courseconstants"
+import {     COURSE_CREATE_SUCCESS,
+    COURSE_CREATE_REQUEST,
+    COURSE_CREATE_FAIL,
+    COURSE_CREATE_RESET,
+    COURSE_DELETE_SUCCESS,
+    COURSE_DELETE_REQUEST,
+    COURSE_DELETE_FAIL,
+    COURSE_UPDATE_REQUEST,
+     COURSE_UPDATE_SUCCESS,
+     COURSE_UPDATE_FAIL,
+     COURSE_UPDATE_RESET,
+     LIST_COURSES_FAIL, 
+     LIST_COURSES_POBULAR_FAIL, 
+     LIST_COURSES_POBULAR_REQUEST, 
+     LIST_COURSES_POBULAR_RESET, 
+     LIST_COURSES_POBULAR_SUCCESS, 
+     LIST_COURSES_REQUEST, 
+     LIST_COURSES_RESET, 
+     LIST_COURSES_SUCCESS, 
+     LIST_COURSE_DETAILS_FAIL,
+     LIST_COURSE_DETAILS_REQUEST, 
+     LIST_COURSE_DETAILS_RESET, 
+     LIST_COURSE_DETAILS_SUCCESS,
+      MY_COURSES_FAIL, 
+      MY_COURSES_REQUEST, 
+      MY_COURSES_RESET,
+       MY_COURSES_SUCCESS,
+       LIST_NEW_COURSES_REQUEST,
+       LIST_NEW_COURSES_SUCCESS,
+       LIST_NEW_COURSES_RESET,
+       LIST_NEW_COURSES_FAIL } from "../constants/courseconstants"
 
 export const ListMyCoursesReducer = (state = {courses : []} , action) => {
     switch (action.type) {
@@ -96,16 +126,18 @@ export const ListNewCoursesReducer = (state = {courses : []} , action) => {
     }
 }
 
-export const GetCourseDetailsreducer = (state = {course : {subcategorys : [] ,reviews : [],audience : [],goals: [],students : [],content : [],Prerequisites : [],user : {}}} , action) => {
+export const GetCourseDetailsReducer = (state = {course : {subcategorys : [] ,reviews : [],audience : [],goals: [],students : [],content : [],Prerequisites : [],user : {}}} , action) => {
     switch (action.type) {
         case LIST_COURSE_DETAILS_REQUEST:
             return {
+                ...state,
                 loading: true,
             }
         case LIST_COURSE_DETAILS_SUCCESS:
             return {
                 loading : false,
-                course : action.payload
+                course : action.payload,
+                success : true
             }
         case LIST_COURSE_DETAILS_FAIL:
             return{
@@ -118,4 +150,44 @@ export const GetCourseDetailsreducer = (state = {course : {subcategorys : [] ,re
         default:
             return state
     }
+}
+export const courseUpdateReducer = (state={course : {}},action) => {
+    switch(action.type) {
+        case COURSE_UPDATE_REQUEST :
+            return {loading : true}
+        case COURSE_UPDATE_SUCCESS :
+            return {loading : false ,success : "Update course success", course: action.payload}
+        case COURSE_UPDATE_FAIL :
+            return {loading : false , err : action.payload}
+        case COURSE_UPDATE_RESET :
+            return {course : {}}
+        default :
+        return state  
+        }
+} 
+export const courseCreateReducer = (state={},action) => {
+    switch(action.type) {
+        case COURSE_CREATE_REQUEST :
+            return {loading : true}
+        case COURSE_CREATE_SUCCESS :
+            return {loading : false ,success : true, course : action.payload}
+        case COURSE_CREATE_FAIL :
+            return {loading : false , error : action.payload}
+        case COURSE_CREATE_RESET :
+            return {}
+        default :
+        return state  
+        }
+} 
+export const courseDeleteReducer = (state={},action) => {
+    switch(action.type) {
+        case COURSE_DELETE_REQUEST :
+            return {loading : true}
+        case COURSE_DELETE_SUCCESS :
+            return {loading : false , success: true}
+        case COURSE_DELETE_FAIL :
+            return {loading : false , error : action.payload}
+        default :
+        return state  
+        }
 }

@@ -27,12 +27,14 @@ import CheckoutScreen from './pages/checkout/CheckoutScreen';
 import Profile from './components/body/profile/Profile';
 import EditUser from './components/body/profile/EditUser';
 import PlaceOrder from './pages/Placeorderscreen/PlaceOrder';
+import EditCourse from './components/body/profile/EditCourse';
+
 function App() {
   //Get Acces token
   const dispatch = useDispatch()
   const token = useSelector(state => state.token)
   const auth = useSelector(state => state.auth)
-  const {isLogged,isAdmin} = auth
+  const {isLogged,user,isAdmin} = auth
 
   useEffect(() => {
     const firstLogin = localStorage.getItem('firstLogin')
@@ -82,6 +84,7 @@ function App() {
               <Route path="/user/reset/:token" component={isLogged ? NotFound : ResetPass} exact />
               <Route path="/profile" component={isLogged ? Profile : NotFound} exact />
               <Route path="/edit_user/:id" component={isAdmin ? EditUser : NotFound} exact />
+              <Route path="/editcourse/:id" component={user.Teacher ? EditCourse : NotFound} exact />
               <Route component={NotFound} />
 
 

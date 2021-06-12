@@ -5,6 +5,7 @@ import { CgShoppingCart,AiOutlineSearch,AiOutlineClose,RiArrowDropDownLine } fro
 import {Link} from 'react-router-dom'
 import useWindowDimensions from '../../useWindowDimensions';
 import axios from 'axios'
+import PropagateLoader from "react-spinners/PropagateLoader";
 import {useSelector,useDispatch} from 'react-redux'
 const Navbar = () => {
     const { height, width } = useWindowDimensions()
@@ -12,7 +13,7 @@ const Navbar = () => {
     const [showicons, setshowicons] = useState(false)
     const { Search } = Input;
     const auth = useSelector(state => state.auth)
-    const { user, isLogged } = auth
+    const { user, isLogged,loading } = auth
     const handleLogout = async () => {
         try {
             await axios.get('/user/logout')
@@ -26,7 +27,7 @@ const Navbar = () => {
         <div className="Profilepobover"> 
           <Link to ="/profile">Profile</Link> <br />    
             <Link to="/" onClick={handleLogout}>Logout</Link><br />
-            {user.Teacher && <Link to="/Mycourses">Dashboard</Link>}
+        
         </div>
     );
     const contentProfilephone = (
@@ -39,8 +40,9 @@ const Navbar = () => {
         return <Popover content={contentProfile} style={{ cursor: "pointer" }}>
             <Link to="/" className="avatar">
                 <div className='dropdownic'>
-                    <img src={user.avatar} className='profile_pic' /> {user.name}
-                    <RiArrowDropDownLine  size='24' />
+                {loading ? <div className="loadingNav">
+                            <PropagateLoader   color={"#1B78CA"}  loading={loading} size={3} />
+                        </div> : <> <img src={user.avatar} className='profile_pic' />{user.name} <RiArrowDropDownLine  size='24' /></>} 
                 </div>
              </Link>       
             </Popover> 

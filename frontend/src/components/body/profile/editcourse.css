@@ -1,0 +1,135 @@
+
+.edit-course-page{
+    width: 100%;
+    height: 120vh;
+}
+.edit-course-page .wrapper{
+    width: 100%;
+}
+.edit-course-page .inner-wrapper{
+    width: 96vw;
+     height: 100vh;
+    display: grid;
+    grid-template-rows: auto;
+    row-gap: 10px;
+    margin: auto;
+    margin-top: 3px;
+    padding: 0 10px;
+}
+.inner-wrapper-image h2{
+    text-align: center;
+    font-size: 1.7rem;
+    text-transform: uppercase;
+    color: #333;
+    margin: 10px 0px;
+}
+.inner-wrapper-image a p{
+    text-align: center;
+    color: crimson;
+}
+
+.inner-wrapper-form{
+    width: 96vw;
+     height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(3,minmax(360px,1fr));
+    column-gap: 50px;
+}
+.edit-course-page .inner-wrapper .avatar{
+    width: 350px;
+    height: 150px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid #C5DEF5;
+    border-radius: 5%;
+    margin: 15px auto;
+    position: relative;
+}
+.edit-course-page .wrapper .disable-avatar{
+   display: none;
+}
+.edit-course-page .wrapper img{
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+   
+}
+.edit-course-page .wrapper .avatar span {
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: #2583d6b6;
+    text-align: center;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: white;
+    transition: 0.6s ease-in-out;
+}
+.edit-course-page .wrapper .avatar:hover span{
+    bottom: -15%;
+}
+
+.edit-course-page .wrapper #file_up {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.edit-course-page .wrapper label{
+    display: block;
+    margin-top: 5px;
+}
+.edit-course-page .wrapper input,textarea{
+    width: 90%;
+    height: 40px;
+    margin: 5px 0;
+    outline: none;
+    background-color: rgb(238, 246, 255);
+    padding: 0 5px;
+    border: 2px solid rgba(27, 120, 202, 0.191);
+    border-radius: 4px;
+}
+.edit-course-page .wrapper textarea{
+    height: 110px;
+}
+.btn-update-course{
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    margin: 10px 200px;
+    cursor: pointer;
+}
+.btn-crs{
+align-items: center;
+}
+.btn-add-item{
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    margin: 10px 0; 
+    cursor: pointer;
+}
+
+.form-group-center h2{
+    text-align: center;
+    font-size: 1.5rem;
+    color: #333;
+    margin: 10px 0px;
+}
+.form-group-center, .form-group-left,.form-group-right {
+    text-align: center;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+
+  .ant-tabs-content-holder {
+    display: flex;
+  }

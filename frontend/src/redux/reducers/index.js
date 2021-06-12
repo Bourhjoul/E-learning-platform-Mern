@@ -1,7 +1,14 @@
 import {combineReducers} from 'redux'
 import auth from './authReducer'
 import token from './tokenReducer'
-import {ListMyCoursesReducer,ListCoursesReducer,ListCoursesbyPobularityReducer,GetCourseDetailsreducer,ListNewCoursesReducer} from './courseReducer'
+import {ListMyCoursesReducer,
+    ListCoursesReducer,
+    ListCoursesbyPobularityReducer,
+    GetCourseDetailsReducer,
+    ListNewCoursesReducer,
+    courseUpdateReducer,
+    courseCreateReducer,
+    courseDeleteReducer} from './courseReducer'
 import {cartReducer} from './cartReducer'
 import usersInfo from './usersInfoReducer'
 export default combineReducers({
@@ -10,8 +17,11 @@ export default combineReducers({
     ListMyCoursesReducer,
     ListCoursesReducer,
     ListCoursesbyPobularityReducer,
-    GetCourseDetailsreducer,
+    GetCourseDetailsReducer,
     cartReducer,
     usersInfo,
-    ListNewCoursesReducer
+    ListNewCoursesReducer,
+    courseUpdateReducer,
+    courseCreateReducer,
+    courseDeleteReducer
 })

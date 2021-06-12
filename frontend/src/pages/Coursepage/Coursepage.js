@@ -18,8 +18,8 @@ const Coursepage = ({ match, history }) => {
 const { TextArea } = Input;
     const dispatch = useDispatch();
     const [show, setShow] = useState(0)
-    const GetCourseDetailsreducer = useSelector(state => state.GetCourseDetailsreducer)
-    const {loading,course,error} = GetCourseDetailsreducer
+    const GetCourseDetailsReducer = useSelector(state => state.GetCourseDetailsReducer)
+    const {loading,course,error} = GetCourseDetailsReducer
     const[add,setAdd]=useState(false)
     const [disable, setDisable] = useState(false)
     const onChangeBack= () =>{

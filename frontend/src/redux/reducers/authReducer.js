@@ -3,7 +3,8 @@ import ACTIONS from '../actions/'
 const initialState = {
     user: [],
     isLogged: false,
-    isAdmin: false
+    isAdmin: false,
+    loading: false
 }
 
 const authReducer = (state = initialState, action) => {
@@ -11,11 +12,13 @@ const authReducer = (state = initialState, action) => {
         case ACTIONS.LOGIN:
             return {
                 ...state,
-                isLogged: true
+                isLogged: true,
+                loading: true,
             }
         case ACTIONS.GET_USER:
             return {
                 ...state,
+                loading: false,
                 user: action.payload.user,
                 isAdmin: action.payload.isAdmin
             }

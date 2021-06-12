@@ -5,20 +5,24 @@ import {showSuccessMsg, showErrMsg} from '../../utils/notification/Notification'
 import {fetchAllUsers, dispatchGetAllUsers,dispatchGetAllUsersRequest} from '../../../redux/actions/usersAction'
 import axios from 'axios'
 import HashLoader from "react-spinners/HashLoader";
+import {COURSE_CREATE_RESET,COURSE_UPDATE_RESET} from '../../../redux/constants/courseconstants'
+
 import './profile.css'
 import {FaTimes} from 'react-icons/all'
-import { Table, Button,Divider, Tag, Skeleton } from 'antd';
-import { AiFillDelete, AiOutlineEdit } from 'react-icons/ai';
-import {EditOutlined,DeleteOutlined} from '@ant-design/icons'
-import {listMyCourses} from '../../../redux/actions/courseActions'
+import { Table, Button,Input, Tag, Skeleton } from 'antd';
+import {EditOutlined,DeleteOutlined,RetweetOutlined, UserOutlined,FolderAddOutlined } from '@ant-design/icons'
+
+import {listMyCourses,DeleteCourse,CreateCourse} from '../../../redux/actions/courseActions'
 import {Link} from 'react-router-dom'
 import Error from '../../utils/Error'
 const { Column, ColumnGroup } = Table;
-const Profile = () => {
-    let crs = []
+const Profile = ({history}) => {
+    const [size,setSize] = useState('small')
     const initialState = {
         name : "",
         email: "",
+        description :"",
+        headline :"",
         password: "",
         cf_password: ""
     }
@@ -27,8 +31,8 @@ const Profile = () => {
     const [loadingUsers,setLoadingUsers] = useState(false)
     
    
-    const [size,setSize] = useState('small')
-    const {name,email,password,cf_password, err, success} = data
+ 
+    const {name,email,password,cf_password, err, success,description,headline} = data
     const token = useSelector(state => state.token)
     const auth = useSelector(state => state.auth)
     const usersInfo = useSelector(state => state.usersInfo)
@@ -36,39 +40,38 @@ const Profile = () => {
     const [callback, setCallback] = useState(false)
     const ListMyCoursesReducer = useSelector(state => state.ListMyCoursesReducer)
     const { loading, courses, error } = ListMyCoursesReducer
+    const courseUpdateReducer = useSelector(state => state.courseUpdateReducer)
+     const { loading:lodingUpdate,error:errorUpdate, success: succUpdate } = courseUpdateReducer
+     const courseDeleteReducer = useSelector(state => state.courseDeleteReducer)
+     const { loading:loadingDelete,error:errorDelete, success: succDelete } = courseDeleteReducer
+
+     const courseCreateReducer = useSelector(state => state.courseCreateReducer)
+    const {loading:loadingCreate,error:errorCreate,success:successCreate,course:createdcourse} = courseCreateReducer
 
     
     const {isLogged,user,isAdmin} = auth
     const dispatch = useDispatch()
     useEffect(() => {
+      dispatch({type : COURSE_CREATE_RESET})
       if(isAdmin){
         dispatch(dispatchGetAllUsersRequest())
          fetchAllUsers(token).then(res => {    
           dispatch(dispatchGetAllUsers(res))
         })
       }
-    }, [token,isAdmin,dispatch,callback])
+      if(successCreate){
+        history.push(`/editcourse/${createdcourse._id}`)
+      }
+       else { 
+           dispatch(listMyCourses())
+       }
+    }, [token,auth,history,dispatch,successCreate,callback,user.Teacher,succDelete])
 
-    useEffect(() => {
-      if (isLogged && user.Teacher) {
-          dispatch(listMyCourses())
-        }
-    }, [dispatch, isLogged, user.Teacher])
+
   
-    if (!loading && !error) {
-      courses.forEach((element,index) => {
-      crs.push({
-        key : index,
-        name: element.name,
-        price: element.price,
-        rating: element.rating,
-        nmbr_stu: element.numStudents,
-        category : element.category
-      })
-  });
-}
-    
 
+    
+/* user fun */
    const handleChange = async(e) => {
         setData({...data, [e.target.name] : e.target.value , err : '',success : ''})
       }
@@ -102,9 +105,11 @@ const Profile = () => {
 
    const updateInfor = () => {
         try {
-          axios.patch('/user/update', {
-            name: name ? name : user.name,
-            avatar: avatar ? avatar : user.avatar
+          axios.put('/user/update', {
+            name: name,
+            avatar: avatar,
+            description: description,
+            headline: headline 
         },{
             headers: {Authorization: token}
         })
@@ -131,7 +136,7 @@ const Profile = () => {
         }
       }
       const handleUpdate = () => {
-        if(name || avatar) updateInfor()
+         updateInfor()
         if(password) updatePassword()
       }
       const handleDelete = async (id) => {
@@ -151,6 +156,18 @@ const Profile = () => {
             setData({...data, err: err.response.data.msg , success: ''})
         }
     }
+    
+     /* course fun */      
+     const handleDeleteCrs = (id) => {
+      if(window.confirm('Are You Sure?')){
+        dispatch(DeleteCourse(id))
+    
+        }
+      }
+        const createCoursehandler = () => {
+           dispatch(CreateCourse())
+          }
+
     return (
       <>
         <div>
@@ -159,7 +176,7 @@ const Profile = () => {
         </div>
         <div className="profile-page">
             <div className="col-left">
-                    <h2>{isAdmin ? "Admin Profile" : "User Profile" }</h2>
+            <h2>{isAdmin ? "Admin Profile" : !user.Teacher  ? "User Profile"  : user.Teacher && "Teacher Profile" }</h2>
                     {loadingUsers && <div className='loading'>
                             <HashLoader   color={"#1e1e2c"}  loading={loadingUsers} size={40} />
                               </div>}
@@ -176,14 +193,23 @@ const Profile = () => {
                     *Chose your picture then click update to apply the change
                     </em>
                 </div>
-                    <div className="form-group">
+                 
                         <label>Name </label>
                         <input type="text" name="name" defaultValue={user.name} placeholder="Your name" onChange={handleChange} />
-                    </div>
-                    <div className="form-group">
+             
+                
                         <label>Email </label>
-                        <input type="text" name="email" defaultValue={user.email} placeholder="Your email address" disabled/>
-                    </div>
+                        <Input type="text" name="email" value={user.email} placeholder="Your email address" disabled/>
+                        {
+                           user.Teacher && 
+                                          <div className="textarea">
+                                              <label>Discription </label>
+                                              <textarea  name="description"  placeholder="Your Desc" onChange={handleChange} required>{user.description}</textarea>
+                                              <label>Headline </label>
+                                            <input type="text" name="headline" defaultValue={user.headline} placeholder="Your headline"  onChange={handleChange} />
+                                           
+                                  </div>
+                        }
                     <div className="form-group">
                         <label>New Password </label>
                         <input type="password" name="password" value={password} placeholder="Your password" onChange={handleChange} />
@@ -192,11 +218,14 @@ const Profile = () => {
                         <label>Confirm Password </label>
                         <input type="password" name="cf_password" value={cf_password} placeholder="Confirm password" onChange={handleChange} />
                     </div>                          
-            <button className="btn-update" disabled={loadingUsers} onClick={handleUpdate}>Update</button>
+                        <><Button className="btn-update-profile" disabled={loadingUsers} shape="round" onClick={handleUpdate} size="middle"
+                 type="primary"  >Update <RetweetOutlined />
+                       </Button></>
+                       
             </div>
             <div className="col-right">
                 <h2>{isAdmin ? "Users" : "My Courses"}</h2>
-                {loadingtab &&  <div className='loading'>
+                {(loadingtab || loading) &&  <div className='loading'>
                             <HashLoader   color={"#1e1e2c"}  loading={loadingtab} size={40} />
                         </div> } 
                         {isAdmin ?  
@@ -231,12 +260,27 @@ const Profile = () => {
                          )}
                        />
                      </Table>
-                     : loading ? <Skeleton active /> : error ? <Error error = {error} /> :
-                    <Table dataSource={crs}>  
+                     : loading ? <Skeleton active /> : error ? <Error error = {error} />
+                     :  user.Teacher &&
+                     <>
+                   
+                      {loadingDelete || loadingCreate ?  <div className='loading'>
+                     <HashLoader   color={"#1e1e2c"}  loading={loadingDelete || loadingCreate} size={40} />
+                   </div> : 
+                   error || errorDelete || errorCreate  ? <h1>{error || errorDelete || errorCreate}</h1> :
+
+                   <>      
+                            <div className="btn-add">
+                                      <Button  className="btn-update-profile" onClick={createCoursehandler}
+                                      type="primary"  
+                                      shape="round" icon = {<FolderAddOutlined />  } size="large" >add</Button>
+
+                              </div> 
+                              <Table dataSource={courses}>  
                      <Column title="Name" dataIndex="name" key="_id" />
                      <Column title="Price" dataIndex="price" key="price" />
                      <Column title="Category" dataIndex="category"  />
-                     <Column title="Number of students" dataIndex="nmbr_stu"  />
+                     <Column title="Number of students" dataIndex="numStudents"/>
                      <Column title="Rating" dataIndex="rating" key="rating"/>
                    <Column
                      title="Action"
@@ -244,23 +288,30 @@ const Profile = () => {
                      key="_id"
                      render={(_id) => (
                        <span>
-                          <Link to={`/edit_user/${_id}`}>
+                           <Link to={`/editcourse/${_id}`}>
                               <Button className="btn-edit" 
                                type="primary"  
                                shape="round" icon = {<EditOutlined  />} size= 'small' >EDIT</Button>
                           </Link>
-                          <Button className="btn-delete"   type="danger" shape="round" icon = {<DeleteOutlined  />} size='small'>DELETE</Button>
+                          <Button className="btn-delete"  
+                                  type="danger" shape="round" onClick={() => handleDeleteCrs(_id)}
+                                  icon = {<DeleteOutlined  />} size={size}>
+                                    delete</Button>
                        </span>
                      )}
                    />
-                  </Table>
-            }
-               
-            
-            </div>
-        </div>
-        </>
-    )
+               </Table></>
+                      
+                              
+                    }
+         </>
+         }
+       
+    
+    </div>
+</div>
+</>
+)
 }
 
 export default Profile

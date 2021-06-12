@@ -9,7 +9,10 @@ router.get('/pobular', coursesCtrl.getcoursesbypob)
 //login as a teacher -> refresh_token -> getallmycourses
 router.get('/Mycourses', auth, isTeacher, coursesCtrl.getMycourses)
 //visit ->  Get course details
-router.get('/:id',coursesCtrl.getcoursedetails)
+router.get('/:id', coursesCtrl.getcoursedetails)
+router.put('/updatecourse/:id', coursesCtrl.updateCourse)
+router.delete('/deletecourse/:id', coursesCtrl.deleteCourse)
+router.post('/addcourse', auth, isTeacher,coursesCtrl.addCourse)
 
 
 module.exports = router

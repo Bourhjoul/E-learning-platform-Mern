@@ -72,6 +72,81 @@ const coursesCtrl = {
             console.log(error)
             return res.status(500).json({msg: error.message})
         }
+    },
+    updateCourse: async (req, res) => {
+        try {
+            const {name,category,price,goals,image,Prerequisites,description,audience,subcategorys,content,lectures} = req.body
+          
+            console.log("--------------req booody-------------",req.body)
+            const course = await Courses.findById(req.params.id)
+            console.log("find the course",course);
+            if(course){
+                course.name = name || course.name
+                course.category = category || course.category
+                course.price = price ||  course.price
+                course.goals = goals || course.goals
+                course.shortdescription
+                course.image = image || course.image
+                course.Prerequisites = Prerequisites || course.Prerequisites
+                course.description = description || course.description
+                course.audience	= audience || course.audience
+                course.subcategorys	= subcategorys || course.subcategorys
+                course.content = content || course.content
+                course.content.lectures = lectures || course.content.lectures
+           
+                // course.user.name    
+                // course.user.headline
+                // course.user.description
+            const updatedCourse = await course.save();
+            console.log("updatedCourse",updatedCourse)
+            res.json({msg: "Update Course Success!"})
+        
+             }} catch (err) {
+                console.log('-----------Update crs error-------------',err)
+            return res.status(500).json({msg: err.message})
+        }
+    },
+    deleteCourse: async (req, res) => {
+    try {
+        await Courses.findByIdAndDelete(req.params.id)
+
+        res.json({msg: "Deleted Success!"})
+    } catch (err) {
+        return res.status(500).json({msg: err.message})
     }
+},
+    addCourse: async (req, res) => {
+    try {
+        
+       const course = new Courses({
+            category : 'Change Category here',
+            name: 'Sample',
+            shortdescription: 'Short Description here',
+            goals: ['goals'],
+            content :[],
+            user : req.user.id,
+            Prerequisites : [],
+            description: "Sample Description",
+            audience: [],	
+            image: 'https://i.imgur.com/wCdx6Zs.png',
+            students: [],
+            subcategorys: [],
+            rating : 0,
+            numReviews: 0,
+            price: 0,
+            numStudents : 0,
+            reviews: []
+
+        
+       })
+       const addCourse = await course.save();
+        res.json(addCourse)
+
+    } catch (err) {
+        console.log('-----------Add crs error-------------',err)
+        return res.status(500).json({message: "Probably you don't change the (Sample Name) of the last course that you added"})
+       
+    }
+}
 }
 module.exports = coursesCtrl

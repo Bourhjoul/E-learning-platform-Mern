@@ -194,12 +194,19 @@ const userCtrl = {
     },
     updateUser: async (req, res) => {
         try {
-            const {name, avatar} = req.body
-            await Users.findOneAndUpdate({_id: req.user.id}, {
-                name, avatar
-            })
-
-            res.json({msg: "Update Success!"})
+            const {name, avatar,description,headline} = req.body
+            console.log('req body user',req.body);
+            const user = await Users.findById(req.user.id)
+            console.log("find the user",user);
+            if(user){
+                user.name = name || user.name
+                user.avatar = avatar || user.avatar
+                user.description = description ||  user.description
+                user.headline = headline || user.headline
+            }
+            const updatedUser = await user.save();
+            res.json({msg: "Update User Success!"})
+            console.log("Update of user info success");
         } catch (err) {
             return res.status(500).json({msg: err.message})
         }
