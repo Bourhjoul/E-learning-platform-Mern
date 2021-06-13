@@ -10,6 +10,8 @@ router.get("/pobular", coursesCtrl.getcoursesbypob);
 router.get("/Mycourses", auth, isTeacher, coursesCtrl.getMycourses);
 //visit ->  check the membership of student in a course
 router.get("/checkmembership", auth, coursesCtrl.studentMembership);
+//login as a student -> refresh_token -> getallCoursespurshased
+router.get("/Coursespurshased", auth, coursesCtrl.getcoursespurshased);
 //visit ->  Get course details
 router.get("/:id", coursesCtrl.getcoursedetails);
 router.put("/updatecourse/:id", coursesCtrl.updateCourse);

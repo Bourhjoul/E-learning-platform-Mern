@@ -33,6 +33,10 @@ import {
   CHECK_STUDENT_REQUEST,
   CHECK_STUDENT_SUCCESS,
   CHECK_STUDENT_FAIL,
+  LIST_COURSES_PURCHASED_REQUEST,
+  LIST_COURSES_PURCHASED_SUCCESS,
+  LIST_COURSES_PURCHASED_FAIL,
+  LIST_COURSES_PURCHASED_RESET,
 } from "../constants/courseconstants";
 
 export const ListMyCoursesReducer = (state = { courses: [] }, action) => {
@@ -57,7 +61,32 @@ export const ListMyCoursesReducer = (state = { courses: [] }, action) => {
       return state;
   }
 };
-
+export const listCoursespurshasedreducer = (
+  state = { courses: [] },
+  action
+) => {
+  switch (action.type) {
+    case LIST_COURSES_PURCHASED_REQUEST:
+      return {
+        loading: true,
+      };
+    case LIST_COURSES_PURCHASED_SUCCESS:
+      return {
+        loading: false,
+        courses: action.payload.coursespurshased,
+        totalcourses: action.payload.totalcourses,
+      };
+    case LIST_COURSES_PURCHASED_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    case LIST_COURSES_PURCHASED_RESET:
+      return { courses: [] };
+    default:
+      return state;
+  }
+};
 export const CheckStudentReducer = (state = {}, action) => {
   switch (action.type) {
     case CHECK_STUDENT_REQUEST:

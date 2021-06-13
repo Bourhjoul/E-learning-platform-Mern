@@ -11,6 +11,23 @@ const coursesCtrl = {
       return res.status(500).json({ msg: err.message });
     }
   },
+  getcoursespurshased: async (req, res) => {
+    try {
+      const numcourses = 5;
+      const page = Number(req.query.page) || 1;
+      const coursespurshased = await Courses.find({ students: req.user.id })
+        .limit(numcourses)
+        .skip(numcourses * (page - 1));
+      const totalcourses = await Courses.countDocuments({
+        students: req.user.id,
+      });
+      res.json({ coursespurshased, totalcourses });
+    } catch (err) {
+      console.log("-----------getcoursespurshased error-------------");
+      console.log(err);
+      return res.status(500).json({ msg: err.message });
+    }
+  },
   studentMembership: async (req, res) => {
     try {
       console.log(req.query.id);

@@ -11,6 +11,7 @@ import {
   courseCreateReducer,
   courseDeleteReducer,
   CheckStudentReducer,
+  listCoursespurshasedreducer,
 } from "./courseReducer";
 import { cartReducer } from "./cartReducer";
 import usersInfo from "./usersInfoReducer";
@@ -28,4 +29,5 @@ export default combineReducers({
   courseCreateReducer,
   courseDeleteReducer,
   CheckStudentReducer,
+  listCoursespurshasedreducer,
 });

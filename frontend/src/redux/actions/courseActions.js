@@ -31,6 +31,9 @@ import {
   CHECK_STUDENT_REQUEST,
   CHECK_STUDENT_SUCCESS,
   CHECK_STUDENT_FAIL,
+  LIST_COURSES_PURCHASED_REQUEST,
+  LIST_COURSES_PURCHASED_SUCCESS,
+  LIST_COURSES_PURCHASED_FAIL,
 } from "../constants/courseconstants";
 import axios from "axios";
 
@@ -61,6 +64,38 @@ export const listMyCourses = () => async (dispatch, getState) => {
     console.log(error);
     dispatch({
       type: MY_COURSES_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+export const listCoursespurshased = (page) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: LIST_COURSES_PURCHASED_REQUEST,
+    });
+
+    const { token } = getState();
+
+    const config = {
+      headers: {
+        Authorization: token,
+      },
+    };
+
+    const { data } = await axios.get(
+      `/courses/Coursespurshased?page=${page}`,
+      config
+    );
+    dispatch({
+      type: LIST_COURSES_PURCHASED_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: LIST_COURSES_PURCHASED_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
