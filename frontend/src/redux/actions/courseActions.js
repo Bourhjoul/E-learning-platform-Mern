@@ -137,15 +137,16 @@ export const CheckStudent = (id) => async (dispatch, getState) => {
 };
 
 export const ListcoursesbyTopic =
-  (Topic, Allcourses = false) =>
+  (Topic, Allcourses = false, page) =>
   async (dispatch) => {
     try {
       dispatch({ type: LIST_COURSES_REQUEST });
       const { data } = await axios.get(
-        `/courses/topic/?Topic=${Topic}&All=${Allcourses}`
+        `/courses/topic/?Topic=${Topic}&All=${
+          Allcourses ? "All" : ""
+        }&page=${page}`
       );
       dispatch({ type: LIST_COURSES_SUCCESS, payload: data });
-      console.log(data);
     } catch (error) {
       dispatch({
         type: LIST_COURSES_FAIL,
@@ -156,27 +157,23 @@ export const ListcoursesbyTopic =
       });
     }
   };
-
-export const ListnewCourses =
-  (Topic, All = false) =>
-  async (dispatch) => {
-    try {
-      dispatch({ type: LIST_NEW_COURSES_REQUEST });
-      const { data } = await axios.get(
-        `/courses/topic/?Topic=${Topic}&All=${All}&New=true`
-      );
-      dispatch({ type: LIST_NEW_COURSES_SUCCESS, payload: data });
-      console.log(data);
-    } catch (error) {
-      dispatch({
-        type: LIST_NEW_COURSES_FAIL,
-        payload:
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message,
-      });
-    }
-  };
+export const ListnewCourses = (Topic, page) => async (dispatch) => {
+  try {
+    dispatch({ type: LIST_NEW_COURSES_REQUEST });
+    const { data } = await axios.get(
+      `/courses/topic/?Topic=${Topic}&New=${true}&page=${page}`
+    );
+    dispatch({ type: LIST_NEW_COURSES_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: LIST_NEW_COURSES_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
 
 export const Listcoursesbypobularity =
   (Topic = "") =>

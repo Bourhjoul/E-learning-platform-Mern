@@ -19,7 +19,7 @@ import {
 } from "../../../redux/constants/courseconstants";
 
 import "./profile.css";
-import { Table, Button, Input, Empty, Skeleton } from "antd";
+import { Table, Button, Input, Empty, Pagination, Skeleton } from "antd";
 import {
   EditOutlined,
   DeleteOutlined,
@@ -37,6 +37,7 @@ import { Link } from "react-router-dom";
 import Error from "../../utils/Error";
 const { Column } = Table;
 const Profile = ({ history }) => {
+  const [page, setpage] = useState(1);
   const [size, setSize] = useState("small");
   const initialState = {
     name: "",
@@ -116,7 +117,7 @@ const Profile = ({ history }) => {
       dispatch(listMyCourses());
     }
     if (!user.Teacher && !isAdmin) {
-      dispatch(listCoursespurshased());
+      dispatch(listCoursespurshased(page));
     }
   }, [
     token,
@@ -127,6 +128,7 @@ const Profile = ({ history }) => {
     callback,
     user.Teacher,
     succDelete,
+    page,
   ]);
 
   /* user fun */
@@ -502,6 +504,12 @@ const Profile = ({ history }) => {
                   course={course}
                 />
               ))}
+              <Pagination
+                pageSize="5"
+                current={page}
+                onChange={(current) => setpage(current)}
+                total={totalcourses}
+              />
             </>
           )}
         </div>

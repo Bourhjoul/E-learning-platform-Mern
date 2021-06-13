@@ -50,7 +50,10 @@ const coursesCtrl = {
   },
   getallcoursesbycategory: async (req, res) => {
     try {
-      const All = req.query.All;
+      let courses;
+      const numcourses = 8;
+      const page = Number(req.query.page) || 1;
+      const All = req.query.All ? true : false;
       const Topic = req.query.Topic
         ? {
             category: {
@@ -59,34 +62,33 @@ const coursesCtrl = {
             },
           }
         : {};
-      const New = req.query.New;
+      const New = req.query.New ? true : false;
       if (All && New) {
-        const courses = await Courses.find({ ...Topic })
+        courses = await Courses.find({ ...Topic })
+          .limit(numcourses)
+          .skip(numcourses * (page - 1))
           .sort("createdAt")
           .populate("user", "id name")
           .exec();
-        res.json(courses);
       } else if (!All && New) {
-        const courses = await Courses.find({ ...Topic })
+        courses = await Courses.find({ ...Topic })
           .sort("createdAt")
           .populate("user", "id name")
           .limit(6)
           .exec();
-
-        res.json(courses);
       } else if (All && !New) {
-        const courses = await Courses.find({ ...Topic })
+        courses = await Courses.find({ ...Topic })
           .sort("-rating")
           .populate("user", "id name")
-          .limit(6);
-        res.json(courses);
+          .limit(numcourses)
+          .skip(numcourses * (page - 1));
       } else {
-        const courses = await Courses.find({ ...Topic }).populate(
-          "user",
-          "id name"
-        );
-        res.json(courses);
+        courses = await Courses.find({ ...Topic })
+          .populate("user", "id name")
+          .limit(6);
       }
+      const totalcourses = await Courses.countDocuments({ ...Topic });
+      res.json({ courses, totalcourses });
     } catch (error) {
       console.log("------------all course error---------");
 
