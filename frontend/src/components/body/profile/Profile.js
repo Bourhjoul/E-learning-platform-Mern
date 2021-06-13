@@ -62,9 +62,9 @@ const Profile = ({history}) => {
       if(successCreate){
         history.push(`/editcourse/${createdcourse._id}`)
       }
-       else { 
-           dispatch(listMyCourses())
-       }
+      if (user.Teacher) {
+             dispatch(listMyCourses());
+      } 
     }, [token,auth,history,dispatch,successCreate,callback,user.Teacher,succDelete])
 
 

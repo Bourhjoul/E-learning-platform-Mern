@@ -1,545 +1,554 @@
-@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css');
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css");
 * {
-	margin-top: 0;
-	box-sizing: border-box;
-	font-family: 'Poppins', sans-serif;
+  margin-top: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 .descriptionPart {
-	display: flex;
-	justify-content: space-between;
-	background-color: rgb(27, 25, 25);
-	color: white;
-	padding: 35px 70px;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(27, 25, 25);
+  color: white;
+  padding: 35px 70px;
 }
 
 .CategorieCourse h4 {
-	color: rgb(89, 159, 180);
+  color: rgb(89, 159, 180);
 }
 
 .courseAbout {
-	font-size: 20px;
+  font-size: 20px;
 }
 
 .ratingCourse {
-	display: flex;
-	color: rgb(255, 236, 62);
-	margin-bottom: 10px;
+  display: flex;
+  color: rgb(255, 236, 62);
+  margin-bottom: 10px;
 }
 
 a {
-	color: rgb(89, 159, 180);
+  color: rgb(89, 159, 180);
 }
 
 .course-rating {
-	margin-left: 10px;
+  margin-left: 10px;
 }
 
 .wish-share {
-	position: relative;
-	display: flex;
+  position: relative;
+  display: flex;
 }
 
 .buttonsCourse {
-	max-width: 200px;
-	align-items: center;
-	border: 1px solid white;
-	background-color: transparent;
-	color: rgb(241, 241, 241);
-	border-radius: 10px;
-	font-size: 17px;
-	outline: none;
-	font-weight: 600;
-	margin: 10px 5px;
-	padding: 11px 20px;
-	cursor: pointer;
+  max-width: 200px;
+  align-items: center;
+  border: 1px solid white;
+  background-color: transparent;
+  color: rgb(241, 241, 241);
+  border-radius: 10px;
+  font-size: 17px;
+  outline: none;
+  font-weight: 600;
+  margin: 10px 5px;
+  padding: 11px 20px;
+  cursor: pointer;
 }
 
 .learnAbout {
-	display: grid;
-	position: relative;
+  display: grid;
+  position: relative;
 
-	border: 1px solid rgb(209, 209, 209);
-	border-radius: 5px;
+  border: 1px solid rgb(209, 209, 209);
+  border-radius: 5px;
 
-	padding: 30px 30px;
-	background-color: rgba(241, 241, 241, 0.562);
-	color: rgb(94, 94, 94);
+  padding: 30px 30px;
+  background-color: rgba(241, 241, 241, 0.562);
+  color: rgb(94, 94, 94);
 }
 
 .learnAbout h2 {
-	color: rgb(73, 73, 73);
+  color: rgb(73, 73, 73);
 }
 
 .learnAbout div ul {
-	display: grid;
-	grid-column: auto;
-	grid-template-columns: 50% 50%;
-	grid-template-rows: 60px;
+  display: grid;
+  grid-column: auto;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 60px;
 }
 
 .whatlearn ul li {
-	list-style: outside;
-	list-style-type: none;
+  list-style: outside;
+  list-style-type: none;
 }
 
 .checkIcon {
-	margin-right: 10px;
+  margin-right: 10px;
 }
 
 .allAboutCourse {
-	display: flex;
-	margin: 30px 70px;
+  display: flex;
+  margin: 30px 70px;
 }
 .bottom-infos {
-	margin: 30px 30px;
+  margin: 30px 30px;
 }
 
 .otherInformations {
-	position: relative;
+  position: relative;
 
-	width: 60%;
+  width: 60%;
 }
 
 .contenuCours {
-	margin-top: 20px;
+  margin-top: 20px;
 }
 .courseContent {
-	position: relative;
+  position: relative;
 
-	color: rgb(51, 51, 51);
+  color: rgb(51, 51, 51);
 }
 .courseContent b {
-	font-size: 18px;
+  font-size: 18px;
 }
 .contentC {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 15px 30px;
-	cursor: pointer;
-	background-color: rgba(241, 241, 241, 0.562);
-	border: 1px solid rgb(209, 209, 209);
-	border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  cursor: pointer;
+  background-color: rgba(241, 241, 241, 0.562);
+  border: 1px solid rgb(209, 209, 209);
+  border-radius: 5px;
 }
 
 .iconArrowDown {
-	margin-right: 15px;
+  margin-right: 15px;
 }
 
 .iconCourseC {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .allCourseContent {
-	margin-top: 20px;
+  margin-top: 20px;
 }
 .sessionName div {
-	display: flex;
-	margin-bottom: 20px;
+  display: flex;
+  margin-bottom: 20px;
 }
 
 .sessionName .session {
-	display: block;
-	margin-bottom: 10px;
+  display: block;
+  margin-bottom: 10px;
 }
 
 .playIcon {
-	margin-right: 15px;
+  margin-right: 15px;
 }
 
 .sessionsContent {
-	border: 1px solid rgb(209, 209, 209);
-	border-radius: 5px;
-	padding: 15px 30px;
+  border: 1px solid rgb(209, 209, 209);
+  border-radius: 5px;
+  padding: 15px 30px;
 }
 
 .pre-requis {
-	margin-top: 20px;
+  margin-top: 20px;
 }
 
 .descriptionCourse p {
-	color: rgb(43, 43, 43);
+  color: rgb(43, 43, 43);
 }
 .descriptionCourse li,
 .pre-requis li {
-	list-style: none;
-	/* position: relative; */
-	padding-left: 10px;
-	/* line-height: 2; */
-	font-size: 15px;
+  list-style: none;
+  /* position: relative; */
+  padding-left: 10px;
+  /* line-height: 2; */
+  font-size: 15px;
 }
 .descriptionCourse li:before,
 .pre-requis li::before {
-	content: '\f111';
-	font-family: FontAwesome;
-	margin: 5px;
-	/* position: absolute;
+  content: "\f111";
+  font-family: FontAwesome;
+  margin: 5px;
+  /* position: absolute;
   left: 0; */
-	color: #318ca0;
-	font-size: 13px;
+  color: #318ca0;
+  font-size: 13px;
 }
 
 .coursePage h2 {
-	margin-left: 30px;
-	font-size: 30px;
+  margin-left: 30px;
+  font-size: 30px;
 }
 
 .coursePageRight {
-	position: relative;
+  position: relative;
 }
 
 .last-price {
-	text-decoration: line-through;
-	color: rgb(92, 92, 92);
+  text-decoration: line-through;
+  color: rgb(92, 92, 92);
 }
 .btnsShop {
-	text-align: center;
-	margin-top: 20px;
+  text-align: center;
+  margin-top: 20px;
 }
 .btnsShop ul li {
-	display: flex;
-	justify-content: center;
-	cursor: pointer;
-	width: 100%;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  width: 100%;
 }
 .btnsShop ul {
-	list-style: none;
+  list-style: none;
 }
 
 .btnaddToCart {
-	/* position: relative; */
-	font-size: 16px;
-	padding: 9px 10px;
-	color: white;
-	border-radius: 5px;
-	width: 80%;
-	border: none;
-	margin: 0px 20px;
-	margin-bottom: 5px;
-	cursor: pointer;
-	background-color: #ff9f3e;
+  /* position: relative; */
+  font-size: 16px;
+  padding: 9px 10px;
+  color: white;
+  border-radius: 5px;
+  width: 80%;
+  border: none;
+  margin: 0px 20px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  background-color: #ff9f3e;
 }
 
 .btnaddToCart:hover {
-	background-color: #f18c26;
+  background-color: #f18c26;
 }
 
 .btnShopNow {
-	margin-top: 2px;
-	width: 80%;
-	font-size: 16px;
-	padding: 9px 10px;
-	color: rgb(34, 127, 202);
-	border-radius: 5px;
-	border: 0.5px solid rgb(34, 127, 202);
-	background-color: transparent;
-	transition: all 0.5s linear;
-	cursor: pointer;
+  margin-top: 2px;
+  width: 80%;
+  font-size: 16px;
+  padding: 9px 10px;
+  color: rgb(34, 127, 202);
+  border-radius: 5px;
+  border: 0.5px solid rgb(34, 127, 202);
+  background-color: transparent;
+  transition: all 0.5s linear;
+  cursor: pointer;
 }
 .btnShopNow:hover {
-	background-color: rgba(34, 126, 202, 0.061);
+  background-color: rgba(34, 126, 202, 0.061);
+}
+.shopnow_disable:hover {
+  background-color: rgb(53, 53, 53) !important;
+  color: white !important;
+}
+.shopnow_disable {
+  background-color: transparent !important;
+  color: rgb(53, 53, 53) !important;
+  border-color: rgb(53, 53, 53) !important;
 }
 .price {
-	margin: 0;
-	margin-left: 20px;
-	height: fit-content;
+  margin: 0;
+  margin-left: 20px;
+  height: fit-content;
 }
 .new-price {
-	font-size: 25px;
-	font-weight: 600;
-	margin: 0;
+  font-size: 25px;
+  font-weight: 600;
+  margin: 0;
 }
 .toAddCart {
-	background-color: rgb(255, 255, 255);
-	margin: 0px 100px;
-	padding: 0px 2px;
-	/* height: 80%; */
-	box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.103);
-	position: relative;
-	justify-content: center;
-	justify-items: center;
-	opacity: 0;
-	transition: opacity 0.5s ease-in-out;
+  background-color: rgb(255, 255, 255);
+  margin: 0px 100px;
+  padding: 0px 2px;
+  /* height: 80%; */
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.103);
+  position: relative;
+  justify-content: center;
+  justify-items: center;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 }
 .bottom_card {
-	display: grid;
-	grid-template-columns: 1fr;
-	grid-template-rows: 50px 194px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 50px 194px;
 }
 .toAddCart.active {
-	top: 20%;
-	height: fit-content;
-	position: fixed;
-	width: 320px;
-	opacity: 1;
-	transition: opacity 0.5s ease-in-out;
+  top: 20%;
+  height: fit-content;
+  position: fixed;
+  width: 320px;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
 }
 .toAddCart.disable {
-	visibility: hidden;
-	opacity: 0;
-	transition: opacity 0.5s ease;
-	width: 0px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  width: 0px;
 }
 .garantie {
-	margin-top: 20px;
-	display: flex;
-	justify-content: center;
-	font-style: italic;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  font-style: italic;
 }
 
 .courseImage {
-	width: 100%;
-	margin-bottom: 10px;
-	object-fit: cover;
+  width: 100%;
+  margin-bottom: 10px;
+  object-fit: cover;
 }
 .formateur h2 {
-	margin-left: 0;
+  margin-left: 0;
 }
 
 .formateur {
-	width: 60%;
-	margin: 20px 30px;
-	padding-right: 50px;
-	border-left: 3px solid rgb(128, 128, 128);
-	background-color: rgba(128, 128, 128, 0.041);
-	padding: 2px 10px;
+  width: 60%;
+  margin: 20px 30px;
+  padding-right: 50px;
+  border-left: 3px solid rgb(128, 128, 128);
+  background-color: rgba(128, 128, 128, 0.041);
+  padding: 2px 10px;
 }
 #avatar_insrtuctor {
-	object-fit: contain;
-	width: 120px;
-	height: 105px;
+  object-fit: contain;
+  width: 120px;
+  height: 105px;
 }
 .formateurName {
-	margin-left: 30px;
-	display: inline;
+  margin-left: 30px;
+  display: inline;
 }
 .formateur b {
-	color: rgb(89, 159, 180);
-	font-size: 20px;
+  color: rgb(89, 159, 180);
+  font-size: 20px;
 }
 .name_job {
-	display: grid;
-	height: 80%;
-	align-self: center;
+  display: grid;
+  height: 80%;
+  align-self: center;
 }
 .instructorProfession {
-	/* margin-top: 5px; */
-	color: gray;
+  /* margin-top: 5px; */
+  color: gray;
 }
 .commentsUsers {
-	margin-top: 20px;
+  margin-top: 20px;
 }
 .comments {
-	position: relative;
-	width: 60%;
-	margin: 20px 30px;
-	padding-right: 50px;
+  position: relative;
+  width: 60%;
+  margin: 20px 30px;
+  padding-right: 50px;
 }
 .commentField {
-	position: relative;
-	width: 60%;
-	margin: 20px 30px;
-	padding-right: 50px;
+  position: relative;
+  width: 60%;
+  margin: 20px 30px;
+  padding-right: 50px;
 }
 .comment h3 {
-	margin-left: 10px;
+  margin-left: 10px;
 }
 .commentRating {
-	color: rgb(228, 137, 33);
-	display: flex;
-	font-size: 20px;
+  color: rgb(228, 137, 33);
+  display: flex;
+  font-size: 20px;
 }
 
 .commentDate {
-	color: rgb(73, 73, 73);
-	margin-left: 20px;
+  color: rgb(73, 73, 73);
+  margin-left: 20px;
 }
 
 .commentOfParti {
-	color: rgb(70, 70, 70);
+  color: rgb(70, 70, 70);
 }
 
 .bilike {
-	color: rgb(89, 159, 180);
-	font-size: 50px;
-	border: 1px solid rgb(89, 159, 180);
-	padding: 10px;
-	border-radius: 50%;
-	margin-right: 10px;
-	cursor: pointer;
+  color: rgb(89, 159, 180);
+  font-size: 50px;
+  border: 1px solid rgb(89, 159, 180);
+  padding: 10px;
+  border-radius: 50%;
+  margin-right: 10px;
+  cursor: pointer;
 }
 .bilike:hover {
-	border: 1px solid rgb(124, 124, 124);
+  border: 1px solid rgb(124, 124, 124);
 }
 .bidislike {
-	color: rgb(89, 159, 180);
-	font-size: 50px;
-	border: 1px solid rgb(89, 159, 180);
-	padding: 10px;
-	border-radius: 50%;
-	cursor: pointer;
+  color: rgb(89, 159, 180);
+  font-size: 50px;
+  border: 1px solid rgb(89, 159, 180);
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
 }
 .bidislike:hover {
-	border: 1px solid rgb(124, 124, 124);
+  border: 1px solid rgb(124, 124, 124);
 }
 
 .contentOfSections-parent {
-	height: 0px;
-	overflow: hidden;
-	transition: height ease 0.7s;
+  height: 0px;
+  overflow: hidden;
+  transition: height ease 0.7s;
 }
 
 .contentOfSections-parent.show {
-	height: auto;
-	transition: height ease 0.7s;
+  height: auto;
+  transition: height ease 0.7s;
 }
 .buttonsCourse.Video {
-	display: none;
+  display: none;
 }
 .Link {
-	color: white;
-	text-decoration: none;
+  color: white;
+  text-decoration: none;
 }
 .Link:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 /* CART */
 
 .cartfull {
-	display: grid;
-	position: relative;
-	margin: 20px 150px;
-	grid-template-columns: 70% 30%;
+  display: grid;
+  position: relative;
+  margin: 20px 150px;
+  grid-template-columns: 70% 30%;
 }
 .totalName {
-	color: rgb(90, 90, 90);
-	font-weight: 100;
+  color: rgb(90, 90, 90);
+  font-weight: 100;
 }
 .totalcart {
-	height: 250px;
-	width: 100%;
+  height: 250px;
+  width: 100%;
 }
 .totalcart .totalprice {
-	color: rgb(46, 46, 46);
-	font-size: 40px;
+  color: rgb(46, 46, 46);
+  font-size: 40px;
 
-	font-weight: 700;
+  font-weight: 700;
 }
 .validationBtn {
-	display: grid;
-	width: 100%;
-	grid-column: 1/3;
-	background-color: #1890ff;
-	color: rgb(255, 255, 255);
-	border: none;
-	padding: 30px 10px;
-	align-content: center;
-	font-size: 16px;
-	outline-style: none;
-	height: 40px;
-	cursor: pointer;
-	font-weight: 500;
-	transition: all 0.2s linear;
+  display: grid;
+  width: 100%;
+  grid-column: 1/3;
+  background-color: #1890ff;
+  color: rgb(255, 255, 255);
+  border: none;
+  padding: 30px 10px;
+  align-content: center;
+  font-size: 16px;
+  outline-style: none;
+  height: 40px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s linear;
 }
 .validationBtn:hover {
-	background-color: #0b2f50;
+  background-color: #0b2f50;
 }
 .courseNaame {
-	color: white;
+  color: white;
 }
 .cart h1 {
-	font-size: 23px;
+  font-size: 23px;
 }
 .productsoncart {
-	margin-right: 30px;
+  margin-right: 30px;
 }
 
 .imageCart {
-	width: 110px;
-	height: 60px;
+  width: 110px;
+  height: 60px;
 }
 .productoncart {
-	display: grid;
-	position: relative;
+  display: grid;
+  position: relative;
 
-	grid-template-columns: 17% 53% 26% 4%;
-	align-items: center;
-	border: 1px solid rgba(204, 204, 204, 0.534);
-	padding: 20px;
-	box-shadow: 0.4px 0.4px 0.2px 0.2px rgb(151, 151, 151);
+  grid-template-columns: 17% 53% 26% 4%;
+  align-items: center;
+  border: 1px solid rgba(204, 204, 204, 0.534);
+  padding: 20px;
+  box-shadow: 0.4px 0.4px 0.2px 0.2px rgb(151, 151, 151);
 }
 .productNameAFounder b {
-	font-size: 18px;
+  font-size: 18px;
 }
 .productNameAFounder p {
-	color: gray;
+  color: gray;
 }
 .totalpriceCart {
-	color: rgb(46, 46, 46);
-	font-size: 35px;
+  color: rgb(46, 46, 46);
+  font-size: 35px;
 
-	font-weight: 700;
+  font-weight: 700;
 }
 
 .deletecart {
-	justify-self: flex-end;
+  justify-self: flex-end;
 
-	cursor: pointer;
+  cursor: pointer;
 }
 .deletecart:hover {
-	transition: all 1s ease-in-out;
-	color: #dd4141;
+  transition: all 1s ease-in-out;
+  color: #dd4141;
 }
 
 .sendComment {
-	text-align: center;
+  text-align: center;
 }
 @media screen and (max-width: 1208px) {
-	.toAddCart {
-		display: none;
-	}
+  .toAddCart {
+    display: none;
+  }
 
-	.descriptionPart {
-		width: 100%;
-		display: flex;
-		justify-content: center;
-	}
-	.otherInformations {
-		width: 100%;
-	}
-	.formateur {
-		position: relative;
-		width: auto;
-	}
-	.comments {
-		position: relative;
-		width: auto;
-	}
-	.commentField {
-		position: relative;
-		width: auto;
-	}
-	.allAboutCourse {
-		display: flex;
-		margin: 20px 20px;
-	}
-	.bottom-infos {
-		margin: 30px 0px;
-	}
-	.name_job {
-		margin-left: 10px;
-	}
+  .descriptionPart {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .otherInformations {
+    width: 100%;
+  }
+  .formateur {
+    position: relative;
+    width: auto;
+  }
+  .comments {
+    position: relative;
+    width: auto;
+  }
+  .commentField {
+    position: relative;
+    width: auto;
+  }
+  .allAboutCourse {
+    display: flex;
+    margin: 20px 20px;
+  }
+  .bottom-infos {
+    margin: 30px 0px;
+  }
+  .name_job {
+    margin-left: 10px;
+  }
 }
 
 @media screen and (max-width: 1000px) {
-	.windowToBuy {
-		display: none;
-	}
+  .windowToBuy {
+    display: none;
+  }
 
-	.buttonsCourse.Video {
-		display: block;
-	}
+  .buttonsCourse.Video {
+    display: block;
+  }
 }
