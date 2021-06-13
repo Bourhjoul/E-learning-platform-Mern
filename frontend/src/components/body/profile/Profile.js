@@ -103,7 +103,6 @@ const Profile = ({ history }) => {
   const { isLogged, user, isAdmin } = auth;
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch({ type: COURSE_CREATE_RESET });
     if (isAdmin) {
       dispatch(dispatchGetAllUsersRequest());
       fetchAllUsers(token).then((res) => {

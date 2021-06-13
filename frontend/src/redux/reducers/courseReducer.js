@@ -226,13 +226,13 @@ export const courseUpdateReducer = (state = { course: {} }, action) => {
     case COURSE_UPDATE_SUCCESS:
       return {
         loading: false,
-        success: "Update course success",
+        success: true,
         course: action.payload,
       };
     case COURSE_UPDATE_FAIL:
       return { loading: false, err: action.payload };
     case COURSE_UPDATE_RESET:
-      return { course: {} };
+      return { course: {}, success: false };
     default:
       return state;
   }

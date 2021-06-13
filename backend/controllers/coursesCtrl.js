@@ -143,31 +143,32 @@ const coursesCtrl = {
         audience,
         subcategorys,
         content,
-        lectures,
+        shortdescription,
       } = req.body;
 
-      console.log("--------------req booody-------------", req.body);
+      console.log(
+        "--------------req booody-------------",
+        req.body.content[0].lectures
+      );
       const course = await Courses.findById(req.params.id);
-      console.log("find the course", course);
       if (course) {
         course.name = name || course.name;
         course.category = category || course.category;
         course.price = price || course.price;
         course.goals = goals || course.goals;
-        course.shortdescription;
+        course.shortdescription = shortdescription || course.shortdescription;
         course.image = image || course.image;
         course.Prerequisites = Prerequisites || course.Prerequisites;
         course.description = description || course.description;
         course.audience = audience || course.audience;
         course.subcategorys = subcategorys || course.subcategorys;
         course.content = content || course.content;
-        course.content.lectures = lectures || course.content.lectures;
-
+        console.log(course.content[0].lectures);
         // course.user.name
         // course.user.headline
         // course.user.description
         const updatedCourse = await course.save();
-        console.log("updatedCourse", updatedCourse);
+        // console.log("updatedCourse", updatedCourse);
         res.json({ msg: "Update Course Success!" });
       }
     } catch (err) {
