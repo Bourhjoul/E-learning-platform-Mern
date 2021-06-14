@@ -45,7 +45,6 @@ const CourseFilter = () => {
   var settings = {
     dots: false,
     infinite: true,
-    // speed: 500,
     slidesToShow: 5,
     slidesToScroll: 1,
 

@@ -12,6 +12,8 @@ router.get("/Mycourses", auth, isTeacher, coursesCtrl.getMycourses);
 router.get("/checkmembership", auth, coursesCtrl.studentMembership);
 //login as a student -> refresh_token -> getallCoursespurshased
 router.get("/Coursespurshased", auth, coursesCtrl.getcoursespurshased);
+//login as a student -> refresh_token -> getallCoursespurshased
+router.post("/createreview/:id", auth, coursesCtrl.createcoursereview);
 //visit ->  Get course details
 router.get("/:id", coursesCtrl.getcoursedetails);
 router.put("/updatecourse/:id", coursesCtrl.updateCourse);

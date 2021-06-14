@@ -1,4 +1,6 @@
 const Courses = require("../models/CourseModel");
+const User = require("../models/userModel");
+
 const coursesCtrl = {
   getMycourses: async (req, res) => {
     try {
@@ -44,6 +46,41 @@ const coursesCtrl = {
       }
     } catch (err) {
       console.log("-----------studentMembership error-------------");
+      console.log(err);
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+  createcoursereview: async (req, res) => {
+    try {
+      const { rating, comment } = req.body;
+      console.log(rating, comment, req.user);
+      const course = await Courses.findById(req.params.id);
+      const user = await User.findById(req.user.id);
+      if (course) {
+        const alreadyreviewed = course.reviews.find(
+          (r) => r.user.toString() === user._id.toString()
+        );
+        if (alreadyreviewed) {
+          return res.json({
+            msg: "You already reviewed this course.",
+            success: false,
+          });
+        }
+        const review = {
+          name: user.name,
+          rating: Number(rating),
+          comment,
+          user: req.user.id,
+        };
+        course.reviews.push(review);
+        course.rating =
+          course.reviews.reduce((acc, item) => item.rating + acc, 0) /
+          course.reviews.length;
+        await course.save();
+        return res.status(201).json({ msg: "Review added", success: true });
+      }
+    } catch (err) {
+      console.log("-----------review error-------------");
       console.log(err);
       return res.status(500).json({ msg: err.message });
     }

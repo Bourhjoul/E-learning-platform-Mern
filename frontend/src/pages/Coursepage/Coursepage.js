@@ -1,31 +1,29 @@
 import React, { useEffect, useState } from "react";
 import Rating from "./Rating";
-import { Image } from "antd";
 import { Link } from "react-router-dom";
-import {
-  IoMdClose,
-  BiLike,
-  BiDislike,
-  IoIosArrowForward,
-  BsExclamationOctagon,
-  BsCheck,
-  IoIosArrowDown,
-  AiFillPlayCircle,
-  RiArrowUpSLine,
-} from "react-icons/all";
+import { BsCheck } from "react-icons/all";
 import Collapsible from "./Collapsible";
-import { ReactVideo, YoutubePlayer } from "reactjs-media";
+import { YoutubePlayer } from "reactjs-media";
 import Comments from "./Comments";
-import { Skeleton, Input, Button } from "antd";
+import { Empty } from "antd";
+import { Skeleton, Input, Button, Rate } from "antd";
 import "./Coursepage.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
   CheckStudent,
+  Createcoursereview,
   Getcoursedetails,
 } from "../../redux/actions/courseActions";
 import Error from "../../components/utils/Error";
+import {
+  showSuccessMsg,
+  showErrMsg,
+} from "../../components/utils/notification/Notification";
+import { CREATE_REVIEW_RESET } from "../../redux/constants/courseconstants";
 
 const Coursepage = ({ match, history }) => {
+  const [comment, setcomment] = useState("");
+  const [rating, setrating] = useState(3);
   const { TextArea } = Input;
   const dispatch = useDispatch();
   const [show, setShow] = useState(0);
@@ -38,11 +36,24 @@ const Coursepage = ({ match, history }) => {
   const auth = useSelector((state) => state.auth);
   const { user, isLogged } = auth;
   const CheckStudentReducer = useSelector((state) => state.CheckStudentReducer);
+
   const {
     loading: loadingstudent,
     isStudent,
     error: errorstudent,
   } = CheckStudentReducer;
+
+  const Createcoursereviewreducer = useSelector(
+    (state) => state.Createcoursereviewreducer
+  );
+
+  const {
+    loading: loadingrev,
+    success,
+    message,
+    error: errorrev,
+  } = Createcoursereviewreducer;
+
   const onChangeBack = () => {
     if (window.scrollY >= 200) {
       setAdd(true);
@@ -60,11 +71,25 @@ const Coursepage = ({ match, history }) => {
     if (isLogged) {
       dispatch(CheckStudent(match.params.id));
     }
+    if (success) {
+      setrating(0);
+      setcomment("");
+      dispatch({ type: CREATE_REVIEW_RESET });
+    }
     return () => {};
-  }, [dispatch, match.params.id, isLogged]);
+  }, [dispatch, match.params.id, isLogged, success]);
   window.addEventListener("scroll", Disable);
   const addToCartHandler = () => {
     history.push(`/cart/${match.params.id}`);
+  };
+
+  const sentreview = () => {
+    dispatch(
+      Createcoursereview(match.params.id, {
+        rating,
+        comment,
+      })
+    );
   };
   return (
     <>
@@ -252,21 +277,53 @@ const Coursepage = ({ match, history }) => {
                 </div>
                 <div className="commentsUsers">
                   <h2 className="commentOfParti">Comments of Students</h2>
-                  <Comments
-                    commentPerson="ZAAM Soufiane"
-                    commentMessage="As always, Brad over-delivered on another course. I've taken courses from plenty of other educators. Brad does such an amazing job at not just how to use the technologies presented, but why to use them. Looking forward to learning more from my favorite Udemy educator. Thanks Brad!"
-                  />
-                  <Comments
-                    commentPerson="ZAAM Soufiane"
-                    commentMessage="As always, Brad over-delivered on another course. I've taken courses from plenty of other educators. Brad does such an amazing job at not just how to use the technologies presented, but why to use them. Looking forward to learning more from my favorite Udemy educator. Thanks Brad!"
-                  />
+                  {course.reviews.length === 0 ? (
+                    <Empty
+                      image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+                      imageStyle={{
+                        height: 60,
+                      }}
+                      description={<span>No Review yet</span>}
+                    />
+                  ) : (
+                    <>
+                      {course.reviews.map((review) => (
+                        <Comments
+                          commentPerson={review.name}
+                          date={review.createdAt.substring(0, 10)}
+                          commentMessage={review.comment}
+                          rating={review.rating}
+                        />
+                      ))}
+                    </>
+                  )}
                 </div>
-                <div className="commentField">
-            <TextArea  />
-            <Button className="sendComment">Send</Button>
-
-
-            </div>
+                {isStudent && (
+                  <div className="commentField">
+                    {loadingrev ? (
+                      <Skeleton />
+                    ) : errorrev ? (
+                      showErrMsg(errorrev)
+                    ) : success === false ? (
+                      showErrMsg(message)
+                    ) : (
+                      success === true && showSuccessMsg(message)
+                    )}
+                    <TextArea
+                      rows={4}
+                      placeholder="Let us know what do you think about this course."
+                      onChange={(e) => setcomment(e.target.value)}
+                    />
+                    <Rate
+                      allowHalf
+                      value={rating}
+                      onChange={(value) => setrating(value)}
+                    />
+                    <Button className="sendComment" onClick={sentreview}>
+                      Send
+                    </Button>
+                  </div>
+                )}
               </div>
             </div>
           </div>

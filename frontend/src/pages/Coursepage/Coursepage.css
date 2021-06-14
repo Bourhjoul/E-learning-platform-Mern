@@ -349,7 +349,7 @@ a {
 .commentField {
   position: relative;
   width: 60%;
-  margin: 20px 30px;
+  margin: 60px 30px;
   padding-right: 50px;
 }
 .comment h3 {
@@ -504,6 +504,8 @@ a {
 }
 
 .sendComment {
+  margin-left: 20px;
+  margin-top: 20px;
   text-align: center;
 }
 @media screen and (max-width: 1208px) {

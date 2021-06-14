@@ -34,6 +34,9 @@ import {
   LIST_COURSES_PURCHASED_REQUEST,
   LIST_COURSES_PURCHASED_SUCCESS,
   LIST_COURSES_PURCHASED_FAIL,
+  CREATE_REVIEW_REQUEST,
+  CREATE_REVIEW_SUCCESS,
+  CREATE_REVIEW_FAIL,
 } from "../constants/courseconstants";
 import axios from "axios";
 
@@ -71,6 +74,35 @@ export const listMyCourses = () => async (dispatch, getState) => {
     });
   }
 };
+
+export const Createcoursereview =
+  (id, review) => async (dispatch, getState) => {
+    try {
+      dispatch({ type: CREATE_REVIEW_REQUEST });
+      const { token } = getState();
+      const config = {
+        headers: {
+          Authorization: token,
+        },
+      };
+      console.log(review);
+      const { data } = await axios.post(
+        `/courses/createreview/${id}`,
+        review,
+        config
+      );
+      dispatch({ type: CREATE_REVIEW_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({
+        type: CREATE_REVIEW_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
+
 export const listCoursespurshased = (page) => async (dispatch, getState) => {
   try {
     dispatch({

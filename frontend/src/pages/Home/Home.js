@@ -170,9 +170,14 @@ const Home = () => {
                   In other words, learning to code won’t just give you technical
                   knowledge—it’ll also give you a new way to approach your work.
                 </p>
-                <button className="Btn" id="ReadMorebtn">
-                  Discover More
-                </button>
+                <Link
+                  style={{ textDecoration: "none !important" }}
+                  to="/coursesfilter/Development"
+                >
+                  <button className="Btn" id="ReadMorebtn">
+                    Discover More
+                  </button>
+                </Link>
               </div>
               <div className="coursecards">
                 {loading ? (
@@ -211,9 +216,14 @@ const Home = () => {
                   of profit. It also utilizes various data to make smart and
                   insightful business decisions.
                 </p>
-                <button className="Btn" id="ReadMorebtn">
-                  Discover More
-                </button>
+                <Link
+                  style={{ textDecoration: "none !important" }}
+                  to="/coursesfilter/Marketing"
+                >
+                  <button className="Btn" id="ReadMorebtn">
+                    Discover More
+                  </button>
+                </Link>
               </div>
               <div className="coursecards">
                 {loading ? (
@@ -240,20 +250,22 @@ const Home = () => {
           </TabPane>
           <TabPane tab="Self Dev" key="3">
             <div className="Tab_Content">
-              <h2>Become a Markter</h2>
+              <h2>Improve your soft skills</h2>
               <div id="paragraphbtn">
                 <p>
-                  Marketing is more than a concentration within a business
-                  major. More accurately, it describes a collection of skills
-                  that are useful in any career. As a professional discipline,
-                  marketing is a vital function of any business’ operation. It
-                  explores customer perceptions and journeys as primary sources
-                  of profit. It also utilizes various data to make smart and
-                  insightful business decisions.
+                  Personal development is a lifelong process. It is a way for
+                  people to assess their skills and qualities, consider their
+                  aims in life and set goals in order to realise and maximise
+                  their potential.
                 </p>
-                <button className="Btn" id="ReadMorebtn">
-                  Discover More
-                </button>
+                <Link
+                  style={{ textDecoration: "none !important" }}
+                  to="/coursesfilter/Self-Dev"
+                >
+                  <button className="Btn" id="ReadMorebtn">
+                    Discover More
+                  </button>
+                </Link>
               </div>
               <div className="coursecards">
                 {loading ? (
@@ -283,17 +295,21 @@ const Home = () => {
               <h2>Become a Photographer</h2>
               <div id="paragraphbtn">
                 <p>
-                  Marketing is more than a concentration within a business
-                  major. More accurately, it describes a collection of skills
-                  that are useful in any career. As a professional discipline,
-                  marketing is a vital function of any business’ operation. It
-                  explores customer perceptions and journeys as primary sources
-                  of profit. It also utilizes various data to make smart and
-                  insightful business decisions.
+                  Learning about light, exposure, color, tone, composition and
+                  timing will help you produce more creative, more interesting,
+                  more noticeable photographs. ... Learning to appreciate
+                  different types of light and when some light is better for
+                  making photos than others, will help you create more
+                  outstanding photographs.
                 </p>
-                <button className="Btn" id="ReadMorebtn">
-                  Discover More
-                </button>
+                <Link
+                  style={{ textDecoration: "none !important" }}
+                  to="/coursesfilter/Photography"
+                >
+                  <button className="Btn" id="ReadMorebtn">
+                    Discover More
+                  </button>
+                </Link>
               </div>
               <div className="coursecards">
                 {loading ? (
@@ -324,38 +340,43 @@ const Home = () => {
 
               <div id="paragraphbtn">
                 <p>
-                  Marketing is more than a concentration within a business
-                  major. More accurately, it describes a collection of skills
-                  that are useful in any career. As a professional discipline,
-                  marketing is a vital function of any business’ operation. It
-                  explores customer perceptions and journeys as primary sources
-                  of profit. It also utilizes various data to make smart and
-                  insightful business decisions.
+                  Learning a musical instrument not only sustains and feeds the
+                  brain, but it also improves so many other cognitive and
+                  physical aspects of the human body. It's been widely studied
+                  and proven that learning a musical instrument improves memory;
+                  it not only improves your cognitive memory but also muscle
+                  memory as well.
                 </p>
-                <button className="Btn" id="ReadMorebtn">
-                  Discover More
-                </button>
+                <Link
+                  style={{ textDecoration: "none !important" }}
+                  to="/coursesfilter/Music"
+                >
+                  <button className="Btn" id="ReadMorebtn">
+                    Discover More
+                  </button>
+                </Link>
               </div>
-              <div className="coursecards"></div>
-              {loading ? (
-                <Skeleton />
-              ) : error ? (
-                <Error error={error} />
-              ) : courses.length === 0 ? (
-                <Empty />
-              ) : (
-                <Slider {...settings}>
-                  {courses.map((course, index) => (
-                    <>
-                      <CourseCard
-                        key={course._id}
-                        data-index={index}
-                        course={course}
-                      />
-                    </>
-                  ))}
-                </Slider>
-              )}
+              <div className="coursecards">
+                {loading ? (
+                  <Skeleton />
+                ) : error ? (
+                  <Error error={error} />
+                ) : courses.length === 0 ? (
+                  <Empty />
+                ) : (
+                  <Slider {...settings}>
+                    {courses.map((course, index) => (
+                      <>
+                        <CourseCard
+                          key={course._id}
+                          data-index={index}
+                          course={course}
+                        />
+                      </>
+                    ))}
+                  </Slider>
+                )}
+              </div>
             </div>
           </TabPane>
           <TabPane tab="Design" key="6">
@@ -363,17 +384,25 @@ const Home = () => {
               <h2>Become a Designer</h2>
               <div id="paragraphbtn">
                 <p>
-                  Marketing is more than a concentration within a business
-                  major. More accurately, it describes a collection of skills
-                  that are useful in any career. As a professional discipline,
-                  marketing is a vital function of any business’ operation. It
-                  explores customer perceptions and journeys as primary sources
-                  of profit. It also utilizes various data to make smart and
-                  insightful business decisions.
+                  Millions of UK workers are at risk of being replaced by robots
+                  within 15 years, a study claims. It's depressing news for
+                  many, but if you learn something that machines could never do,
+                  then you'll be future-proofing your career for many decades to
+                  come. Graphic design is creative and requires human-led
+                  intelligence and ideas to respond to trends, tastes, and what
+                  has already been before. It will never be something a robot
+                  can mimic. Sure, the technology to create will continue to
+                  make our lives easier as designers, but they'll never replace
+                  us. Never.
                 </p>
-                <button className="Btn" id="ReadMorebtn">
-                  Discover More
-                </button>
+                <Link
+                  style={{ textDecoration: "none !important" }}
+                  to="/coursesfilter/Design"
+                >
+                  <button className="Btn" id="ReadMorebtn">
+                    Discover More
+                  </button>
+                </Link>
               </div>
               <div className="coursecards">
                 {loading ? (

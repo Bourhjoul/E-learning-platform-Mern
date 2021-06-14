@@ -11,16 +11,17 @@ import {
   courseCreateReducer,
   courseDeleteReducer,
   CheckStudentReducer,
+  Createcoursereviewreducer,
   listCoursespurshasedreducer,
 } from "./courseReducer";
 import { cartReducer } from "./cartReducer";
-import 
-    {CreateOrderReducers, 
-      OrderDetailsreducer, 
-      OrderListreducer,
-      OrderListMyreducer, 
-      OrderPayreducer
-} from './orderReducers';
+import {
+  CreateOrderReducers,
+  OrderDetailsreducer,
+  OrderListreducer,
+  OrderListMyreducer,
+  OrderPayreducer,
+} from "./orderReducers";
 import usersInfo from "./usersInfoReducer";
 export default combineReducers({
   auth,
@@ -37,9 +38,10 @@ export default combineReducers({
   courseDeleteReducer,
   CheckStudentReducer,
   listCoursespurshasedreducer,
-  orderCreate : CreateOrderReducers,
-    orderDetails : OrderDetailsreducer,
-    orderPay : OrderPayreducer,
-    orderMylist : OrderListMyreducer,
-    orderList: OrderListreducer,
+  Createcoursereviewreducer,
+  orderCreate: CreateOrderReducers,
+  orderDetails: OrderDetailsreducer,
+  orderPay: OrderPayreducer,
+  orderMylist: OrderListMyreducer,
+  orderList: OrderListreducer,
 });
