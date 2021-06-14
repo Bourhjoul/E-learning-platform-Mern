@@ -28,7 +28,7 @@ import Profile from './components/body/profile/Profile';
 import EditUser from './components/body/profile/EditUser';
 import PlaceOrder from './pages/Placeorderscreen/PlaceOrder';
 import EditCourse from './components/body/profile/EditCourse';
-
+import OrderScreen from './pages/Orderscreen/OrderScreen'
 function App() {
   //Get Acces token
   const dispatch = useDispatch()
@@ -77,6 +77,7 @@ function App() {
               <Route path="/Mycourses"  component={isLogged ? Mycourses : NotFound} />
               <Route path="/checkout" component={isLogged ? CheckoutScreen : Login} />
               <Route path="/placeorder" component ={isLogged ? PlaceOrder : Login} />
+              <Route path="/order/:id" component ={isLogged ? OrderScreen : Login} />
               <Route exact path='/login' component={ isLogged ? NotFound : Login}/>     
               <Route exact path='/register' component={isLogged ? NotFound : Register}/>  
               <Route exact path='/user/activate/:activation_token' component={ActivationEmail}/> 

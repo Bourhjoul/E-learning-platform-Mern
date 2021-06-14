@@ -1,26 +1,71 @@
 
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import '../checkout/CheckoutScreen.css'
-import {Image, Button  } from 'antd';
+import {Image, Button, Modal, Space  } from 'antd';
 import { PayPalButton } from 'react-paypal-button-v2';
 import {useDispatch,useSelector} from 'react-redux'
 import Paypal from './Paypal'
-import { removeAllFromCart } from '../../redux/actions/cartActions';
+
+import { CreateOrder } from "../../redux/actions/orderActions";
 
 const PlaceOrder = ({history}) => {
+    const { confirm } = Modal;
     const dispatch = useDispatch()
     const cartReducer = useSelector(state => state.cartReducer)
+    const addDecimals = (num) =>{
+        return (Math.round(num * 100) / 100).toFixed(2)
+    }
     const nameCard = cartReducer.NameOnCard.nameCard.replace(/.(?=.{4})/g, 'x')
    const cardNumber =   cartReducer.NameOnCard.cardNumber.replace(/.(?=.{4})/g, 'x');
    const securityCode =   cartReducer.NameOnCard.security.replace(/.(?=.{1})/g, 'x');
    const {cartItems} = cartReducer
 
-   const successPayment = () => {
-       
-       dispatch(removeAllFromCart())
-       history.push('/cart')
-      
-   }
+
+   cartReducer.itemsPrice = addDecimals(cartReducer.cartItems.reduce((acc,item) => acc + item.price, 0))
+
+  
+   cartReducer.totalPrice = (Number(cartReducer.itemsPrice)).toFixed(2)
+
+
+   const orderCreate = useSelector(state => state.orderCreate)
+   const {order,success,error} = orderCreate
+   const Placeorderhanlder = ()=>{
+    dispatch(CreateOrder({
+        orderItems : cartReducer.cartItems,
+        countryCustomer : cartReducer.countryCustomer,
+        paymentMethod: cartReducer.MethodOfPayment,
+        itemsPrice : cartReducer.itemsPrice,
+   
+        totalPrice : cartReducer.totalPrice,
+
+    }))
+}
+useEffect(() => {
+    if(success){
+        console.log(order._id)
+        history.push(`/order/${order._id}`)
+    }
+    return () => {
+        
+    }
+    //eslint-disable-next-line
+}, [history,success])
+
+
+function showConfirm() {
+    confirm({
+      title: 'Do you confirm this informations ?',
+     
+      content: 'Please Verify The Total Price And Payment Method',
+      onOk() {
+          Placeorderhanlder()
+        console.log('OK');
+      },
+      onCancel() {
+        console.log('Cancel');
+      },
+    });
+  }
        return ( 
         <div>
             <div className="checkoutPage">
@@ -60,29 +105,10 @@ const PlaceOrder = ({history}) => {
           
              
       
-         <div className="messageError"></div>
+         
                   
                   
                   
-                  <div className="orderDetails">
-                  <h1>Order Details</h1>
-                  
-                      {cartItems.map((item, index) => (
-                      <div className="orderDetailsInfo">
-                          <div className="orderImage">
-                              <Image preview={false} className="imageShippi" width={90} src={item.image} />
-                          </div>
-                          <div className="orderName">
-                              <p>{item.name}</p>
-                          </div>
-                          <div className="orderPrice">
-                              <h2>${item.price}</h2>
-                          </div>
-                      </div>
-                      ))}
-
-                  
-                  </div>
                   
           </div>
      
@@ -90,9 +116,7 @@ const PlaceOrder = ({history}) => {
               <h1>Summary</h1>
               <div className="priceOfP">
                   <b>Original price:</b>
-                  <h3>${cartItems.reduce((acc,item )=>
-              acc + item.price,0
-           ).toFixed(2)}</h3>
+                  <h3>${cartReducer.totalPrice}</h3>
               </div>
               <div className="priceOfP">
                   <b>Coupon discounts:</b>
@@ -101,15 +125,14 @@ const PlaceOrder = ({history}) => {
               <hr></hr>
               <div className="priceOfTotal">
                   <b>Total:</b>
-                  <h3>${cartItems.reduce((acc,item )=> acc + item.price,0).toFixed(2)}</h3>
+                  <h3>${cartReducer.totalPrice}</h3>
               </div>
               <br></br>
-              <p>By completing your purchase you agree to <a href="/">Terms of Service.</a></p>
-                    <p className="payParagraph">Now You Have Just To Pay To Have Access To The Course</p>
-              <PayPalButton className = 'buttonsp' amount = {cartItems.reduce((acc,item )=> acc + item.price,0).toFixed(2)} onSuccess = {successPayment}/>
-            
+              
 
-                        
+              
+                    <Button className="validationBtn" onClick={showConfirm}>Next</Button>
+              {error && error}
           </div>
       </div>
         </div>

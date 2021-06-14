@@ -261,6 +261,12 @@ const Coursepage = ({ match, history }) => {
                     commentMessage="As always, Brad over-delivered on another course. I've taken courses from plenty of other educators. Brad does such an amazing job at not just how to use the technologies presented, but why to use them. Looking forward to learning more from my favorite Udemy educator. Thanks Brad!"
                   />
                 </div>
+                <div className="commentField">
+            <TextArea  />
+            <Button className="sendComment">Send</Button>
+
+
+            </div>
               </div>
             </div>
           </div>

@@ -27,7 +27,7 @@ const Productcart = ({course}) => {
                 </div>
                 <div className="priceOfCourse">
                     <h1 className = 'totalpriceCart'>
-                    {course.price}
+                    {course.price}$
                     </h1>
                     <b className="priceOfCourseb">300,00 $US</b>
                 </div>

@@ -17,7 +17,6 @@
 }
 .imgRadio {
 	display: flex;
-
 	align-items: center;
 }
 
@@ -132,10 +131,39 @@
 
 .countryPayment div {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(197px, 1fr));
+	grid-template-columns: 30% 70%;
 }
 
 .payParagraph {
 	text-decoration: underline;
 	font-size: 16px;
+}
+
+.keepOrderId {
+	border: 3px solid rgb(209, 209, 209);
+	padding: 20px 20px;
+}
+
+.keepOrderId p {
+	font-size: 15px;
+	font-weight: 500;
+}
+
+.keepOrderId h2 {
+	text-align: center;
+	color: rgb(190, 49, 49);
+	font-weight: 600;
+}
+
+.totalPriceOrder {
+	display: flex;
+	justify-content: space-between;
+}
+
+.totalPriceNumberOrder {
+	font-size: 18px;
+}
+
+.lastStepPurchase {
+	text-align: center;
 }
