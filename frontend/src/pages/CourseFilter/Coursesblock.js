@@ -6,7 +6,7 @@ const Coursesblock = ({course}) => {
      
         <Link to = {`/courses/${course._id}`}><div className="coursesToBuy" >
                               <div className="coursesPhoto">
-                              <img style = {{height : '110px',objectFit : 'cover'}} alt="course" src={course.image} className="coursesPhoto1"/>
+                              <img alt="course" src={course.image} className="coursesPhoto1"/>
                               </div>
                               <div className="coursesInformation">
 

@@ -1,5 +1,5 @@
 .cartPage {
-	display: grid;
+	position: relative;
 	margin: 10px 30px;
 }
 .courseSurSujet {
@@ -167,7 +167,8 @@
 }
 .coursesToBuy {
 	display: grid;
-	grid-template-columns: 220px auto auto;
+	grid-template-columns: 20% 60% 15%;
+	column-gap: 10px;
 	border-bottom: 1px solid rgba(211, 211, 211, 0.658);
 	padding-bottom: 15px;
 	cursor: pointer;
@@ -184,6 +185,13 @@
 	font-size: 13px;
 	color: #73726c;
 	font-weight: 500;
+}
+
+.coursesToBuy img {
+	position: relative;
+	width: 100%;
+	height: auto;
+	object-fit: cover;
 }
 
 .coursesInformation p {
@@ -228,6 +236,7 @@
 	height: auto;
 	opacity: 1;
 	transition: all 1s ease;
+	margin: 0;
 }
 .filterroff {
 	transform: translateX(-400px);
@@ -295,6 +304,11 @@
 	transition: all 0.3s ease-in-out;
 }
 
+.coursesVideos {
+	position: relative;
+	width: 100%;
+}
+
 @media screen and (max-width: 1008px) {
 	.slick-list {
 		width: 100%;
@@ -311,7 +325,7 @@
 		row-gap: 40px;
 	}
 
-	.filterBy {
-		margin: 0 70px;
+	.courseTitle {
+		font-size: 16px;
 	}
 }

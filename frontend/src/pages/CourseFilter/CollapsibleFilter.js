@@ -13,7 +13,7 @@ const CollapsibleFilter = (props) => {
     var i = 1;
 
 
-    const [value, setValue] = React.useState(1);
+    const [value, setValue] = useState(1);
 
     const onChange = e => {
       console.log('radio checked', e.target.value);
