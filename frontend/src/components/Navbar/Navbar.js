@@ -169,20 +169,23 @@ const Navbar = ({match,history}) => {
             <CgShoppingCart size="24" color="#1890ff" />
             <div className={showsearch ? "searchactive" : "searchphone"}>
               <Search
-                placeholder="Search"
-                allowClear
-                enterButton
-                size="large"
+              placeholder="Search"  
+              allowClear enterButton 
+              size="large"
+              onPressEnter= {handleSearch}
+              onSearch= {handleSearch}
+              onChange = {e => setKeyword(e.target.value)}
               />
             </div>
           </div>
         )}
         <div className="search_box">
-          <Search history ={history} placeholder="Search" 
-          
+          <Search 
+          placeholder="Search"  
           allowClear enterButton 
           size="large"
           onPressEnter= {handleSearch}
+          onSearch= {handleSearch}
           onChange = {e => setKeyword(e.target.value)}
           />
         </div>
