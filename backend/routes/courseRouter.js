@@ -6,6 +6,7 @@ const isTeacher = require("../middleware/isTeacher");
 router.get("/topic", coursesCtrl.getallcoursesbycategory);
 //visit ->  list 6 courses sorted by rating
 router.get("/pobular", coursesCtrl.getcoursesbypob);
+router.get("/searched", coursesCtrl.getcoursesSearched);
 //login as a teacher -> refresh_token -> getallmycourses
 router.get("/Mycourses", auth, isTeacher, coursesCtrl.getMycourses);
 //visit ->  check the membership of student in a course

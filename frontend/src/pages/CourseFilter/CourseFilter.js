@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { BsFillPeopleFill, MdFilterList } from "react-icons/all";
-import { Tabs, Pagination } from "antd";
 import Slider from "react-slick";
 import "./CourseFilter.css";
 import { Link, useParams } from "react-router-dom";
 import CourseCard from "../../components/CourseCard/CourseCard";
 
 import CollapsibleFilter from "./CollapsibleFilter";
-import { Skeleton } from "antd";
-import { Empty } from "antd";
+import { Tabs, Pagination,Skeleton,Empty } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Listcoursesbypobularity,

@@ -85,12 +85,15 @@ const coursesCtrl = {
       return res.status(500).json({ msg: err.message });
     }
   },
+ 
   getallcoursesbycategory: async (req, res) => {
     try {
       let courses;
       const numcourses = 8;
       const page = Number(req.query.page) || 1;
       const All = req.query.All ? true : false;
+
+   
       const Topic = req.query.Topic
         ? {
             category: {
@@ -100,7 +103,7 @@ const coursesCtrl = {
           }
         : {};
       const New = req.query.New ? true : false;
-      if (All && New) {
+     if (All && New) {
         courses = await Courses.find({ ...Topic })
           .limit(numcourses)
           .skip(numcourses * (page - 1))
@@ -119,7 +122,8 @@ const coursesCtrl = {
           .populate("user", "id name")
           .limit(numcourses)
           .skip(numcourses * (page - 1));
-      } else {
+      } else if (Topic){
+        /* In Home*/
         courses = await Courses.find({ ...Topic })
           .populate("user", "id name")
           .limit(6);
@@ -133,6 +137,7 @@ const coursesCtrl = {
       return res.status(500).json({ msg: error.message });
     }
   },
+  /*Course Filter Most Pobular + Home*/
   getcoursesbypob: async (req, res) => {
     try {
       const Topic = req.query.Topic
@@ -153,6 +158,29 @@ const coursesCtrl = {
       console.log(error);
       return res.status(500).json({ msg: error.message });
     }
+  },
+  getcoursesSearched: async (req,res) => {
+    try {
+          const keyword = req.query.keyword
+    ? {
+        name: {
+          $regex: req.query.keyword,
+          $options: "i",
+        },
+      }
+    : {};
+      console.log("Keywooooooord query",req.query.keyword)
+      const courses = await Courses.find({ ...keyword })
+      .populate("user", "id name")
+      .limit(6)
+      res.json({ courses});
+    } catch (error) {
+      console.log("-----------course Search error---------");
+      console.log(error);
+      return res.status(500).json({ msg: error.message });
+    }
+
+   
   },
   getcoursedetails: async (req, res) => {
     try {

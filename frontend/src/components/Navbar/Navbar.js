@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Navbar.css";
+import { withRouter } from 'react-router-dom';
 import { Input, Popover, Drawer, Button, Radio, Space, Dropdown } from "antd";
 import {
   CgShoppingCart,
@@ -12,13 +13,24 @@ import useWindowDimensions from "../../useWindowDimensions";
 import axios from "axios";
 import PropagateLoader from "react-spinners/PropagateLoader";
 import { useSelector, useDispatch } from "react-redux";
-const Navbar = () => {
+const Navbar = ({match,history}) => {
   const { height, width } = useWindowDimensions();
   const [showsearch, setshowsearch] = useState(false);
+  const [keyword, setKeyword] = useState('');
   const [showicons, setshowicons] = useState(false);
   const { Search } = Input;
   const auth = useSelector((state) => state.auth);
   const { user, isLogged, loading } = auth;
+
+  const handleSearch = () => {
+    if(keyword){
+      console.log("Cliccccccck");
+      history.push(`/search/${keyword}`)
+    }
+    else{
+
+    }
+  }
   const handleLogout = async () => {
     try {
       await axios.get("/user/logout");
@@ -166,7 +178,13 @@ const Navbar = () => {
           </div>
         )}
         <div className="search_box">
-          <Search placeholder="Search" allowClear enterButton size="large" />
+          <Search history ={history} placeholder="Search" 
+          
+          allowClear enterButton 
+          size="large"
+          onPressEnter= {handleSearch}
+          onChange = {e => setKeyword(e.target.value)}
+          />
         </div>
         {!showicons && (
           <div className="Onright">
@@ -231,4 +249,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default withRouter(Navbar);

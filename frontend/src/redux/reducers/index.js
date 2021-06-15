@@ -13,6 +13,7 @@ import {
   CheckStudentReducer,
   Createcoursereviewreducer,
   listCoursespurshasedreducer,
+  listCourseSearchedreducer
 } from "./courseReducer";
 import { cartReducer } from "./cartReducer";
 import {
@@ -39,6 +40,7 @@ export default combineReducers({
   CheckStudentReducer,
   listCoursespurshasedreducer,
   Createcoursereviewreducer,
+  listCourseSearchedreducer,
   orderCreate: CreateOrderReducers,
   orderDetails: OrderDetailsreducer,
   orderPay: OrderPayreducer,

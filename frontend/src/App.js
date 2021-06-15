@@ -29,6 +29,7 @@ import EditUser from './components/body/profile/EditUser';
 import PlaceOrder from './pages/Placeorderscreen/PlaceOrder';
 import EditCourse from './components/body/profile/EditCourse';
 import OrderScreen from './pages/Orderscreen/OrderScreen'
+import CourseSeacrh from './pages/CourseSearch/CourseSeacrh';
 function App() {
   //Get Acces token
   const dispatch = useDispatch()
@@ -86,6 +87,7 @@ function App() {
               <Route path="/profile" component={isLogged ? Profile : NotFound} exact />
               <Route path="/edit_user/:id" component={isAdmin ? EditUser : NotFound} exact />
               <Route path="/editcourse/:id" component={user.Teacher ? EditCourse : NotFound} exact />
+              <Route path="/search/:keyword"  component={CourseSeacrh} />
               <Route component={NotFound} />
 
 

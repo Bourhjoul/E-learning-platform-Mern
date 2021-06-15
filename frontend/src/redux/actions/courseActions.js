@@ -37,6 +37,9 @@ import {
   CREATE_REVIEW_REQUEST,
   CREATE_REVIEW_SUCCESS,
   CREATE_REVIEW_FAIL,
+  LIST_COURSES_SEARCH_REQUEST,
+  LIST_COURSES_SEARCH_SUCCESS,
+  LIST_COURSES_SEARCH_FAIL
 } from "../constants/courseconstants";
 import axios from "axios";
 
@@ -168,15 +171,11 @@ export const CheckStudent = (id) => async (dispatch, getState) => {
   }
 };
 
-export const ListcoursesbyTopic =
-  (Topic, Allcourses = false, page) =>
-  async (dispatch) => {
+export const ListcoursesbyTopic =(Topic, Allcourses = false, page) => async (dispatch) => {
     try {
       dispatch({ type: LIST_COURSES_REQUEST });
       const { data } = await axios.get(
-        `/courses/topic/?Topic=${Topic}&All=${
-          Allcourses ? "All" : ""
-        }&page=${page}`
+        `/courses/topic/?Topic=${Topic}&All=${Allcourses ? "All" : ""}&page=${page}`
       );
       dispatch({ type: LIST_COURSES_SUCCESS, payload: data });
     } catch (error) {
@@ -208,7 +207,7 @@ export const ListnewCourses = (Topic, page) => async (dispatch) => {
 };
 
 export const Listcoursesbypobularity =
-  (Topic = "") =>
+  (Topic="") =>
   async (dispatch) => {
     try {
       dispatch({ type: LIST_COURSES_POBULAR_REQUEST });
@@ -217,6 +216,21 @@ export const Listcoursesbypobularity =
     } catch (error) {
       dispatch({
         type: LIST_COURSES_POBULAR_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
+export const ListcoursesSearched =(keyword) =>async (dispatch) => {
+    try {
+      dispatch({ type: LIST_COURSES_SEARCH_REQUEST });
+      const { data } = await axios.get(`/courses/searched?keyword=${keyword}`);
+      dispatch({ type: LIST_COURSES_SEARCH_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({
+        type: LIST_COURSES_SEARCH_FAIL,
         payload:
           error.response && error.response.data.message
             ? error.response.data.message

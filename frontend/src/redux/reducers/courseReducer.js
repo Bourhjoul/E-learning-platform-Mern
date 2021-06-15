@@ -41,6 +41,10 @@ import {
   CREATE_REVIEW_FAIL,
   CREATE_REVIEW_RESET,
   CREATE_REVIEW_SUCCESS,
+  LIST_COURSES_SEARCH_REQUEST,
+  LIST_COURSES_SEARCH_SUCCESS,
+  LIST_COURSES_SEARCH_FAIL,
+  LIST_COURSES_SEARCH_RESET
 } from "../constants/courseconstants";
 
 export const ListMyCoursesReducer = (state = { courses: [] }, action) => {
@@ -110,6 +114,28 @@ export const listCoursespurshasedreducer = (
         error: action.payload,
       };
     case LIST_COURSES_PURCHASED_RESET:
+      return { courses: [] };
+    default:
+      return state;
+  }
+};
+export const listCourseSearchedreducer = (state = { courses: [] },action) => {
+  switch (action.type) {
+    case LIST_COURSES_SEARCH_REQUEST:
+      return {
+        loading: true,
+      };
+    case LIST_COURSES_SEARCH_SUCCESS:
+      return {
+        loading: false,
+        courses: action.payload.courses,
+      };
+    case LIST_COURSES_SEARCH_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    case LIST_COURSES_SEARCH_RESET:
       return { courses: [] };
     default:
       return state;
