@@ -8,14 +8,12 @@ import { Skeleton } from "antd";
 import "./Home.css";
 import CourseCard from "../../components/CourseCard/CourseCard";
 import CategoryCard from "../../components/CategoryCard/CategoryCard";
-import Footer from "../../components/Footer/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import {
   dispatchLogin,
   dispatchGetUser,
   fetchUser,
 } from "../../redux/actions/authAction";
-import axios from "axios";
 import {
   Listcoursesbypobularity,
   ListcoursesbyTopic,
@@ -74,8 +72,6 @@ const Home = () => {
     ],
   };
   const executeScroll = () => menuref.current.scrollIntoView();
-  const executeScrolltwo = () =>
-    pobularref.current.scrollIntoView({ behavior: "smooth" });
 
   const { TabPane } = Tabs;
   useEffect(() => {
@@ -99,7 +95,7 @@ const Home = () => {
 
     dispatch(ListcoursesbyTopic("Development"));
     dispatch(Listcoursesbypobularity());
-  }, []);
+  }, [dispatch]);
   const changetopic = (key) => {
     switch (key) {
       case "1":
@@ -457,7 +453,7 @@ const Home = () => {
         <h2>Pobular Categories</h2>
         <div className="Categorycards">
           <CategoryCard
-            title="Devlopement"
+            title="Development"
             image="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
           />
           <CategoryCard
@@ -477,7 +473,7 @@ const Home = () => {
             image="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
           />
           <CategoryCard
-            title="Self Dev"
+            title="Self-Dev"
             image="https://images.unsplash.com/photo-1571425046056-cfc17c664e57?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
           />
           <CategoryCard

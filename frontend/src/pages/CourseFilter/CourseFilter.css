@@ -1,331 +1,341 @@
 .cartPage {
-	position: relative;
-	margin: 10px 30px;
+  position: relative;
+  margin: 10px 30px;
+}
+.subcg_container {
+  width: 60%;
+  margin-left: 50px;
+}
+.subcg_container h2 {
+  font-weight: 700;
+  margin: 30px 0;
 }
 .courseSurSujet {
-	display: grid;
-	grid-template-columns: 100%;
-	position: relative;
+  display: grid;
+  grid-template-columns: 100%;
+  position: relative;
 }
 .courseSurSujet h3 {
-	color: gray;
-	font-size: 15px;
+  color: gray;
+  font-size: 15px;
 }
 .courseSurSujet h1 {
-	font-size: 30px;
-	color: rgb(56, 56, 56);
-	font-weight: 600;
+  font-size: 30px;
+  color: rgb(56, 56, 56);
+  font-weight: 600;
 }
 .courseSurSujet h3 a {
-	color: rgb(62, 112, 179);
+  color: rgb(62, 112, 179);
 }
 
 .courseSurSujet h3 a:hover {
-	color: rgb(0, 62, 197);
-	transition: color 0.2s linear;
+  color: rgb(0, 62, 197);
+  transition: color 0.2s linear;
 }
 
 .courseSurSujet p {
-	font-size: 16px;
+  font-size: 16px;
 }
 .slick-list {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-	height: 400px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  height: 400px;
 }
 .iconPeople {
-	margin-right: 5px;
+  margin-right: 5px;
 }
 
 .coursePourCommencer h2 {
-	font-size: 24px;
-	font-weight: 550;
-	color: rgb(56, 56, 56);
+  font-size: 24px;
+  font-weight: 550;
+  color: rgb(56, 56, 56);
 }
 .ant-tabs-ink-bar {
-	background: #000000 !important;
+  background: #000000 !important;
 }
 
 .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
-	color: #000000 !important;
+  color: #000000 !important;
 }
 
 .ant-tabs-tab {
-	color: #303030 !important;
+  color: #303030 !important;
 }
 
 .antd-tabs-tab:hover {
-	color: black !important;
+  color: black !important;
 }
 
 .coursecards {
-	width: 100%;
-	padding: 10px;
+  width: 100%;
+  padding: 10px;
 }
 
 .TabContent {
-	padding: 10px 20px;
+  padding: 10px 20px;
 }
 .slick-active {
-	margin: 0 10px;
-	margin-left: 20px;
+  margin: 0 10px;
+  margin-left: 20px;
 }
 .slick-prev::before,
 .slick-next::before {
-	font-size: 25px;
-	color: #000a13;
-	z-index: 8;
+  font-size: 25px;
+  color: #000a13;
+  z-index: 8;
 }
 .slick-prev {
-	z-index: 8;
+  z-index: 8;
 }
 
 .courseOfSite h2 {
-	font-size: 24px;
-	font-weight: 550;
-	color: rgb(56, 56, 56);
+  font-size: 24px;
+  font-weight: 550;
+  color: rgb(56, 56, 56);
 }
 
 .courseOfSite div a {
-	border: 1px solid #dcdacb;
-	border-radius: 4px;
-	color: #0f7c90;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-	height: 100%;
-	min-height: 3.9rem;
-	width: 100%;
-	color: rgb(9, 94, 204);
+  border: 1px solid #dcdacb;
+  border-radius: 4px;
+  color: #0f7c90;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  min-height: 3.9rem;
+  width: 100%;
+  color: rgb(9, 94, 204);
 }
 
 .courseOfSite div a:hover {
-	color: rgb(0, 35, 110);
-	transition: color 0.1s linear;
+  color: rgb(0, 35, 110);
+  transition: color 0.1s linear;
 }
 
 .courseOfSiteSlider div {
-	margin: 5px 5px;
-	font-size: 15px;
-	text-decoration: underline;
+  margin: 5px 5px;
+  font-size: 15px;
+  text-decoration: underline;
 }
 
 .courseOfSiteSlider {
-	display: grid;
+  display: grid;
 
-	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-	justify-content: center;
-	align-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  justify-content: center;
+  align-items: center;
 }
 
 .filterCourses h2 {
-	font-size: 24px;
-	font-weight: 550;
-	color: rgb(56, 56, 56);
+  font-size: 24px;
+  font-weight: 550;
+  color: rgb(56, 56, 56);
 }
 
 .filterButton {
-	align-items: center;
-	border: 1px solid rgb(0, 0, 0);
-	background-color: transparent;
-	color: #0f7c90;
-	border-radius: 4px;
-	border: 1px solid #0f7c90;
-	font-size: 15px;
-	outline: none;
-	font-weight: 600;
-	margin: 10px 5px;
-	padding: 11px 20px;
-	cursor: pointer;
-	height: 43%;
+  align-items: center;
+  border: 1px solid rgb(0, 0, 0);
+  background-color: transparent;
+  color: #0f7c90;
+  border-radius: 4px;
+  border: 1px solid #0f7c90;
+  font-size: 15px;
+  outline: none;
+  font-weight: 600;
+  margin: 10px 5px;
+  padding: 11px 20px;
+  cursor: pointer;
+  height: 43%;
 }
 
 .filterButton:hover {
-	color: #156b7a;
+  color: #156b7a;
 }
 
 .filterIcon {
-	margin-right: 5px;
-	display: inline-block;
-
-	float: left;
-	vertical-align: bottom;
+  margin-right: 5px;
+  float: left;
+  vertical-align: bottom;
 }
 
 .filterHere {
-	display: grid;
-	grid-template-columns: 25% auto;
+  display: grid;
+  grid-template-columns: 25% auto;
 
-	margin-top: 20px;
+  margin-top: 20px;
 }
 
 .filterHereWithout {
-	display: grid;
-	grid-template-columns: 100%;
-	margin-top: 20px;
+  display: grid;
+  grid-template-columns: 100%;
+  margin-top: 20px;
 }
 .coursesToBuy {
-	display: grid;
-	grid-template-columns: 20% 60% 15%;
-	column-gap: 10px;
-	border-bottom: 1px solid rgba(211, 211, 211, 0.658);
-	padding-bottom: 15px;
-	cursor: pointer;
+  display: grid;
+  grid-template-columns: 20% 60% 15%;
+  column-gap: 10px;
+  border-bottom: 1px solid rgba(211, 211, 211, 0.658);
+  padding-bottom: 15px;
+  cursor: pointer;
 
-	margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .courseTitle {
-	font-size: 20px;
-	color: rgb(59, 59, 59);
+  font-size: 20px;
+  color: rgb(59, 59, 59);
 }
 
 .courseOwner {
-	font-size: 13px;
-	color: #73726c;
-	font-weight: 500;
+  font-size: 13px;
+  color: #73726c;
+  font-weight: 500;
 }
 
 .coursesToBuy img {
-	position: relative;
-	width: 100%;
-	height: auto;
-	object-fit: cover;
+  position: relative;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
 .coursesInformation p {
-	color: #73726c;
+  color: #73726c;
 }
 
 .coursesToBuy:hover .coursesPhoto1 {
-	filter: rgb(92, 92, 92);
-	-webkit-filter: grayscale(60%);
-	transition: all 0.2s linear;
+  filter: rgb(92, 92, 92);
+  -webkit-filter: grayscale(60%);
+  transition: all 0.2s linear;
 }
 
 .coursesPrice {
-	display: grid;
-	font-size: 18px;
-	font-weight: 600;
-	font-style: oblique;
-	justify-content: end;
-	grid-template-rows: 25%;
+  display: grid;
+  font-size: 18px;
+  font-weight: 600;
+  font-style: oblique;
+  justify-content: end;
+  grid-template-rows: 25%;
 }
 
 .nouveauPrice {
-	font-weight: 700;
+  font-weight: 700;
 }
 
 .ancienPrice {
-	font-size: 14px;
-	font-weight: 500;
-	text-decoration: line-through;
-	color: rgb(107, 107, 107);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: line-through;
+  color: rgb(107, 107, 107);
 }
 
 .filterBy {
-	opacity: 0;
-	margin-right: 30px;
-	margin-bottom: 30px;
-	height: auto;
+  opacity: 0;
+  margin-right: 30px;
+  margin-bottom: 30px;
+  height: auto;
 }
 
 .filterr {
-	transform: translateX(0px);
-	height: auto;
-	opacity: 1;
-	transition: all 1s ease;
-	margin: 0;
+  transform: translateX(0px);
+  height: auto;
+  opacity: 1;
+  transition: all 1s ease;
+  margin: 0;
 }
 .filterroff {
-	transform: translateX(-400px);
-	height: 0px;
+  transform: translateX(-400px);
+  height: 0px;
 
-	opacity: 0;
-	transition: all 1s ease;
+  opacity: 0;
+  transition: all 1s ease;
 }
 
 .filterByWithout {
-	transform: translateX(-400px);
-	transition: transform 6s ease-in-out;
+  transform: translateX(-400px);
+  transition: transform 6s ease-in-out;
 }
 
 .coursesToBuy img {
-	border-radius: 10%;
+  border-radius: 10%;
 }
 
 .filterHere h2 {
-	margin-top: 20px;
+  margin-top: 20px;
 }
 
 .teachOnUdemy {
-	margin-top: 2px;
-	width: auto;
-	font-size: 16px;
-	padding: 9px 10px;
-	color: #0f7c90;
-	border-radius: 5px;
-	border: 0.5px solid #0f7c90;
-	background-color: rgb(255, 255, 255);
-	display: block;
+  margin-top: 2px;
+  width: auto;
+  font-size: 16px;
+  padding: 9px 10px;
+  color: #0f7c90;
+  border-radius: 5px;
+  border: 0.5px solid #0f7c90;
+  background-color: rgb(255, 255, 255);
+  display: block;
 
-	cursor: pointer;
-	left: -220px;
-	opacity: 0.4;
-	transition: all 0.5s ease-in-out;
+  cursor: pointer;
+  left: -220px;
+  opacity: 0.4;
+  transition: all 0.5s ease-in-out;
 }
 
 .teacherUdemy {
-	display: grid;
-	justify-items: center;
-	align-items: center;
+  display: grid;
+  justify-items: center;
+  align-items: center;
 }
 
 .teachOnUdemy:hover {
-	opacity: 1;
-	border: 2px solid #0f7c90;
-	transition: all 0.5s ease-in-out;
+  opacity: 1;
+  border: 2px solid #0f7c90;
+  transition: all 0.5s ease-in-out;
 }
 
 .clearFiltersBtn {
-	background: transparent;
-	color: #0f7c90;
-	border: none;
-	font-size: 20px;
-	cursor: pointer;
-	margin-left: 10px;
-	border-bottom: 1px solid #0f7c90;
-	transition: all 0.3s ease-in-out;
+  background: transparent;
+  color: #0f7c90;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: 10px;
+  border-bottom: 1px solid #0f7c90;
+  transition: all 0.3s ease-in-out;
 }
 
 .clearFiltersBtn:hover {
-	color: rgb(11, 82, 82);
-	transition: all 0.3s ease-in-out;
+  color: rgb(11, 82, 82);
+  transition: all 0.3s ease-in-out;
 }
 
 .coursesVideos {
-	position: relative;
-	width: 100%;
+  position: relative;
+  width: 100%;
 }
 
 @media screen and (max-width: 1008px) {
-	.slick-list {
-		width: 100%;
-		grid-template-columns: repeat(auto-fill, 450px);
-	}
+  .subcg_container {
+    width: 100%;
+    margin-left: 0px;
+  }
+  .slick-list {
+    width: 100%;
+    grid-template-columns: repeat(auto-fill, 450px);
+  }
 
-	.coursecards {
-		width: 100%;
-		padding: 0px;
-	}
+  .coursecards {
+    width: 100%;
+    padding: 0px;
+  }
 
-	.filterHere {
-		grid-template-columns: 100%;
-		row-gap: 40px;
-	}
+  .filterHere {
+    grid-template-columns: 100%;
+    row-gap: 40px;
+  }
 
-	.courseTitle {
-		font-size: 16px;
-	}
+  .courseTitle {
+    font-size: 16px;
+  }
 }

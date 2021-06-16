@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../checkout/CheckoutScreen.css";
-import { Image, Button, Alert } from "antd";
+import { Image, Alert } from "antd";
 import { PayPalButton } from "react-paypal-button-v2";
 import { useDispatch, useSelector } from "react-redux";
 import { Skeleton } from "antd";

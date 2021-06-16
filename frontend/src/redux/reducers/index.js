@@ -8,12 +8,14 @@ import {
   GetCourseDetailsReducer,
   ListNewCoursesReducer,
   courseUpdateReducer,
+  GetSubCategorysReducer,
+  GetCoursesbysubcg,
   courseCreateReducer,
   courseDeleteReducer,
   CheckStudentReducer,
   Createcoursereviewreducer,
   listCoursespurshasedreducer,
-  listCourseSearchedreducer
+  listCourseSearchedreducer,
 } from "./courseReducer";
 import { cartReducer } from "./cartReducer";
 import {
@@ -31,6 +33,8 @@ export default combineReducers({
   ListCoursesReducer,
   ListCoursesbyPobularityReducer,
   GetCourseDetailsReducer,
+  GetSubCategorysReducer,
+  GetCoursesbysubcg,
   cartReducer,
   usersInfo,
   ListNewCoursesReducer,

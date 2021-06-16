@@ -1,26 +1,38 @@
 import React, { useState, useEffect } from "react";
 import { BsFillPeopleFill, MdFilterList } from "react-icons/all";
+import { Tabs, Pagination } from "antd";
 import Slider from "react-slick";
 import "./CourseFilter.css";
 import { Link, useParams } from "react-router-dom";
 import CourseCard from "../../components/CourseCard/CourseCard";
 
 import CollapsibleFilter from "./CollapsibleFilter";
-import { Tabs, Pagination,Skeleton,Empty } from "antd";
+import { Skeleton } from "antd";
+import { Empty } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  GetSubCategorys,
   Listcoursesbypobularity,
   ListcoursesbyTopic,
   ListnewCourses,
 } from "../../redux/actions/courseActions";
 import Coursesblock from "./Coursesblock";
 import Error from "../../components/utils/Error";
-const CourseFilter = () => {
+const CourseFilter = ({ history }) => {
   const [page, setpage] = useState(1);
   const [isFilter, setIsFilter] = useState(false);
   const dispatch = useDispatch();
   const ListCoursesReducer = useSelector((state) => state.ListCoursesReducer);
   const { loading, courses, totalcourses, error } = ListCoursesReducer;
+
+  const GetSubCategorysReducer = useSelector(
+    (state) => state.GetSubCategorysReducer
+  );
+  const {
+    loading: loadingsubcg,
+    Subcategorys,
+    error: errorcg,
+  } = GetSubCategorysReducer;
 
   const ListCoursesbyPobularityReducer = useSelector(
     (state) => state.ListCoursesbyPobularityReducer
@@ -90,11 +102,14 @@ const CourseFilter = () => {
     }
   };
   useEffect(() => {
+    dispatch(GetSubCategorys(topic));
     dispatch(Listcoursesbypobularity(topic));
     dispatch(ListcoursesbyTopic(topic, true, page));
     return () => {};
-  }, [dispatch, topic, page]);
-
+  }, [dispatch, topic, page, history]);
+  if (!loading && totalcourses === 0) {
+    history.push("/notfound");
+  }
   return (
     <div className="cartPage">
       <div className="courseSurSujet">
@@ -165,47 +180,21 @@ const CourseFilter = () => {
       </div>
 
       <div className="courseOfSite">
-        <h2>Web Development students also learn</h2>
+        <h2>{topic} students also learn</h2>
         <div className="courseOfSiteSlider">
-          <div data-index="0">
-            <Link to="/">Javascript</Link>
-          </div>
-          <div data-index="1">
-            <Link to="/">HTML</Link>
-          </div>
-          <div data-index="2">
-            <Link to="/">CSS</Link>
-          </div>
-          <div data-index="3">
-            <Link to="/">React JS</Link>
-          </div>
-          <div data-index="4">
-            <Link to="/">Mongo DB</Link>
-          </div>
-          <div data-index="5">
-            <Link to="/">Kotlin</Link>
-          </div>
-          <div data-index="6">
-            <Link to="/">Flutter</Link>
-          </div>
-          <div data-index="7">
-            <Link to="/">Angular</Link>
-          </div>
-          <div data-index="8">
-            <Link to="/">Mysql</Link>
-          </div>
-          <div data-index="9">
-            <Link to="/">ASP.net</Link>
-          </div>
-          <div data-index="10">
-            <Link to="/">Oracle</Link>
-          </div>
-          <div data-index="11">
-            <Link to="/">C++</Link>
-          </div>
-          <div data-index="12">
-            <Link to="/">Django</Link>
-          </div>
+          {loadingsubcg ? (
+            <Skeleton />
+          ) : errorcg ? (
+            <Error error={errorcg} />
+          ) : Subcategorys.length === 0 ? (
+            <Empty />
+          ) : (
+            Subcategorys.map((sub) => (
+              <div data-index="0">
+                <Link to={`/subcategory/${sub}`}>{sub}</Link>
+              </div>
+            ))
+          )}
         </div>
       </div>
 

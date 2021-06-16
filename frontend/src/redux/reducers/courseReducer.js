@@ -44,7 +44,13 @@ import {
   LIST_COURSES_SEARCH_REQUEST,
   LIST_COURSES_SEARCH_SUCCESS,
   LIST_COURSES_SEARCH_FAIL,
-  LIST_COURSES_SEARCH_RESET
+  LIST_COURSES_SEARCH_RESET,
+  GET_SUBCATEGORYS_REQUEST,
+  GET_SUBCATEGORYS_SUCCESS,
+  GET_SUBCATEGORYS_FAIL,
+  LIST_BYSUBCATEGORYS_REQUEST,
+  LIST_BYSUBCATEGORYS_SUCCESS,
+  LIST_BYSUBCATEGORYS_FAIL,
 } from "../constants/courseconstants";
 
 export const ListMyCoursesReducer = (state = { courses: [] }, action) => {
@@ -119,7 +125,7 @@ export const listCoursespurshasedreducer = (
       return state;
   }
 };
-export const listCourseSearchedreducer = (state = { courses: [] },action) => {
+export const listCourseSearchedreducer = (state = { courses: [] }, action) => {
   switch (action.type) {
     case LIST_COURSES_SEARCH_REQUEST:
       return {
@@ -313,6 +319,38 @@ export const courseDeleteReducer = (state = {}, action) => {
     case COURSE_DELETE_SUCCESS:
       return { loading: false, success: true };
     case COURSE_DELETE_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+export const GetSubCategorysReducer = (
+  state = { Subcategorys: [] },
+  action
+) => {
+  switch (action.type) {
+    case GET_SUBCATEGORYS_REQUEST:
+      return { loading: true };
+    case GET_SUBCATEGORYS_SUCCESS:
+      return { loading: false, Subcategorys: action.payload };
+    case GET_SUBCATEGORYS_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const GetCoursesbysubcg = (state = { courses: [] }, action) => {
+  switch (action.type) {
+    case LIST_BYSUBCATEGORYS_REQUEST:
+      return { loading: true };
+    case LIST_BYSUBCATEGORYS_SUCCESS:
+      return {
+        loading: false,
+        courses: action.payload.courses,
+        totalcourses: action.payload.totalcourses,
+      };
+    case LIST_BYSUBCATEGORYS_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;

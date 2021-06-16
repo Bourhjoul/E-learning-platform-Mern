@@ -85,7 +85,7 @@ const coursesCtrl = {
       return res.status(500).json({ msg: err.message });
     }
   },
- 
+
   getallcoursesbycategory: async (req, res) => {
     try {
       let courses;
@@ -93,7 +93,6 @@ const coursesCtrl = {
       const page = Number(req.query.page) || 1;
       const All = req.query.All ? true : false;
 
-   
       const Topic = req.query.Topic
         ? {
             category: {
@@ -103,7 +102,7 @@ const coursesCtrl = {
           }
         : {};
       const New = req.query.New ? true : false;
-     if (All && New) {
+      if (All && New) {
         courses = await Courses.find({ ...Topic })
           .limit(numcourses)
           .skip(numcourses * (page - 1))
@@ -122,7 +121,7 @@ const coursesCtrl = {
           .populate("user", "id name")
           .limit(numcourses)
           .skip(numcourses * (page - 1));
-      } else if (Topic){
+      } else if (Topic) {
         /* In Home*/
         courses = await Courses.find({ ...Topic })
           .populate("user", "id name")
@@ -159,28 +158,26 @@ const coursesCtrl = {
       return res.status(500).json({ msg: error.message });
     }
   },
-  getcoursesSearched: async (req,res) => {
+  getcoursesSearched: async (req, res) => {
     try {
-          const keyword = req.query.keyword
-    ? {
-        name: {
-          $regex: req.query.keyword,
-          $options: "i",
-        },
-      }
-    : {};
-      console.log("Keywooooooord query",req.query.keyword)
+      const keyword = req.query.keyword
+        ? {
+            name: {
+              $regex: req.query.keyword,
+              $options: "i",
+            },
+          }
+        : {};
+      console.log("Keywooooooord query", req.query.keyword);
       const courses = await Courses.find({ ...keyword })
-      .populate("user", "id name")
-      .limit(6)
-      res.json({ courses});
+        .populate("user", "id name")
+        .limit(6);
+      res.json({ courses });
     } catch (error) {
       console.log("-----------course Search error---------");
       console.log(error);
       return res.status(500).json({ msg: error.message });
     }
-
-   
   },
   getcoursedetails: async (req, res) => {
     try {
@@ -279,6 +276,60 @@ const coursesCtrl = {
         message:
           "Probably you don't change the (Sample Name) of the last course that you added",
       });
+    }
+  },
+  getsubcategorys: async (req, res) => {
+    try {
+      let subcategorys = [];
+      const Topic = req.params.Topic
+        ? {
+            category: {
+              $regex: req.params.Topic,
+              $options: "i",
+            },
+          }
+        : {};
+      courses = await Courses.find({ ...Topic })
+        .sort("-rating")
+        .limit(6);
+      console.log(courses);
+      const sub = courses.map((course) => course.subcategorys);
+      const flat = sub.flat(2);
+      flat.forEach((i) => {
+        if (
+          !(subcategorys.includes(i) || subcategorys.includes(i.toLowerCase()))
+        )
+          subcategorys.push(i);
+      });
+
+      console.log(subcategorys);
+      res.json(subcategorys);
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+  getcoursesbysubcg: async (req, res) => {
+    try {
+      const Topic = req.params.subcg
+        ? {
+            subcategorys: {
+              $regex: req.params.subcg,
+              $options: "i",
+            },
+          }
+        : {};
+      const page = Number(req.query.page) || 1;
+      const numcourses = 8;
+
+      const courses = await Courses.find({ ...Topic })
+        .limit(numcourses)
+        .skip(numcourses * (page - 1));
+      const totalcourses = await Courses.countDocuments({ ...Topic });
+      res.json({ courses, totalcourses });
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json({ msg: err.message });
     }
   },
 };

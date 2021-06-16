@@ -2,22 +2,17 @@ import {
   LIST_COURSES_FAIL,
   LIST_COURSES_POBULAR_FAIL,
   LIST_COURSES_POBULAR_REQUEST,
-  LIST_COURSES_POBULAR_RESET,
   LIST_COURSES_POBULAR_SUCCESS,
   LIST_COURSES_REQUEST,
-  LIST_COURSES_RESET,
   LIST_COURSES_SUCCESS,
   LIST_COURSE_DETAILS_FAIL,
   LIST_COURSE_DETAILS_REQUEST,
-  LIST_COURSE_DETAILS_RESET,
   LIST_COURSE_DETAILS_SUCCESS,
   LIST_NEW_COURSES_FAIL,
   LIST_NEW_COURSES_REQUEST,
-  LIST_NEW_COURSES_RESET,
   LIST_NEW_COURSES_SUCCESS,
   MY_COURSES_FAIL,
   MY_COURSES_REQUEST,
-  MY_COURSES_RESET,
   MY_COURSES_SUCCESS,
   COURSE_UPDATE_REQUEST,
   COURSE_UPDATE_SUCCESS,
@@ -39,7 +34,13 @@ import {
   CREATE_REVIEW_FAIL,
   LIST_COURSES_SEARCH_REQUEST,
   LIST_COURSES_SEARCH_SUCCESS,
-  LIST_COURSES_SEARCH_FAIL
+  LIST_COURSES_SEARCH_FAIL,
+  LIST_BYSUBCATEGORYS_REQUEST,
+  LIST_BYSUBCATEGORYS_SUCCESS,
+  LIST_BYSUBCATEGORYS_FAIL,
+  GET_SUBCATEGORYS_REQUEST,
+  GET_SUBCATEGORYS_SUCCESS,
+  GET_SUBCATEGORYS_FAIL,
 } from "../constants/courseconstants";
 import axios from "axios";
 
@@ -171,11 +172,15 @@ export const CheckStudent = (id) => async (dispatch, getState) => {
   }
 };
 
-export const ListcoursesbyTopic =(Topic, Allcourses = false, page) => async (dispatch) => {
+export const ListcoursesbyTopic =
+  (Topic, Allcourses = false, page) =>
+  async (dispatch) => {
     try {
       dispatch({ type: LIST_COURSES_REQUEST });
       const { data } = await axios.get(
-        `/courses/topic/?Topic=${Topic}&All=${Allcourses ? "All" : ""}&page=${page}`
+        `/courses/topic/?Topic=${Topic}&All=${
+          Allcourses ? "All" : ""
+        }&page=${page}`
       );
       dispatch({ type: LIST_COURSES_SUCCESS, payload: data });
     } catch (error) {
@@ -207,7 +212,7 @@ export const ListnewCourses = (Topic, page) => async (dispatch) => {
 };
 
 export const Listcoursesbypobularity =
-  (Topic="") =>
+  (Topic = "") =>
   async (dispatch) => {
     try {
       dispatch({ type: LIST_COURSES_POBULAR_REQUEST });
@@ -223,21 +228,21 @@ export const Listcoursesbypobularity =
       });
     }
   };
-export const ListcoursesSearched =(keyword) =>async (dispatch) => {
-    try {
-      dispatch({ type: LIST_COURSES_SEARCH_REQUEST });
-      const { data } = await axios.get(`/courses/searched?keyword=${keyword}`);
-      dispatch({ type: LIST_COURSES_SEARCH_SUCCESS, payload: data });
-    } catch (error) {
-      dispatch({
-        type: LIST_COURSES_SEARCH_FAIL,
-        payload:
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message,
-      });
-    }
-  };
+export const ListcoursesSearched = (keyword) => async (dispatch) => {
+  try {
+    dispatch({ type: LIST_COURSES_SEARCH_REQUEST });
+    const { data } = await axios.get(`/courses/searched?keyword=${keyword}`);
+    dispatch({ type: LIST_COURSES_SEARCH_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: LIST_COURSES_SEARCH_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
 export const Getcoursedetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: LIST_COURSE_DETAILS_REQUEST });
@@ -317,6 +322,36 @@ export const CreateCourse = () => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: COURSE_CREATE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+export const GetCoursesbysubcg = (Subcg, page) => async (dispatch) => {
+  try {
+    dispatch({ type: LIST_BYSUBCATEGORYS_REQUEST });
+    const { data } = await axios.get(`/courses/subcg/${Subcg}?page=${page}`);
+    dispatch({ type: LIST_BYSUBCATEGORYS_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: LIST_BYSUBCATEGORYS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+export const GetSubCategorys = (Topic) => async (dispatch) => {
+  try {
+    dispatch({ type: GET_SUBCATEGORYS_REQUEST });
+    const { data } = await axios.get(`/courses/subcategory/${Topic}`);
+    dispatch({ type: GET_SUBCATEGORYS_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: GET_SUBCATEGORYS_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
