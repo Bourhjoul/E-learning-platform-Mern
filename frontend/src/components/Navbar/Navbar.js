@@ -203,7 +203,6 @@ const Navbar = ({match,history}) => {
               <CgShoppingCart size="22" className="carticon" />
             </Link>
 
-            {/* <ul style={transForm}> */}
             {isLogged ? (
               userLink()
             ) : (

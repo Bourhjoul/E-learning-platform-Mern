@@ -152,7 +152,9 @@
 .filterButton:hover {
   color: #156b7a;
 }
-
+.fl-btn{
+  margin-left: 50px;
+}
 .filterIcon {
   margin-right: 5px;
   float: left;

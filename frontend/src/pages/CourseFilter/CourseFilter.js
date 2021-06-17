@@ -7,8 +7,7 @@ import { Link, useParams } from "react-router-dom";
 import CourseCard from "../../components/CourseCard/CourseCard";
 
 import CollapsibleFilter from "./CollapsibleFilter";
-import { Skeleton } from "antd";
-import { Empty } from "antd";
+import { Empty, Skeleton, Popover } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import {
   GetSubCategorys,
@@ -16,40 +15,31 @@ import {
   ListcoursesbyTopic,
   ListnewCourses,
 } from "../../redux/actions/courseActions";
+import {GET_CRSRATING_RESET,GET_CRSPRICE_RESET} from "../../redux/constants/courseconstants";
 import Coursesblock from "./Coursesblock";
 import Error from "../../components/utils/Error";
 const CourseFilter = ({ history }) => {
   const [page, setpage] = useState(1);
   const [isFilter, setIsFilter] = useState(false);
   const dispatch = useDispatch();
+  const [optionValue, setOptionValue] = useState("");
   const ListCoursesReducer = useSelector((state) => state.ListCoursesReducer);
   const { loading, courses, totalcourses, error } = ListCoursesReducer;
 
-  const GetSubCategorysReducer = useSelector(
-    (state) => state.GetSubCategorysReducer
-  );
-  const {
-    loading: loadingsubcg,
-    Subcategorys,
-    error: errorcg,
-  } = GetSubCategorysReducer;
+  const GetSubCategorysReducer = useSelector((state) => state.GetSubCategorysReducer);
+  const { loading: loadingsubcg,Subcategorys,error: errorcg} = GetSubCategorysReducer;
 
-  const ListCoursesbyPobularityReducer = useSelector(
-    (state) => state.ListCoursesbyPobularityReducer
-  );
-  const {
-    loading: loadingpobular,
-    courses: coursespobular,
-    error: errorpobular,
-  } = ListCoursesbyPobularityReducer;
-  const ListNewCoursesReducer = useSelector(
-    (state) => state.ListNewCoursesReducer
-  );
-  const {
-    loading: loadingNew,
-    courses: coursesNew,
-    error: errorNew,
-  } = ListNewCoursesReducer;
+  const ListCoursesbyPobularityReducer = useSelector((state) => state.ListCoursesbyPobularityReducer);
+  const {loading: loadingpobular,courses: coursespobular,error: errorpobular} = ListCoursesbyPobularityReducer;
+ 
+  const ListCoursesbyrating = useSelector( (state) => state.ListCoursesbyrating);
+  const {loading: loadingRate,courses: coursesRate, error: errorRate,} = ListCoursesbyrating;
+ 
+  const ListCoursesbyprice = useSelector( (state) => state.ListCoursesbyprice);
+  const {loading: loadingPrice,courses: coursesPrice, error: errorPrice,} = ListCoursesbyprice;
+   
+  const ListNewCoursesReducer = useSelector((state) => state.ListNewCoursesReducer);
+  const { loading: loadingNew,courses: coursesNew, error: errorNew} = ListNewCoursesReducer;
 
   const { TabPane } = Tabs;
   var settings = {
@@ -101,14 +91,24 @@ const CourseFilter = ({ history }) => {
         break;
     }
   };
+  const handleClear = () => {
+    dispatch({type : GET_CRSRATING_RESET});
+    dispatch({type : GET_CRSPRICE_RESET});
+  }
   useEffect(() => {
     dispatch(GetSubCategorys(topic));
+    dispatch({type : GET_CRSRATING_RESET});
+    dispatch({type : GET_CRSPRICE_RESET});
     dispatch(Listcoursesbypobularity(topic));
     dispatch(ListcoursesbyTopic(topic, true, page));
     return () => {};
   }, [dispatch, topic, page, history]);
   if (!loading && totalcourses === 0) {
     history.push("/notfound");
+  }
+  const handleSelect = (e) => {
+    setOptionValue(e.target.value)
+    console.log(optionValue);
   }
   return (
     <div className="cartPage">
@@ -182,9 +182,8 @@ const CourseFilter = ({ history }) => {
       <div className="courseOfSite">
         <h2>{topic} students also learn</h2>
         <div className="courseOfSiteSlider">
-          {loadingsubcg ? (
-            <Skeleton />
-          ) : errorcg ? (
+          {loadingsubcg ? ( <Skeleton />) : errorcg ?
+          (
             <Error error={errorcg} />
           ) : Subcategorys.length === 0 ? (
             <Empty />
@@ -201,30 +200,24 @@ const CourseFilter = ({ history }) => {
       <div className="filterCourses">
         <br></br>
         <div>
-          <h2>All Web Development courses</h2>
-          <button
-            className="filterButton"
-            onClick={() => setIsFilter(!isFilter)}
-          >
+          <h2>All {topic} courses</h2>
+          <div className="fl-btn">
+
+          <button className="filterButton"onClick={() => setIsFilter(!isFilter)} >
             <MdFilterList size="22" className="filterIcon" />
             Filter
           </button>
-          <select className="filterButton">
-            <option>Most Popular</option>
-            <option>Highest Rated</option>
-            <option>Newest</option>
-          </select>
-          <button className="clearFiltersBtn">Clear</button>
+          <button className="clearFiltersBtn" onClick={()=> handleClear()}>Most Popular</button>
+          </div>
+
+        
         </div>
 
         <div className="filterHere">
           <div>
             <div className={`filterBy ${isFilter ? "filterr" : "filterroff"}`}>
               <CollapsibleFilter title="Ratings" value="1" />
-              <CollapsibleFilter title="Topic" value="2" />
-              <CollapsibleFilter title="Subcategory" value="3" />
-
-              <CollapsibleFilter title="Price" value="4" />
+              <CollapsibleFilter title="Price" value="2" />
             </div>
 
             <div className="teacherUdemy">
@@ -237,21 +230,34 @@ const CourseFilter = ({ history }) => {
             </div>
           </div>
           <div className="coursesVideos">
-            {loading ? (
+            {loading || loadingRate || loadingPrice ? (
               <Skeleton />
-            ) : error ? (
+            ) : error || errorRate || errorPrice ? (
               <Error error={error} />
             ) : courses.length === 0 ? (
               <Empty />
-            ) : (
-              courses.map((course, index) => (
+            ) : ( coursesRate ? ( 
+              coursesRate.map((course, index) => (
+              <Coursesblock
+                key={course._id}
+                data-index={index}
+                course={course}
+              />
+            ))) : ( coursesPrice ? 
+              ( coursesPrice.map((course, index) => (
+                <Coursesblock
+                  key={course._id}
+                  data-index={index}
+                  course={course}
+                />
+              ))) : courses.map((course, index) => (
                 <Coursesblock
                   key={course._id}
                   data-index={index}
                   course={course}
                 />
               ))
-            )}
+            ))}
             <Pagination
               pageSize="8"
               current={page}

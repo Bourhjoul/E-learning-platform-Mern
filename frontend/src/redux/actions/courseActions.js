@@ -41,6 +41,8 @@ import {
   GET_SUBCATEGORYS_REQUEST,
   GET_SUBCATEGORYS_SUCCESS,
   GET_SUBCATEGORYS_FAIL,
+  GET_CRSRATING_SUCCESS,GET_CRSRATING_REQUEST,GET_CRSRATING_FAIL,
+  GET_CRSPRICE_SUCCESS,GET_CRSPRICE_REQUEST,GET_CRSPRICE_FAIL
 } from "../constants/courseconstants";
 import axios from "axios";
 
@@ -228,10 +230,10 @@ export const Listcoursesbypobularity =
       });
     }
   };
-export const ListcoursesSearched = (keyword) => async (dispatch) => {
+export const ListcoursesSearched = (keyword, page) => async (dispatch) => {
   try {
     dispatch({ type: LIST_COURSES_SEARCH_REQUEST });
-    const { data } = await axios.get(`/courses/searched?keyword=${keyword}`);
+    const { data } = await axios.get(`/courses/searched?keyword=${keyword}&page=${page}`);
     dispatch({ type: LIST_COURSES_SEARCH_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -359,3 +361,37 @@ export const GetSubCategorys = (Topic) => async (dispatch) => {
     });
   }
 };
+export const LisCoursesbyrating = (Topic,rating) => async (dispatch) => {
+  try {
+    dispatch({ type: GET_CRSRATING_REQUEST});
+    const { data } = await axios.post(`/courses/rate/${Topic}`,rating);
+    console.log("Action",rating);
+    dispatch({ type: GET_CRSRATING_SUCCESS, payload: data });
+    
+  } catch (error) {
+    dispatch({
+      type: GET_CRSRATING_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+}
+export const ListCoursesbyprice = (Topic,price) => async (dispatch) => {
+  try {
+    dispatch({ type: GET_CRSPRICE_REQUEST});
+    const { data } = await axios.post(`/courses/price/${Topic}`,price);
+    console.log("Action",price);
+    dispatch({ type: GET_CRSPRICE_SUCCESS, payload: data });
+    
+  } catch (error) {
+    dispatch({
+      type: GET_CRSPRICE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+}

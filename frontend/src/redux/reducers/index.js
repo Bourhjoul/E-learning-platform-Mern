@@ -16,6 +16,8 @@ import {
   Createcoursereviewreducer,
   listCoursespurshasedreducer,
   listCourseSearchedreducer,
+  ListCoursesbyrating,
+  ListCoursesbyprice
 } from "./courseReducer";
 import { cartReducer } from "./cartReducer";
 import {
@@ -45,6 +47,8 @@ export default combineReducers({
   listCoursespurshasedreducer,
   Createcoursereviewreducer,
   listCourseSearchedreducer,
+  ListCoursesbyrating,
+  ListCoursesbyprice,
   orderCreate: CreateOrderReducers,
   orderDetails: OrderDetailsreducer,
   orderPay: OrderPayreducer,
