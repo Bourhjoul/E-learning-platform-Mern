@@ -70,7 +70,7 @@ const EditCourse = ({ history }) => {
   const [loading, setLoading] = useState(false);
   const handleChange = async (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
-    setContent(data.content);
+  
   };
 
   const [size, setSize] = useState("middle");
@@ -140,6 +140,7 @@ const EditCourse = ({ history }) => {
         setSubcategorys(course.subcategorys);
 
         setContent(course.content);
+        console.log(course.content);
       }
     }
   }, [id, history, succUpdate, course, dispatch]);

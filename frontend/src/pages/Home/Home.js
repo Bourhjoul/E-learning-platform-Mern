@@ -77,13 +77,6 @@ const Home = () => {
 
   const { TabPane } = Tabs;
   useEffect(() => {
-    dispatch(ListcoursesbyTopic("Development"));
-    dispatch(Listcoursesbypobularity());
-    console.log(coursespobular);
-
-    return () => {};
-  }, [auth.isLogged, dispatch]);
-  useEffect(() => {
     if (token) {
       const getUser = () => {
         dispatch(dispatchLogin());
@@ -93,11 +86,12 @@ const Home = () => {
         });
       };
       getUser();
+      dispatch(ListcoursesbyTopic("Development"));
+      dispatch(Listcoursesbypobularity());
     }
 
-    dispatch(ListcoursesbyTopic("Development"));
-    dispatch(Listcoursesbypobularity());
-  }, [dispatch]);
+    
+  }, [auth.isLogged, token,dispatch])
   const changetopic = (key) => {
     switch (key) {
       case "1":

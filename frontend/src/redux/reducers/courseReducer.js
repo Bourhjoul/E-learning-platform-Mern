@@ -284,7 +284,7 @@ export const GetCourseDetailsReducer = (
       audience: [],
       goals: [],
       students: [],
-      content: [],
+      content: [{}],
       Prerequisites: [],
       user: {},
     },
@@ -327,7 +327,7 @@ export const courseUpdateReducer = (state = { course: {} }, action) => {
     case COURSE_UPDATE_FAIL:
       return { loading: false, err: action.payload };
     case COURSE_UPDATE_RESET:
-      return { course: {}, success: false };
+      return { course: {} };
     default:
       return state;
   }

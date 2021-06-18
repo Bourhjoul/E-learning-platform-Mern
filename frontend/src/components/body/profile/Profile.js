@@ -152,6 +152,7 @@ const Profile = ({ history }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (isAdmin) {
+      dispatch({type : COURSE_CREATE_RESET})
       dispatch(dispatchGetAllUsersRequest());
       fetchAllUsers(token).then((res) => {
         dispatch(dispatchGetAllUsers(res));

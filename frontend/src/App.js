@@ -85,11 +85,7 @@ function App() {
               <Route exact path="/login"component={isLogged ? NotFound : Login} />
               <Route exact path="/register" component={isLogged ? NotFound : Register}/>
               <Route exact path="/user/activate/:activation_token" component={ActivationEmail}  />
-              <Route
-                exact
-                path="/forgot_password"
-                component={isLogged ? NotFound : ForgotPass}
-              />
+              <Route exact path="/forgot_password" component={isLogged ? NotFound : ForgotPass}/>
               <Route
                 path="/user/reset/:token"
                 component={isLogged ? NotFound : ResetPass}

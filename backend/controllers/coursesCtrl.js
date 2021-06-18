@@ -288,10 +288,7 @@ const coursesCtrl = {
       res.json(addCourse);
     } catch (err) {
       console.log("-----------Add crs error-------------", err);
-      return res.status(500).json({
-        message:
-          "Probably you don't change the (Sample Name) of the last course that you added",
-      });
+      return res.status(500).json({ msg: err.message });
     }
   },
   getsubcategorys: async (req, res) => {
