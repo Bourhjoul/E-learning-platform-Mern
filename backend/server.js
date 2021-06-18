@@ -28,6 +28,7 @@ app.use((err,req,res,next)=>{
       }
    });
 })
+app.use(favicon(__dirname + '/public/favicon.ico'));
 const __dirname = path.resolve()
 if(process.env.NODE_ENV === 'production'){
   app.use(express.static(path.join(__dirname,'/frontend/build')))
