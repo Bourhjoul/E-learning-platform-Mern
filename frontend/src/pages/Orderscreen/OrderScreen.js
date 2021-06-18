@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../checkout/CheckoutScreen.css";
+import { Helmet } from "react-helmet";
+
 import { Image, Alert } from "antd";
 import { PayPalButton } from "react-paypal-button-v2";
 import { useDispatch, useSelector } from "react-redux";
@@ -65,6 +67,9 @@ const OrderScreen = ({ history, match }) => {
   };
   return (
     <div>
+      <Helmet>
+        <title>Order </title>
+      </Helmet>
       {loading ? (
         <Skeleton active />
       ) : error ? (

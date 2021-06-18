@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { GetCoursesbysubcg } from "../../redux/actions/courseActions";
 import Coursesblock from "./Coursesblock";
+import { Helmet } from "react-helmet";
+
 import { Button, Skeleton, Pagination } from "antd";
 import { Empty } from "antd";
 import Error from "../../components/utils/Error";
-import { ArrowLeftOutlined} from "@ant-design/icons";
+import { ArrowLeftOutlined } from "@ant-design/icons";
 
-const Subcategory = ({history}) => {
+const Subcategory = ({ history }) => {
   const [page, setpage] = useState(1);
   const dispatch = useDispatch();
   const Coursesbysubcg = useSelector((state) => state.GetCoursesbysubcg);
@@ -20,16 +22,19 @@ const Subcategory = ({history}) => {
   }, [dispatch, subcategory, page]);
   return (
     <div className="subcg_container">
-                                <Button
-                    className="btn-back"
-                    onClick={() => history.goBack()}
-                    size="middle"
-                    type="primary"
-                    shape="round"
-                    icon={<ArrowLeftOutlined />}
-                  >
-                    Go Back
-                  </Button>
+      <Helmet>
+        <title>{subcategory}</title>
+      </Helmet>
+      <Button
+        className="btn-back"
+        onClick={() => history.goBack()}
+        size="middle"
+        type="primary"
+        shape="round"
+        icon={<ArrowLeftOutlined />}
+      >
+        Go Back
+      </Button>
       <h2>{subcategory} Courses</h2>
       {loading ? (
         <Skeleton />

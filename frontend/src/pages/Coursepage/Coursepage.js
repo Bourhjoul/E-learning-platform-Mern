@@ -5,6 +5,8 @@ import { BsCheck } from "react-icons/all";
 import Collapsible from "./Collapsible";
 import { YoutubePlayer } from "reactjs-media";
 import Comments from "./Comments";
+import { Helmet } from "react-helmet";
+
 import { Empty } from "antd";
 import { Skeleton, Input, Button, Rate } from "antd";
 import "./Coursepage.css";
@@ -109,6 +111,9 @@ const Coursepage = ({ match, history }) => {
                   </h4>
                 </div>
                 <div>
+                  <Helmet>
+                    <title>{course.name}</title>
+                  </Helmet>
                   <h1 className="courseNaame">{course.name}</h1>
                   <p className="courseAbout">{course.shortdescription}</p>
                   <div className="ratingCourse">

@@ -1,6 +1,8 @@
 import { Card } from "antd";
 import React, { useEffect, useRef } from "react";
 import { Empty } from "antd";
+import { Helmet } from "react-helmet";
+
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import { Tabs } from "antd";
@@ -128,6 +130,9 @@ const Home = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>EDUSPACE</title>
+      </Helmet>
       <div>
         <div className="Banner_Card">
           <Card>

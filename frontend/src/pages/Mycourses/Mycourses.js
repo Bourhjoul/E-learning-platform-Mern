@@ -34,26 +34,6 @@ const Mycourses = ({ history }) => {
       });
     });
   }
-  // const crs = [
-
-  //   {
-  //     key: '1',
-  //     name: 'Learn React',
-  //     price: 302,
-  //     rating: '2.4',
-  //     nmbr_stu: '1000',
-  //     category: 'tech'
-  //   },
-  //   {
-  //     key: '2',
-  //     name: 'Learn Vuejs',
-  //     price: 32,
-  //     rating: '4.5',
-  //     nmbr_stu: '10050',
-  //     category: 'tech'
-  //   },
-
-  // ];
   return (
     <>
       {loading ? (

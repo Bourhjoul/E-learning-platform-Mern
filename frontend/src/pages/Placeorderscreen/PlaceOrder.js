@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import "../checkout/CheckoutScreen.css";
+import { Helmet } from "react-helmet";
+
 import { Button, Modal } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -68,6 +70,9 @@ const PlaceOrder = ({ history }) => {
   }
   return (
     <div>
+      <Helmet>
+        <title>Place Order</title>
+      </Helmet>
       <div className="checkoutPage">
         <div className="checkout">
           <h1>Your Informations:</h1>

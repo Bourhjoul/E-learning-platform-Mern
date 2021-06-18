@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 
 import { Card, Table, Skeleton, Button } from "antd";
 import { useDispatch, useSelector } from "react-redux";
@@ -191,6 +192,9 @@ const EditCourse = ({ history }) => {
   };
   return (
     <>
+      <Helmet>
+        <title>EDIT COURSE</title>
+      </Helmet>
       {succUpdate && showSuccessMsg(succUpdate)}
       {errorUpdate && showSuccessMsg(errorUpdate)}
       {loadingcrs ? (

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { isMatch, isLength } from "../../utils/validation/Validation";
 import Coursesblock from "../../../pages/CourseFilter/Coursesblock";
+import { Helmet } from "react-helmet";
 import {
   showSuccessMsg,
   showErrMsg,
@@ -250,6 +251,9 @@ const Profile = ({ history }) => {
 
   return (
     <>
+      <Helmet>
+        <title>Profile</title>
+      </Helmet>
       <div>
         {err && showErrMsg(err)}
         {success && showSuccessMsg(success)}
