@@ -3,17 +3,19 @@
   "description": "\"# E-learning MERN\"",
   "main": "index.js",
   "scripts": {
+    "start": "node backend/server",
     "server": "nodemon backend/server",
     "client": "npm start --prefix frontend",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently \"npm run server\" \"npm run client\" "
+    "dev": "concurrently \"npm run server\" \"npm run client\" ",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Bourhjoul/E-learning-platform-Mern.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "ABDESSAMAD BOURHJOUL & SOUHAIL OUABOU & SOUFIAN ZAAM",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Bourhjoul/E-learning-platform-Mern/issues"

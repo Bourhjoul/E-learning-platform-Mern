@@ -1,3 +1,4 @@
+import path from 'path';
 const dotenv = require("dotenv");
 const express = require('express');
 const mongoose = require('mongoose')
@@ -10,6 +11,8 @@ app.use(express.json())
 app.use(cors());
 app.use(cookieParser())
 app.use(fileUpoad({ useTempFiles: true }))
+
+
 
 //Routes
 app.use('/user', require('./routes/userRouter'))
@@ -25,6 +28,18 @@ app.use((err,req,res,next)=>{
       }
    });
 })
+const __dirname = path.resolve()
+if(process.env.NODE_ENV === 'production'){
+  app.use(express.static(path.join(__dirname,'/frontend/build')))
+  app.get('*',(req,res)=>res.sendFile(path.resolve(__dirname,'frontend','build','index.html')))
+}else{
+  app.get('/', (req,res) =>{
+      res.send('API is Runn....')
+  })
+  
+}
+
+
 const PORT = process.env.PORT || 5000;
 
 
