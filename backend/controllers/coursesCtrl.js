@@ -376,7 +376,9 @@ const coursesCtrl = {
           $and: [{ ...Topic }, { price: { $gte: Price } }],
         });
       } else {
-        courses = await Courses.find({ price: { $eq: Price } });
+        courses = await Courses.find({ 
+          $and: [{ ...Topic }, { price: { $eq: Price } }],
+        });
       }
       res.json(courses);
     } catch (err) {

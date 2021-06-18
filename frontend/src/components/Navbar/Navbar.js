@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Navbar.css";
 import { withRouter } from "react-router-dom";
-import { Input, Popover, Drawer, Button, Radio, Space, Dropdown } from "antd";
+import { Input, Popover, Drawer, Badge, Button, Dropdown } from "antd";
 import {
   CgShoppingCart,
   AiOutlineSearch,
@@ -21,6 +21,9 @@ const Navbar = ({ match, history }) => {
   const { Search } = Input;
   const auth = useSelector((state) => state.auth);
   const { user, isLogged, loading } = auth;
+
+  const cartReducer = useSelector(state => state.cartReducer)
+  const {cartItems} = cartReducer
 
   const handleSearch = () => {
     if (keyword) {
@@ -162,7 +165,11 @@ const Navbar = ({ match, history }) => {
                 onClick={() => setshowsearch(!showsearch)}
               />
             )}
+             <Link to="/cart">
+                   <Badge   style={{ backgroundColor: '#FF9F3E' }} count={cartItems.length} showZero  >
             <CgShoppingCart size="24" color="#1890ff" />
+             </Badge>
+             </Link>
             <div className={showsearch ? "searchactive" : "searchphone"}>
               <Search
                 placeholder="Search"
@@ -189,16 +196,20 @@ const Navbar = ({ match, history }) => {
         </div>
         {!showicons && (
           <div className="Onright">
-            <button className="Navbarbtns" id="Teacherbtn">
+            <Link to="/register">
+            <Button disabled={isLogged} className="Navbarbtns" id="Teacherbtn">
               Become a Teacher
-            </button>
+            </Button>
+            </Link>
             <Popover content={content} style={{ cursor: "pointer" }}>
               <button className="Navbarbtns" id="Categoriesbtn">
                 Categories
               </button>
             </Popover>
             <Link to="/cart">
-              <CgShoppingCart size="22" className="carticon" />
+            <Badge style={{ backgroundColor: '#FF9F3E' }}  title="Your Cart"  count={cartItems.length} showZero  >
+              <CgShoppingCart size="25"/>
+             </Badge>
             </Link>
 
             {isLogged ? (
@@ -226,9 +237,11 @@ const Navbar = ({ match, history }) => {
           key={"left"}
         >
           <div className={isLogged ? "" : "onRightphone"}>
-            <button className="Navbarbtns" id="Teacherbtn">
+          <Link to="/register">
+            <Button className="Navbarbtns"   disabled={isLogged} id="Teacherbtn" >
               Become a Teacher
-            </button>
+            </Button>
+          </Link>
             {isLogged ? (
               userLinkDrawer()
             ) : (

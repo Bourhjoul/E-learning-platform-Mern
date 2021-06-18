@@ -137,17 +137,14 @@ const CourseFilter = ({ history }) => {
   if (!loading && totalcourses === 0) {
     history.push("/notfound");
   }
-  const handleSelect = (e) => {
-    setOptionValue(e.target.value);
-    console.log(optionValue);
-  };
+
   return (
     <div className="cartPage">
       <Helmet>
         <title>{topic} Courses</title>
       </Helmet>
       <div className="courseSurSujet">
-        <h1>{topic} Courses</h1>
+        <h1>{topic.charAt(0).toUpperCase() + topic.slice(1)} Courses</h1>
         <h3>
           {topic} relates to <Link to="/">{topic}, </Link>
           <Link to="/">IT & Software</Link>
@@ -214,7 +211,7 @@ const CourseFilter = ({ history }) => {
       </div>
 
       <div className="courseOfSite">
-        <h2>{topic} students also learn</h2>
+        <h2>{topic.charAt(0).toUpperCase() + topic.slice(1)} students also learn</h2>
         <div className="courseOfSiteSlider">
           {loadingsubcg ? (
             <Skeleton />
@@ -235,7 +232,7 @@ const CourseFilter = ({ history }) => {
       <div className="filterCourses">
         <br></br>
         <div>
-          <h2>All {topic} courses</h2>
+          <h2>All {topic.charAt(0).toUpperCase() + topic.slice(1)} courses</h2>
           <div className="fl-btn">
             <button
               className="filterButton"
