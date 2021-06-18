@@ -47,7 +47,6 @@ const PlaceOrder = ({ history }) => {
   };
   useEffect(() => {
     if (success) {
-      console.log(order._id);
       history.push(`/order/${order._id}`);
     }
     return () => {};

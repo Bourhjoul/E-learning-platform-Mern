@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Navbar.css";
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 import { Input, Popover, Drawer, Button, Radio, Space, Dropdown } from "antd";
 import {
   CgShoppingCart,
@@ -13,24 +13,20 @@ import useWindowDimensions from "../../useWindowDimensions";
 import axios from "axios";
 import PropagateLoader from "react-spinners/PropagateLoader";
 import { useSelector, useDispatch } from "react-redux";
-const Navbar = ({match,history}) => {
+const Navbar = ({ match, history }) => {
   const { height, width } = useWindowDimensions();
   const [showsearch, setshowsearch] = useState(false);
-  const [keyword, setKeyword] = useState('');
+  const [keyword, setKeyword] = useState("");
   const [showicons, setshowicons] = useState(false);
   const { Search } = Input;
   const auth = useSelector((state) => state.auth);
   const { user, isLogged, loading } = auth;
 
   const handleSearch = () => {
-    if(keyword){
-      console.log("Cliccccccck");
-      history.push(`/search/${keyword}`)
+    if (keyword) {
+      history.push(`/search/${keyword}`);
     }
-    else{
-
-    }
-  }
+  };
   const handleLogout = async () => {
     try {
       await axios.get("/user/logout");
@@ -169,24 +165,26 @@ const Navbar = ({match,history}) => {
             <CgShoppingCart size="24" color="#1890ff" />
             <div className={showsearch ? "searchactive" : "searchphone"}>
               <Search
-              placeholder="Search"  
-              allowClear enterButton 
-              size="large"
-              onPressEnter= {handleSearch}
-              onSearch= {handleSearch}
-              onChange = {e => setKeyword(e.target.value)}
+                placeholder="Search"
+                allowClear
+                enterButton
+                size="large"
+                onPressEnter={handleSearch}
+                onSearch={handleSearch}
+                onChange={(e) => setKeyword(e.target.value)}
               />
             </div>
           </div>
         )}
         <div className="search_box">
-          <Search 
-          placeholder="Search"  
-          allowClear enterButton 
-          size="large"
-          onPressEnter= {handleSearch}
-          onSearch= {handleSearch}
-          onChange = {e => setKeyword(e.target.value)}
+          <Search
+            placeholder="Search"
+            allowClear
+            enterButton
+            size="large"
+            onPressEnter={handleSearch}
+            onSearch={handleSearch}
+            onChange={(e) => setKeyword(e.target.value)}
           />
         </div>
         {!showicons && (

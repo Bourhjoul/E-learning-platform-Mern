@@ -4,6 +4,7 @@ import token from "./tokenReducer";
 import {
   ListMyCoursesReducer,
   ListCoursesReducer,
+  ListAllCoursesReducer,
   ListCoursesbyPobularityReducer,
   GetCourseDetailsReducer,
   ListNewCoursesReducer,
@@ -17,7 +18,7 @@ import {
   listCoursespurshasedreducer,
   listCourseSearchedreducer,
   ListCoursesbyrating,
-  ListCoursesbyprice
+  ListCoursesbyprice,
 } from "./courseReducer";
 import { cartReducer } from "./cartReducer";
 import {
@@ -34,6 +35,7 @@ export default combineReducers({
   ListMyCoursesReducer,
   ListCoursesReducer,
   ListCoursesbyPobularityReducer,
+  ListAllCoursesReducer,
   GetCourseDetailsReducer,
   GetSubCategorysReducer,
   GetCoursesbysubcg,

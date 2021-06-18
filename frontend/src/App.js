@@ -131,7 +131,7 @@ function App() {
               />
               <Route
                 path="/editcourse/:id"
-                component={user.Teacher ? EditCourse : NotFound}
+                component={user.Teacher || isAdmin ? EditCourse : NotFound}
                 exact
               />
               <Route path="/search/:keyword" component={CourseSeacrh} />

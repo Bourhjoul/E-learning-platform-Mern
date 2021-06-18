@@ -3,6 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { isMatch, isLength } from "../../utils/validation/Validation";
 import Coursesblock from "../../../pages/CourseFilter/Coursesblock";
 import { Helmet } from "react-helmet";
+import { Radio } from "antd";
+import { Popconfirm, message } from "antd";
+
 import {
   showSuccessMsg,
   showErrMsg,
@@ -33,11 +36,16 @@ import {
   DeleteCourse,
   CreateCourse,
   listCoursespurshased,
+  listAllCourses,
 } from "../../../redux/actions/courseActions";
 import { Link } from "react-router-dom";
 import Error from "../../utils/Error";
+import { listOrders } from "../../../redux/actions/orderActions";
 const { Column } = Table;
 const Profile = ({ history }) => {
+  let ordersarray = [];
+
+  const [Radiogrp, setRadiogrp] = useState("Users");
   const [page, setpage] = useState(1);
   const [size, setSize] = useState("small");
   const initialState = {
@@ -51,7 +59,46 @@ const Profile = ({ history }) => {
   const [avatar, setAvatar] = useState(false);
   const [data, setData] = useState(initialState);
   const [loadingUsers, setLoadingUsers] = useState(false);
+  const ListAllCoursesReducer = useSelector(
+    (state) => state.ListAllCoursesReducer
+  );
+  const {
+    loading: loadingAdmin,
+    courses: coursesAdmin,
+    error: errorAdmin,
+  } = ListAllCoursesReducer;
+  const orderList = useSelector((state) => state.orderList);
+  const { loading: loadingOrders, orders, error: errorOrders } = orderList;
+  const handleRadioChange = (e) => {
+    setRadiogrp(e.target.value);
+    switch (e.target.value) {
+      case "Users":
+        dispatch(dispatchGetAllUsersRequest());
+        fetchAllUsers(token).then((res) => {
+          dispatch(dispatchGetAllUsers(res));
+        });
+        break;
+      case "Courses":
+        dispatch(listAllCourses());
+        break;
+      case "Orders":
+        dispatch(listOrders());
 
+        break;
+      default:
+        break;
+    }
+  };
+  if (!loadingOrders && !errorOrders) {
+    ordersarray = orders.map((order) => ({
+      _id: order._id,
+      country: order.countryCustomer.country,
+      isPaid: order.isPaid,
+      totalPrice: order.totalPrice,
+      user: order.user.name,
+      paymentMethod: order.paymentMethod,
+    }));
+  }
   const {
     name,
     email,
@@ -109,6 +156,7 @@ const Profile = ({ history }) => {
       fetchAllUsers(token).then((res) => {
         dispatch(dispatchGetAllUsers(res));
       });
+      dispatch(listAllCourses());
     }
     if (successCreate) {
       history.push(`/editcourse/${createdcourse._id}`);
@@ -225,14 +273,13 @@ const Profile = ({ history }) => {
   const handleDelete = async (id) => {
     try {
       if (user._id !== id) {
-        if (window.confirm("Are you sure you want to delete this account?")) {
-          setLoadingUsers(true);
-          await axios.delete(`/user/delete/${id}`, {
-            headers: { Authorization: token },
-          });
-          setLoadingUsers(false);
-          setCallback(!callback);
-        }
+        setLoadingUsers(true);
+        await axios.delete(`/user/delete/${id}`, {
+          headers: { Authorization: token },
+        });
+        setLoadingUsers(false);
+        setCallback(!callback);
+        message.success("Account deleted");
       }
     } catch (err) {
       setData({ ...data, err: err.response.data.msg, success: "" });
@@ -241,10 +288,10 @@ const Profile = ({ history }) => {
 
   /* course fun */
   const handleDeleteCrs = (id) => {
-    if (window.confirm("Are You Sure?")) {
-      dispatch(DeleteCourse(id));
-    }
+    dispatch(DeleteCourse(id));
+    message.success("Course Deleted");
   };
+
   const createCoursehandler = () => {
     dispatch(CreateCourse());
   };
@@ -363,62 +410,149 @@ const Profile = ({ history }) => {
           </>
         </div>
         <div className="col-right">
-          <h2>{isAdmin ? "Users" : "My Courses"}</h2>
-          {(loadingtab || loading) && (
-            <div className="loading">
-              <HashLoader color={"#1e1e2c"} loading={loadingtab} size={40} />
-            </div>
-          )}
-          {isAdmin ? (
-            <Table dataSource={users}>
-              <Column title="Id" dataIndex="_id" key="_id" />
-              <Column title="Name" dataIndex="name" />
-              <Column title="Email" dataIndex="email" />
-              <Column
-                title="Admin"
-                dataIndex="role"
-                key="role"
-                render={(role) => (
-                  <span>
-                    {role === 1 ? (
-                      <div className="admin">YES</div>
-                    ) : (
-                      <div className="notadmin">NO</div>
-                    )}
-                  </span>
-                )}
-              />
-              <Column
-                title="Action"
-                dataIndex="_id"
-                key="_id"
-                render={(_id) => (
-                  <span>
-                    <Link to={`/edit_user/${_id}`}>
+          <h2>
+            {isAdmin ? (
+              <Radio.Group value={Radiogrp} onChange={handleRadioChange}>
+                <Radio.Button value="Users">Users</Radio.Button>
+                <Radio.Button value="Courses">Courses</Radio.Button>
+                <Radio.Button value="Orders">Orders</Radio.Button>
+              </Radio.Group>
+            ) : (
+              "My Courses"
+            )}
+          </h2>
+          {loadingtab || loadingAdmin || loadingOrders ? (
+            <Skeleton active />
+          ) : isAdmin ? (
+            Radiogrp === "Users" ? (
+              <Table dataSource={users}>
+                <Column title="Id" dataIndex="_id" key="_id" />
+                <Column title="Name" dataIndex="name" />
+                <Column title="Email" dataIndex="email" />
+                <Column
+                  title="Admin"
+                  dataIndex="role"
+                  key="role"
+                  render={(role) => (
+                    <span>
+                      {role === 1 ? (
+                        <div className="admin">YES</div>
+                      ) : (
+                        <div className="notadmin">NO</div>
+                      )}
+                    </span>
+                  )}
+                />
+                <Column
+                  title="Action"
+                  dataIndex="_id"
+                  key="_id"
+                  render={(_id) => (
+                    <span>
+                      <Link to={`/edit_user/${_id}`}>
+                        <Button
+                          className="btn-edit"
+                          type="primary"
+                          shape="round"
+                          icon={<EditOutlined />}
+                          size={size}
+                        >
+                          edit
+                        </Button>
+                      </Link>
                       <Button
-                        className="btn-edit"
-                        type="primary"
+                        className="btn-delete"
+                        type="danger"
                         shape="round"
-                        icon={<EditOutlined />}
+                        icon={<DeleteOutlined />}
                         size={size}
                       >
-                        edit
+                        <Popconfirm
+                          title="Are you sure to delete this Course?"
+                          onConfirm={() => handleDelete(_id)}
+                          okText="Yes"
+                          cancelText="No"
+                        >
+                          delete
+                        </Popconfirm>
                       </Button>
-                    </Link>
-                    <Button
-                      className="btn-delete"
-                      onClick={() => handleDelete(_id)}
-                      type="danger"
-                      shape="round"
-                      icon={<DeleteOutlined />}
-                      size={size}
-                    >
-                      DELETE
-                    </Button>
-                  </span>
-                )}
-              />
-            </Table>
+                    </span>
+                  )}
+                />
+              </Table>
+            ) : Radiogrp === "Courses" ? (
+              <Table dataSource={coursesAdmin}>
+                <Column title="Name" dataIndex="name" key="_id" />
+                <Column title="Price" dataIndex="price" key="price" />
+                <Column title="Category" dataIndex="category" />
+                <Column title="Number of students" dataIndex="numStudents" />
+                <Column title="Rating" dataIndex="rating" key="rating" />
+                <Column
+                  title="Action"
+                  dataIndex="_id"
+                  key="_id"
+                  render={(_id) => (
+                    <span>
+                      <Link to={`/editcourse/${_id}`}>
+                        <Button
+                          className="btn-edit"
+                          type="primary"
+                          shape="round"
+                          icon={<EditOutlined />}
+                          size="small"
+                        >
+                          EDIT
+                        </Button>
+                      </Link>
+                      <Button
+                        className="btn-delete"
+                        type="danger"
+                        shape="round"
+                        icon={<DeleteOutlined />}
+                        size={size}
+                      >
+                        <Popconfirm
+                          title="Are you sure to delete this Course?"
+                          onConfirm={() => handleDeleteCrs(_id)}
+                          okText="Yes"
+                          cancelText="No"
+                        >
+                          delete
+                        </Popconfirm>
+                      </Button>
+                    </span>
+                  )}
+                />
+              </Table>
+            ) : (
+              Radiogrp === "Orders" && (
+                <Table dataSource={ordersarray}>
+                  <Column title="user" dataIndex="user" key="user" />
+                  <Column title="_id" dataIndex="_id" key="_id" />
+                  <Column
+                    title="totalPrice"
+                    dataIndex="totalPrice"
+                    key="totalPrice"
+                  />
+                  <Column
+                    title="isPaid"
+                    dataIndex="isPaid"
+                    key="isPaid"
+                    render={(isPaid) => (
+                      <span>
+                        {isPaid ? (
+                          <div className="admin">YES</div>
+                        ) : (
+                          <div className="notadmin">NO</div>
+                        )}
+                      </span>
+                    )}
+                  />
+                  <Column title="paymentMethod" dataIndex="paymentMethod" />
+                  <Column title="country" dataIndex="country" key="country" />
+                </Table>
+              )
+            )
           ) : loading ? (
             <Skeleton active />
           ) : error ? (
@@ -479,11 +613,17 @@ const Profile = ({ history }) => {
                             className="btn-delete"
                             type="danger"
                             shape="round"
-                            onClick={() => handleDeleteCrs(_id)}
                             icon={<DeleteOutlined />}
                             size={size}
                           >
-                            delete
+                            <Popconfirm
+                              title="Are you sure to delete this Course?"
+                              onConfirm={() => handleDeleteCrs(_id)}
+                              okText="Yes"
+                              cancelText="No"
+                            >
+                              delete
+                            </Popconfirm>
                           </Button>
                         </span>
                       )}

@@ -14,6 +14,17 @@ const coursesCtrl = {
       return res.status(500).json({ msg: err.message });
     }
   },
+  getAllcourses: async (req, res) => {
+    try {
+      const courses = await Courses.find({});
+      res.json(courses);
+    } catch (err) {
+      console.log("-----------All course error-------------");
+
+      console.log(err);
+      return res.status(500).json({ msg: err.message });
+    }
+  },
   getcoursespurshased: async (req, res) => {
     try {
       const numcourses = 5;
@@ -161,7 +172,7 @@ const coursesCtrl = {
   },
   getcoursesSearched: async (req, res) => {
     try {
-      let numcourses = 8
+      let numcourses = 8;
       const page = Number(req.query.page) || 1;
       const keyword = req.query.keyword
         ? {
@@ -173,11 +184,11 @@ const coursesCtrl = {
         : {};
       console.log("Keywooooooord query", req.query.keyword);
       const courses = await Courses.find({ ...keyword })
-      .limit(numcourses)
-      .skip(numcourses * (page - 1))
-      .populate("user", "id name");
+        .limit(numcourses)
+        .skip(numcourses * (page - 1))
+        .populate("user", "id name");
       const totalcourses = await Courses.countDocuments({ ...keyword });
-        res.json({ courses, totalcourses });
+      res.json({ courses, totalcourses });
     } catch (error) {
       console.log("-----------course Search error---------");
       console.log(error);
@@ -298,17 +309,17 @@ const coursesCtrl = {
         .sort("-rating")
         .limit(6);
       const sub = courses.map((course) => course.subcategorys);
-    
-      console.log("Sub",sub);
+
+      console.log("Sub", sub);
       const flat = sub.flat();
-      console.log("Flaat",flat);
+      console.log("Flaat", flat);
       flat.forEach((i) => {
         if (
           !(subcategorys.includes(i) || subcategorys.includes(i.toLowerCase()))
         )
           subcategorys.push(i);
       });
-      console.log("subcategorys",subcategorys);
+      console.log("subcategorys", subcategorys);
       res.json(subcategorys);
     } catch (err) {
       console.log(err);
@@ -317,26 +328,26 @@ const coursesCtrl = {
   },
   getcoursesbyrate: async (req, res) => {
     try {
-      const Rate = req.body.rating
-      console.log("req.body.rating",Rate);
+      const Rate = req.body.rating;
+      console.log("req.body.rating", Rate);
       const Topic = req.params.Topic
-      ? {
-        category: {
-          $regex: req.params.Topic,
-          $options: "i",
-        },
-      }
-      : {};
-      console.log("req.body.topisc",Topic);
-    const courses = await Courses.find({ ...Topic })
-      .sort("rating")
-      .limit(6);
+        ? {
+            category: {
+              $regex: req.params.Topic,
+              $options: "i",
+            },
+          }
+        : {};
+      console.log("req.body.topisc", Topic);
+      const courses = await Courses.find({ ...Topic })
+        .sort("rating")
+        .limit(6);
       //  console.log("Courses by topic",courses);
 
-    const crsFiltred = courses.filter((course) => course.rating >= Rate);
-    console.log("crsFilter",crsFiltred);
-      const totalcourses = crsFiltred.length
-      res.json({crsFiltred,totalcourses});
+      const crsFiltred = courses.filter((course) => course.rating >= Rate);
+      console.log("crsFilter", crsFiltred);
+      const totalcourses = crsFiltred.length;
+      res.json({ crsFiltred, totalcourses });
     } catch (err) {
       console.log(err);
       return res.status(500).json({ msg: err.message });
@@ -344,28 +355,30 @@ const coursesCtrl = {
   },
   getcoursesbyprice: async (req, res) => {
     try {
-      let courses = []
-      const Price = req.body.price
-      console.log("req.body.price",Price);
+      let courses = [];
+      const Price = req.body.price;
+      console.log("req.body.price", Price);
       const Topic = req.params.Topic
-      ? {
-        category: {
-          $regex: req.params.Topic,
-          $options: "i",
-        },
-      }
-    : {};
-      console.log("req.body.topic",Topic);
-    courses = await Courses.find({ ...Topic })
-      .sort("rating")
-      .limit(6);
+        ? {
+            category: {
+              $regex: req.params.Topic,
+              $options: "i",
+            },
+          }
+        : {};
+      console.log("req.body.topic", Topic);
+      courses = await Courses.find({ ...Topic })
+        .sort("rating")
+        .limit(6);
       //  console.log("Courses by topic",courses);
-      if(Price == 1){
-        courses =  await Courses.find( {$and: [{ ...Topic }, {price:{$gte:Price}}]});
-      }else {
-       courses =  await Courses.find({price:{$eq:Price}});
+      if (Price == 1) {
+        courses = await Courses.find({
+          $and: [{ ...Topic }, { price: { $gte: Price } }],
+        });
+      } else {
+        courses = await Courses.find({ price: { $eq: Price } });
       }
-      res.json(courses)
+      res.json(courses);
     } catch (err) {
       console.log(err);
       return res.status(500).json({ msg: err.message });
@@ -385,8 +398,8 @@ const coursesCtrl = {
       const numcourses = 8;
 
       const courses = await Courses.find({ ...Subcg })
-      .limit(numcourses)
-      .skip(numcourses * (page - 1));
+        .limit(numcourses)
+        .skip(numcourses * (page - 1));
       const totalcourses = await Courses.countDocuments({ ...Subcg });
       res.json({ courses, totalcourses });
     } catch (err) {

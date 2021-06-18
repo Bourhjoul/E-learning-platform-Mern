@@ -41,8 +41,15 @@ import {
   GET_SUBCATEGORYS_REQUEST,
   GET_SUBCATEGORYS_SUCCESS,
   GET_SUBCATEGORYS_FAIL,
-  GET_CRSRATING_SUCCESS,GET_CRSRATING_REQUEST,GET_CRSRATING_FAIL,
-  GET_CRSPRICE_SUCCESS,GET_CRSPRICE_REQUEST,GET_CRSPRICE_FAIL
+  GET_CRSRATING_SUCCESS,
+  GET_CRSRATING_REQUEST,
+  GET_CRSRATING_FAIL,
+  GET_CRSPRICE_SUCCESS,
+  GET_CRSPRICE_REQUEST,
+  GET_CRSPRICE_FAIL,
+  ALL_COURSES_REQUEST,
+  ALL_COURSES_SUCCESS,
+  ALL_COURSES_FAIL,
 } from "../constants/courseconstants";
 import axios from "axios";
 
@@ -80,7 +87,40 @@ export const listMyCourses = () => async (dispatch, getState) => {
     });
   }
 };
+export const listAllCourses = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: ALL_COURSES_REQUEST,
+    });
+    console.log("before token");
 
+    const { token } = getState();
+    console.log("after token");
+
+    console.log(token);
+    const config = {
+      headers: {
+        Authorization: token,
+      },
+    };
+
+    const { data } = await axios.get(`/courses/ALLcourses`, config);
+    console.log(data);
+    dispatch({
+      type: ALL_COURSES_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    console.log(error);
+    dispatch({
+      type: ALL_COURSES_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
 export const Createcoursereview =
   (id, review) => async (dispatch, getState) => {
     try {
@@ -233,7 +273,9 @@ export const Listcoursesbypobularity =
 export const ListcoursesSearched = (keyword, page) => async (dispatch) => {
   try {
     dispatch({ type: LIST_COURSES_SEARCH_REQUEST });
-    const { data } = await axios.get(`/courses/searched?keyword=${keyword}&page=${page}`);
+    const { data } = await axios.get(
+      `/courses/searched?keyword=${keyword}&page=${page}`
+    );
     dispatch({ type: LIST_COURSES_SEARCH_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -361,13 +403,12 @@ export const GetSubCategorys = (Topic) => async (dispatch) => {
     });
   }
 };
-export const LisCoursesbyrating = (Topic,rating) => async (dispatch) => {
+export const LisCoursesbyrating = (Topic, rating) => async (dispatch) => {
   try {
-    dispatch({ type: GET_CRSRATING_REQUEST});
-    const { data } = await axios.post(`/courses/rate/${Topic}`,rating);
-    console.log("Action",rating);
+    dispatch({ type: GET_CRSRATING_REQUEST });
+    const { data } = await axios.post(`/courses/rate/${Topic}`, rating);
+    console.log("Action", rating);
     dispatch({ type: GET_CRSRATING_SUCCESS, payload: data });
-    
   } catch (error) {
     dispatch({
       type: GET_CRSRATING_FAIL,
@@ -377,14 +418,13 @@ export const LisCoursesbyrating = (Topic,rating) => async (dispatch) => {
           : error.message,
     });
   }
-}
-export const ListCoursesbyprice = (Topic,price) => async (dispatch) => {
+};
+export const ListCoursesbyprice = (Topic, price) => async (dispatch) => {
   try {
-    dispatch({ type: GET_CRSPRICE_REQUEST});
-    const { data } = await axios.post(`/courses/price/${Topic}`,price);
-    console.log("Action",price);
+    dispatch({ type: GET_CRSPRICE_REQUEST });
+    const { data } = await axios.post(`/courses/price/${Topic}`, price);
+    console.log("Action", price);
     dispatch({ type: GET_CRSPRICE_SUCCESS, payload: data });
-    
   } catch (error) {
     dispatch({
       type: GET_CRSPRICE_FAIL,
@@ -394,4 +434,4 @@ export const ListCoursesbyprice = (Topic,price) => async (dispatch) => {
           : error.message,
     });
   }
-}
+};

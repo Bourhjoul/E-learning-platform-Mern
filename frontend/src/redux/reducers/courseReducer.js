@@ -51,10 +51,42 @@ import {
   LIST_BYSUBCATEGORYS_REQUEST,
   LIST_BYSUBCATEGORYS_SUCCESS,
   LIST_BYSUBCATEGORYS_FAIL,
-  GET_CRSRATING_SUCCESS,GET_CRSRATING_REQUEST,GET_CRSRATING_FAIL,GET_CRSRATING_RESET,
-  GET_CRSPRICE_SUCCESS,GET_CRSPRICE_REQUEST,GET_CRSPRICE_FAIL,GET_CRSPRICE_RESET
+  GET_CRSRATING_SUCCESS,
+  GET_CRSRATING_REQUEST,
+  GET_CRSRATING_FAIL,
+  GET_CRSRATING_RESET,
+  GET_CRSPRICE_SUCCESS,
+  GET_CRSPRICE_REQUEST,
+  GET_CRSPRICE_FAIL,
+  GET_CRSPRICE_RESET,
+  ALL_COURSES_REQUEST,
+  ALL_COURSES_SUCCESS,
+  ALL_COURSES_FAIL,
+  ALL_COURSES_RESET,
 } from "../constants/courseconstants";
 
+export const ListAllCoursesReducer = (state = { courses: [] }, action) => {
+  switch (action.type) {
+    case ALL_COURSES_REQUEST:
+      return {
+        loading: true,
+      };
+    case ALL_COURSES_SUCCESS:
+      return {
+        loading: false,
+        courses: action.payload,
+      };
+    case ALL_COURSES_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    case ALL_COURSES_RESET:
+      return { courses: [] };
+    default:
+      return state;
+  }
+};
 export const ListMyCoursesReducer = (state = { courses: [] }, action) => {
   switch (action.type) {
     case MY_COURSES_REQUEST:
@@ -77,7 +109,6 @@ export const ListMyCoursesReducer = (state = { courses: [] }, action) => {
       return state;
   }
 };
-
 export const Createcoursereviewreducer = (state = {}, action) => {
   switch (action.type) {
     case CREATE_REVIEW_REQUEST:
@@ -245,7 +276,8 @@ export const ListNewCoursesReducer = (state = { courses: [] }, action) => {
   }
 };
 
-export const GetCourseDetailsReducer = (state = {
+export const GetCourseDetailsReducer = (
+  state = {
     course: {
       subcategorys: [],
       reviews: [],
@@ -358,7 +390,7 @@ export const GetCoursesbysubcg = (state = { courses: [] }, action) => {
       return state;
   }
 };
-export const ListCoursesbyrating = (state = {courses: [] }, action) => {
+export const ListCoursesbyrating = (state = { courses: [] }, action) => {
   switch (action.type) {
     case GET_CRSRATING_REQUEST:
       return { loading: true };
@@ -370,25 +402,25 @@ export const ListCoursesbyrating = (state = {courses: [] }, action) => {
       };
     case GET_CRSRATING_FAIL:
       return { loading: false, error: action.payload };
-      case GET_CRSRATING_RESET:
-        return {};
+    case GET_CRSRATING_RESET:
+      return {};
     default:
       return state;
   }
 };
-export const ListCoursesbyprice = (state = {courses: [] }, action) => {
+export const ListCoursesbyprice = (state = { courses: [] }, action) => {
   switch (action.type) {
     case GET_CRSPRICE_REQUEST:
       return { loading: true };
     case GET_CRSPRICE_SUCCESS:
       return {
         loading: false,
-        courses: action.payload
+        courses: action.payload,
       };
     case GET_CRSPRICE_FAIL:
       return { loading: false, error: action.payload };
-      case GET_CRSPRICE_RESET:
-        return {};
+    case GET_CRSPRICE_RESET:
+      return {};
     default:
       return state;
   }

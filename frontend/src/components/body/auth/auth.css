@@ -193,6 +193,10 @@ a:hover {
 }
 
 @media screen and (max-width: 1000px) {
+  .container_login {
+    /* display: block; */
+    margin-bottom: 80%;
+  }
   form {
     width: 290px;
   }

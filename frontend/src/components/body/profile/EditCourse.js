@@ -207,16 +207,26 @@ const EditCourse = ({ history }) => {
             <div>
               <div className="inner-wrapper">
                 <div className="inner-wrapper-image">
-                  <Button
-                    className="btn-back"
-                    onClick={() => history.goBack()}
-                    size={size}
-                    type="primary"
-                    shape="round"
-                    icon={<ArrowLeftOutlined />}
-                  >
-                    Go Back
-                  </Button>
+                  <div className="btn-crs">
+                    <Button
+                      className="btn-back"
+                      onClick={() => history.goBack()}
+                      size={size}
+                      type="primary"
+                      shape="round"
+                      icon={<ArrowLeftOutlined />}
+                    >
+                      Go Back
+                    </Button>
+                    <Button
+                      shape="round"
+                      onClick={handleUpdate}
+                      size="middle"
+                      type="primary"
+                    >
+                      Update <RetweetOutlined />
+                    </Button>
+                  </div>
                   {loadingImage && (
                     <div className="loading">
                       <HashLoader
@@ -341,7 +351,6 @@ const EditCourse = ({ history }) => {
                             ></Button>
                           </div>
                         ))}
-                        <div>{JSON.stringify(audience, null, 2)}</div>
                       </TabPane>
                       <TabPane tab="Goals" key="2">
                         <h2>Edit Goals</h2>
@@ -378,7 +387,6 @@ const EditCourse = ({ history }) => {
                             ></Button>
                           </div>
                         ))}
-                        <div>{JSON.stringify(goals, null, 2)}</div>
                       </TabPane>
                       <TabPane tab="Prerequisites" key="3">
                         <h2>Edit Prerequisites</h2>
@@ -422,7 +430,6 @@ const EditCourse = ({ history }) => {
                             ></Button>
                           </div>
                         ))}
-                        <div>{JSON.stringify(Prerequisites, null, 2)}</div>
                       </TabPane>
                       <TabPane tab="subcategorys" key="4">
                         <h2>Edit SubCategorys</h2>
@@ -464,124 +471,113 @@ const EditCourse = ({ history }) => {
                             ></Button>
                           </div>
                         ))}
-                        <div>{JSON.stringify(subcategorys, null, 2)}</div>
                       </TabPane>
-                    </Tabs>
-                    <div className="btn-crs">
-                      <Button
-                        shape="round"
-                        onClick={handleUpdate}
-                        size="middle"
-                        type="primary"
-                      >
-                        Update <RetweetOutlined />
-                      </Button>
-                    </div>
-                  </div>
-                  <div className="form-group-right">
-                    <Button
-                      className="btn-add-item"
-                      type="primary"
-                      onClick={() => {
-                        setContent((currentContent) => [
-                          ...currentContent,
-                          {
-                            name: "",
-                            lectures: [
-                              { link: "", name: " " },
-                              { link: "", name: " " },
-                              { link: "", name: " " },
-                            ],
-                          },
-                        ]);
-                      }}
-                    >
-                      Add New Content
-                    </Button>
-
-                    <Tabs defaultActiveKey="1">
-                      {content &&
-                        content.map((cont, index) => (
-                          <TabPane
-                            tab={`Content :${index + 1}`}
-                            key={index + 1}
+                      <TabPane tab="content" key="5">
+                        <div className="form-group-right">
+                          <Button
+                            className="btn-add-item"
+                            type="primary"
+                            onClick={() => {
+                              setContent((currentContent) => [
+                                ...currentContent,
+                                {
+                                  name: "",
+                                  lectures: [
+                                    { link: "", name: " " },
+                                    { link: "", name: " " },
+                                    { link: "", name: " " },
+                                  ],
+                                },
+                              ]);
+                            }}
                           >
-                            <div key={cont._id}>
-                              <h1>Content {index + 1} </h1>
-                              <Button
-                                className="btn-add-item"
-                                icon={<DeleteOutlined />}
-                                type="danger"
-                                onClick={() => {
-                                  setContent((currentContent) =>
-                                    currentContent.filter(
-                                      (x) => x._id !== cont._id
-                                    )
-                                  );
-                                }}
-                              >
-                                Delete the Content
-                              </Button>
-                              <input
-                                placeholder="Name"
-                                defaultValue={cont.name}
-                                required
-                                onChange={(e) => {
-                                  setContent((currentContent) =>
-                                    produce(currentContent, (v) => {
-                                      v[index].name = e.target.value;
-                                    })
-                                  );
-                                }}
-                              />
+                            Add New Content
+                          </Button>
 
-                              <div>{JSON.stringify(cont, null, 2)}</div>
+                          <Tabs defaultActiveKey="1">
+                            {content &&
+                              content.map((cont, index) => (
+                                <TabPane
+                                  tab={`Content :${index + 1}`}
+                                  key={index + 1}
+                                >
+                                  <div key={cont._id}>
+                                    <h1>Content {index + 1} </h1>
+                                    <Button
+                                      className="btn-add-item"
+                                      icon={<DeleteOutlined />}
+                                      type="danger"
+                                      onClick={() => {
+                                        setContent((currentContent) =>
+                                          currentContent.filter(
+                                            (x) => x._id !== cont._id
+                                          )
+                                        );
+                                      }}
+                                    >
+                                      Delete the Content
+                                    </Button>
+                                    <input
+                                      placeholder="Name"
+                                      defaultValue={cont.name}
+                                      required
+                                      onChange={(e) => {
+                                        setContent((currentContent) =>
+                                          produce(currentContent, (v) => {
+                                            v[index].name = e.target.value;
+                                          })
+                                        );
+                                      }}
+                                    />
 
-                              <Button
-                                className="btn-add-item"
-                                type="primary"
-                                onClick={() => {
-                                  handleaddlect(cont, index);
-                                  // cont.lectures = newlects;
-                                  setLoadingAddLect(!LoadingAddLect);
-                                }}
-                              >
-                                add Lect
-                              </Button>
-                              {cont.lectures.map((lect, indexlec) => (
-                                <div key={lect._id}>
-                                  <h1>Lecture {indexlec + 1} </h1>
-                                  <input
-                                    placeholder="Name"
-                                    defaultValue={lect.name}
-                                    onChange={(e) => {
-                                      setContent((currentContent) =>
-                                        produce(currentContent, (v) => {
-                                          v[index].lectures[indexlec].name =
-                                            e.target.value;
-                                        })
-                                      );
-                                    }}
-                                  />
-                                  <input
-                                    placeholder="Link"
-                                    defaultValue={lect.link}
-                                    onChange={(e) => {
-                                      setContent((currentContent) =>
-                                        produce(currentContent, (v) => {
-                                          v[index].lectures[indexlec].link =
-                                            e.target.value;
-                                        })
-                                      );
-                                    }}
-                                  />
-
-                                  <div>{JSON.stringify(lect, null, 2)}</div>
-                                </div>
+                                    <Button
+                                      className="btn-add-item"
+                                      type="primary"
+                                      onClick={() => {
+                                        handleaddlect(cont, index);
+                                        // cont.lectures = newlects;
+                                        setLoadingAddLect(!LoadingAddLect);
+                                      }}
+                                    >
+                                      add Lect
+                                    </Button>
+                                    {cont.lectures.map((lect, indexlec) => (
+                                      <div key={lect._id}>
+                                        <h1>Lecture {indexlec + 1} </h1>
+                                        <input
+                                          placeholder="Name"
+                                          defaultValue={lect.name}
+                                          onChange={(e) => {
+                                            setContent((currentContent) =>
+                                              produce(currentContent, (v) => {
+                                                v[index].lectures[
+                                                  indexlec
+                                                ].name = e.target.value;
+                                              })
+                                            );
+                                          }}
+                                        />
+                                        <input
+                                          placeholder="Link"
+                                          defaultValue={lect.link}
+                                          onChange={(e) => {
+                                            setContent((currentContent) =>
+                                              produce(currentContent, (v) => {
+                                                v[index].lectures[
+                                                  indexlec
+                                                ].link = e.target.value;
+                                              })
+                                            );
+                                          }}
+                                        />
+                                      </div>
+                                    ))}
+                                  </div>
+                                </TabPane>
                               ))}
-                            </div>
-                          </TabPane>
-                        ))}
+                          </Tabs>
+                        </div>
+                      </TabPane>
                     </Tabs>
                   </div>
                 </div>
