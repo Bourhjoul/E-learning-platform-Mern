@@ -23,6 +23,20 @@
   "homepage": "https://github.com/Bourhjoul/E-learning-platform-Mern#readme",
   "dependencies": {
     "concurrently": "^6.1.0",
-    "dotenv": "^10.0.0"
+    "bcrypt": "^5.0.1",
+    "cloudinary": "^1.25.1",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^9.0.2",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "googleapis": "^73.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.8",
+    "node-fetch": "^2.6.1",
+    "nodemailer": "^6.6.0",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.3.0",
+    "nodemon": "^2.0.7"
   }
 }
