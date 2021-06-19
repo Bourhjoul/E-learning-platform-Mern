@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Image, Input } from "antd";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { FiUser, AiFillLock, MdEmail } from "react-icons/all";
 
 import axios from "axios";
 import {
@@ -161,7 +162,7 @@ const Register = () => {
               {success && showSuccessMsg(success)}
               <div className="input-div one">
                 <div className="i">
-                  <i className="fas fa-user" />
+                  <FiUser color="#0f6ab9" />
                 </div>
                 <div className="div">
                   <input
@@ -176,7 +177,7 @@ const Register = () => {
               </div>
               <div className="input-div one">
                 <div className="i">
-                  <i className="fas fa-envelope" />
+                  <MdEmail color="#0f6ab9" />
                 </div>
                 <div className="div">
                   <input
@@ -191,7 +192,7 @@ const Register = () => {
               </div>
               <div className="input-div pass">
                 <div className="i">
-                  <i className="fas fa-lock" />
+                  <AiFillLock color="#0f6ab9" />
                 </div>
                 <div className="div">
                   <input
@@ -206,7 +207,7 @@ const Register = () => {
               </div>
               <div className="input-div pass">
                 <div className="i">
-                  <i className="fas fa-lock" />
+                  <AiFillLock color="#0f6ab9" />
                 </div>
                 <div className="div">
                   <input
