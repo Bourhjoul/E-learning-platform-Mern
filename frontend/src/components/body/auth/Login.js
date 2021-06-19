@@ -86,73 +86,68 @@ const Login = () => {
   });
 
   return (
-    <>
-      <Helmet>
-        <title>Login</title>
-      </Helmet>
-      <div className="container_login">
-        <img className="wave" src="https://i.imgur.com/FKKMfGt.png" />
-        <div className="container">
-          <div className="img">
-            <Image src="https://i.imgur.com/gUMFS8G.png" preview={false} />
-          </div>
-          <div className="login-content">
-            <form onSubmit={handleSubmit}>
-              <Image src="https://svgshare.com/i/XJn.svg " preview={false} />
-              <h2 className="title">Welcome</h2>
-              {err && showErrMsg(err)}
-              {success && showSuccessMsg(success)}
-              <div className="input-div one">
-                <div className="i">
-                  <i className="fas fa-user" />
-                </div>
-                <div className="div">
-                  <input
-                    name="email"
-                    value={email}
-                    type="text"
-                    className="input"
-                    placeholder="Email"
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
+    <div className="container_login">
+      <img className="wave" src="https://i.imgur.com/FKKMfGt.png" />
+      <div className="container">
+        <div className="img">
+          <Image src="https://i.imgur.com/gUMFS8G.png" preview={false} />
+        </div>
+        <div className="login-content">
+          <form onSubmit={handleSubmit}>
+            <Image src="https://svgshare.com/i/XJn.svg " preview={false} />
+            <h2 className="title">Welcome</h2>
+            {err && showErrMsg(err)}
+            {success && showSuccessMsg(success)}
+            <div className="input-div one">
+              <div className="i">
+                <i className="fas fa-user" />
               </div>
+              <div className="div">
+                <input
+                  name="email"
+                  value={email}
+                  type="text"
+                  className="input"
+                  placeholder="Email"
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
 
-              <div className="input-div pass">
-                <div className="i">
-                  <i className="fas fa-lock" />
-                </div>
-                <div className="div">
-                  <input
-                    name="password"
-                    value={password}
-                    type="password"
-                    className="input"
-                    placeholder="Password"
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
+            <div className="input-div pass">
+              <div className="i">
+                <i className="fas fa-lock" />
               </div>
-              <Link className="forgot" to="/forgot_password">
-                Forgot Password?
+              <div className="div">
+                <input
+                  name="password"
+                  value={password}
+                  type="password"
+                  className="input"
+                  placeholder="Password"
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+            <Link className="forgot" to="/forgot_password">
+              Forgot Password?
+            </Link>
+            <button type="submit" className="btn">
+              Login
+            </button>
+            <p>
+              New Visiter?{" "}
+              <Link className="register" to="/register">
+                Register
+                <BiRightArrowAlt />
               </Link>
-              <button type="submit" className="btn">
-                Login
-              </button>
-              <p>
-                New Visiter?{" "}
-                <Link className="register" to="/register">
-                  Register
-                  <BiRightArrowAlt />
-                </Link>
-              </p>
-            </form>
-          </div>
+            </p>
+          </form>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

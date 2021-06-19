@@ -255,6 +255,7 @@ const Navbar = ({ match, history }) => {
                 Become a Teacher
               </Button>
             </Link>
+            <br />
             {isLogged ? (
               userLinkDrawer()
             ) : (
@@ -266,6 +267,7 @@ const Navbar = ({ match, history }) => {
                 </Link>
               </button>
             )}
+            <br />
             <h4>Most visited :</h4> <hr />
             {content}
           </div>

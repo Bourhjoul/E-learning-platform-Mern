@@ -5,7 +5,7 @@
   font-weight: 600;
 }
 .container_login {
-  display: inline-block;
+  display: table;
 }
 .wave {
   position: fixed;
@@ -195,7 +195,7 @@ a:hover {
 @media screen and (max-width: 1000px) {
   .container_login {
     /* display: block; */
-    margin-bottom: 80%;
+    /* margin-bottom: 80%; */
   }
   form {
     width: 290px;
@@ -214,6 +214,7 @@ a:hover {
 @media screen and (max-width: 900px) {
   .container {
     grid-template-columns: 1fr;
+    display: table;
   }
 
   .img {

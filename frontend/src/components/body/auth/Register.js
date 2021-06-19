@@ -138,11 +138,11 @@ const Register = () => {
   }, [isTeacher]);
 
   return (
-    <>
+    <div className="container_login">
       <Helmet>
         <title>Sign Up</title>
       </Helmet>
-      <div className="container_login">
+      <div>
         <img
           className="wave"
           alt="wave"
@@ -248,7 +248,7 @@ const Register = () => {
                 Register
               </button>
               <p>
-                Already an account?{" "}
+                Already have an account?{" "}
                 <Link className="register" to="/login">
                   Login
                 </Link>
@@ -257,7 +257,7 @@ const Register = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
