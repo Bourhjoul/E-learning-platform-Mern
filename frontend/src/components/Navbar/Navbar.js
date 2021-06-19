@@ -130,6 +130,18 @@ const Navbar = ({ match, history }) => {
     </div>
   );
   useEffect(() => {
+    const firstLogin = localStorage.getItem("firstLogin");
+    if (firstLogin) {
+      const getToken = async () => {
+        // make post request : hey db get me some data and return it to me
+        const res = await axios.post("/user/refresh_token", null);
+        dispatch({
+          type: "GET_TOKEN",
+          payload: res.data.access_token,
+        });
+      };
+      getToken();
+    }
     if (token) {
       const getUser = () => {
         dispatch(dispatchLogin());
