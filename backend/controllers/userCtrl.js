@@ -58,7 +58,7 @@ const userCtrl = {
       }
       const activation_token = createActivationToken(newUser);
 
-      const url = `${CLIENT_URL}/user/activate/${activation_token}`;
+      const url = `${CLIENT_URL}user/activate/${activation_token}`;
       sendMail(email, url, name, "Verify your email address");
 
       res.json({
@@ -171,9 +171,9 @@ const userCtrl = {
         return res.status(400).json({ msg: "That Email doesn't exist." });
 
       const access_token = createAccessToken({ id: existingUser._id });
-      const url = `${CLIENT_URL}/user/reset/${access_token}`;
+      const url = `${CLIENT_URL}user/reset/${access_token}`;
 
-      sendMail(email, url, "Reset your password");
+      sendMail(email, url, existingUser.name, "Reset your password");
       res.json({
         msg: "Re-send the password, please check your email inbox or spam.",
       }); //seccess

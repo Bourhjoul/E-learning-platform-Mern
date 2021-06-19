@@ -19,6 +19,7 @@ const ActivationEmail = () => {
           const res = await axios.post("/user/activation", {
             activation_token,
           });
+          console.log(res);
           setSuccess(res.data.msg);
         } catch (error) {
           err.response.data.msg && setErr(err.response.data.msg);
@@ -32,7 +33,7 @@ const ActivationEmail = () => {
       <Helmet>
         <title>Activate your account</title>
       </Helmet>
-      <div>
+      <div className="activate">
         {err && showErrMsg(err)}
         {success && showSuccessMsg(success)}
       </div>
