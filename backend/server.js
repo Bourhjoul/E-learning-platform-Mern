@@ -28,8 +28,8 @@ app.use((err, req, res, next) => {
     },
   });
 });
+__dirname = path.resolve();
 console.log(__dirname);
-
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/frontend/build")));
   app.get("*", (req, res) =>
