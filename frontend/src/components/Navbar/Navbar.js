@@ -13,14 +13,7 @@ import useWindowDimensions from "../../useWindowDimensions";
 import axios from "axios";
 import PropagateLoader from "react-spinners/PropagateLoader";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  dispatchGetUser,
-  dispatchLogin,
-  fetchUser,
-} from "../../redux/actions/authAction";
 const Navbar = ({ match, history }) => {
-  const dispatch = useDispatch();
-
   const { height, width } = useWindowDimensions();
   const [showsearch, setshowsearch] = useState(false);
   const [keyword, setKeyword] = useState("");
@@ -28,7 +21,6 @@ const Navbar = ({ match, history }) => {
   const { Search } = Input;
   const auth = useSelector((state) => state.auth);
   const { user, isLogged, loading } = auth;
-  const token = useSelector((state) => state.token);
 
   const cartReducer = useSelector((state) => state.cartReducer);
   const { cartItems } = cartReducer;
@@ -123,35 +115,9 @@ const Navbar = ({ match, history }) => {
       <br />
       <Link to="/coursesfilter/business">Business</Link>
       <br />
-      <Link>Cg 1</Link>
-      <br />
-      <Link>Cg 1</Link>
-      <br />
     </div>
   );
   useEffect(() => {
-    const firstLogin = localStorage.getItem("firstLogin");
-    if (firstLogin) {
-      const getToken = async () => {
-        // make post request : hey db get me some data and return it to me
-        const res = await axios.post("/user/refresh_token", null);
-        dispatch({
-          type: "GET_TOKEN",
-          payload: res.data.access_token,
-        });
-      };
-      getToken();
-    }
-    if (token) {
-      const getUser = () => {
-        dispatch(dispatchLogin());
-        //Get user infor
-        return fetchUser(token).then((res) => {
-          dispatch(dispatchGetUser(res));
-        });
-      };
-      getUser();
-    }
     if (width < 788) {
       setshowicons(true);
     } else {
@@ -159,7 +125,7 @@ const Navbar = ({ match, history }) => {
       setshowicons(false);
     }
     return () => {};
-  }, [width, auth.isLogged, token, dispatch]);
+  }, [width]);
   const Activateburger = () => {
     showDrawer();
   };

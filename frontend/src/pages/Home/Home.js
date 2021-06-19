@@ -2,6 +2,7 @@ import { Card } from "antd";
 import React, { useEffect, useRef } from "react";
 import { Empty } from "antd";
 import { Helmet } from "react-helmet";
+import axios from "axios";
 
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
@@ -24,7 +25,6 @@ import Error from "../../components/utils/Error";
 
 const Home = () => {
   const dispatch = useDispatch();
-
   const ListCoursesReducer = useSelector((state) => state.ListCoursesReducer);
   const { loading, courses, error } = ListCoursesReducer;
   const ListCoursesbyPobularityReducer = useSelector(
@@ -36,6 +36,8 @@ const Home = () => {
     error: errorpobular,
   } = ListCoursesbyPobularityReducer;
   const menuref = useRef(null);
+  const token = useSelector((state) => state.token);
+  const auth = useSelector((state) => state.auth);
   const pobularref = useRef(null);
   var settings = {
     dots: false,
@@ -76,9 +78,28 @@ const Home = () => {
 
   const { TabPane } = Tabs;
   useEffect(() => {
+    const getToken = async () => {
+      // make post request : hey db get me some data and return it to me
+      const res = await axios.post("/user/refresh_token", null);
+      dispatch({
+        type: "GET_TOKEN",
+        payload: res.data.access_token,
+      });
+    };
+    getToken();
+    if (token) {
+      const getUser = () => {
+        dispatch(dispatchLogin());
+        //Get user infor
+        return fetchUser(token).then((res) => {
+          dispatch(dispatchGetUser(res));
+        });
+      };
+      getUser();
+    }
     dispatch(ListcoursesbyTopic("Development"));
     dispatch(Listcoursesbypobularity());
-  }, [dispatch]);
+  }, [auth.isLogged, token, dispatch]);
   const changetopic = (key) => {
     switch (key) {
       case "1":

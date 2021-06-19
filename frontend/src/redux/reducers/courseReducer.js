@@ -284,7 +284,7 @@ export const GetCourseDetailsReducer = (
       audience: [],
       goals: [],
       students: [],
-      content: [{}],
+      content: [],
       Prerequisites: [],
       user: {},
     },
@@ -309,7 +309,7 @@ export const GetCourseDetailsReducer = (
         error: action.payload,
       };
     case LIST_COURSE_DETAILS_RESET:
-      return { course: [] };
+      return { course: {} };
     default:
       return state;
   }
