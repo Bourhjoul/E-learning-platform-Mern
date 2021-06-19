@@ -86,12 +86,10 @@ const Home = () => {
         });
       };
       getUser();
-      dispatch(ListcoursesbyTopic("Development"));
-      dispatch(Listcoursesbypobularity());
     }
-
-    
-  }, [auth.isLogged, token,dispatch])
+    dispatch(ListcoursesbyTopic("Development"));
+    dispatch(Listcoursesbypobularity());
+  }, [auth.isLogged, token, dispatch]);
   const changetopic = (key) => {
     switch (key) {
       case "1":
