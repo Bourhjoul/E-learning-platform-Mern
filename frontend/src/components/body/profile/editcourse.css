@@ -127,7 +127,7 @@ textarea {
 .form-group-right {
   text-align: center;
   overflow-y: auto;
-  margin-bottom: 20px;
+  margin-bottom: 20%;
 }
 
 .ant-tabs-content-holder {
