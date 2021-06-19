@@ -119,7 +119,9 @@ const userCtrl = {
     try {
       //http://localhost:5000/user/login
       const { email, password } = req.body;
-      const existingUser = await Users.findOne({ email });
+      const existingUser = await Users.findOne({
+        email: { $regex: email, $options: "i" },
+      });
       if (!existingUser)
         return res.status(400).json({ msg: "That Email doesn't exist." });
       const isPasswordCorrect = await bcrypt.compare(
