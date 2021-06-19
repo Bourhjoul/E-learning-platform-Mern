@@ -1,11 +1,10 @@
 const path = require("path");
-const dotenv = require("dotenv");
+require("dotenv").config({ silent: process.env.NODE_ENV === "production" });
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const fileUpoad = require("express-fileupload");
-const res = dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(cors());
