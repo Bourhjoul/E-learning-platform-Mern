@@ -24,6 +24,7 @@ import Error from "../../components/utils/Error";
 
 const Home = () => {
   const dispatch = useDispatch();
+
   const ListCoursesReducer = useSelector((state) => state.ListCoursesReducer);
   const { loading, courses, error } = ListCoursesReducer;
   const ListCoursesbyPobularityReducer = useSelector(
@@ -35,8 +36,6 @@ const Home = () => {
     error: errorpobular,
   } = ListCoursesbyPobularityReducer;
   const menuref = useRef(null);
-  const token = useSelector((state) => state.token);
-  const auth = useSelector((state) => state.auth);
   const pobularref = useRef(null);
   var settings = {
     dots: false,
@@ -77,19 +76,9 @@ const Home = () => {
 
   const { TabPane } = Tabs;
   useEffect(() => {
-    if (token) {
-      const getUser = () => {
-        dispatch(dispatchLogin());
-        //Get user infor
-        return fetchUser(token).then((res) => {
-          dispatch(dispatchGetUser(res));
-        });
-      };
-      getUser();
-    }
     dispatch(ListcoursesbyTopic("Development"));
     dispatch(Listcoursesbypobularity());
-  }, [auth.isLogged, token, dispatch]);
+  }, [dispatch]);
   const changetopic = (key) => {
     switch (key) {
       case "1":

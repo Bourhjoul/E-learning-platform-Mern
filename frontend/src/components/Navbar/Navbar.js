@@ -13,7 +13,14 @@ import useWindowDimensions from "../../useWindowDimensions";
 import axios from "axios";
 import PropagateLoader from "react-spinners/PropagateLoader";
 import { useSelector, useDispatch } from "react-redux";
+import {
+  dispatchGetUser,
+  dispatchLogin,
+  fetchUser,
+} from "../../redux/actions/authAction";
 const Navbar = ({ match, history }) => {
+  const dispatch = useDispatch();
+
   const { height, width } = useWindowDimensions();
   const [showsearch, setshowsearch] = useState(false);
   const [keyword, setKeyword] = useState("");
@@ -21,9 +28,10 @@ const Navbar = ({ match, history }) => {
   const { Search } = Input;
   const auth = useSelector((state) => state.auth);
   const { user, isLogged, loading } = auth;
+  const token = useSelector((state) => state.token);
 
-  const cartReducer = useSelector(state => state.cartReducer)
-  const {cartItems} = cartReducer
+  const cartReducer = useSelector((state) => state.cartReducer);
+  const { cartItems } = cartReducer;
 
   const handleSearch = () => {
     if (keyword) {
@@ -122,6 +130,16 @@ const Navbar = ({ match, history }) => {
     </div>
   );
   useEffect(() => {
+    if (token) {
+      const getUser = () => {
+        dispatch(dispatchLogin());
+        //Get user infor
+        return fetchUser(token).then((res) => {
+          dispatch(dispatchGetUser(res));
+        });
+      };
+      getUser();
+    }
     if (width < 788) {
       setshowicons(true);
     } else {
@@ -129,7 +147,7 @@ const Navbar = ({ match, history }) => {
       setshowicons(false);
     }
     return () => {};
-  }, [width]);
+  }, [width, auth.isLogged, token, dispatch]);
   const Activateburger = () => {
     showDrawer();
   };
@@ -165,11 +183,15 @@ const Navbar = ({ match, history }) => {
                 onClick={() => setshowsearch(!showsearch)}
               />
             )}
-             <Link to="/cart">
-                   <Badge   style={{ backgroundColor: '#FF9F3E' }} count={cartItems.length} showZero  >
-            <CgShoppingCart size="24" color="#1890ff" />
-             </Badge>
-             </Link>
+            <Link to="/cart">
+              <Badge
+                style={{ backgroundColor: "#FF9F3E" }}
+                count={cartItems.length}
+                showZero
+              >
+                <CgShoppingCart size="24" color="#1890ff" />
+              </Badge>
+            </Link>
             <div className={showsearch ? "searchactive" : "searchphone"}>
               <Search
                 placeholder="Search"
@@ -197,9 +219,13 @@ const Navbar = ({ match, history }) => {
         {!showicons && (
           <div className="Onright">
             <Link to="/register">
-            <Button disabled={isLogged} className="Navbarbtns" id="Teacherbtn">
-              Become a Teacher
-            </Button>
+              <Button
+                disabled={isLogged}
+                className="Navbarbtns"
+                id="Teacherbtn"
+              >
+                Become a Teacher
+              </Button>
             </Link>
             <Popover content={content} style={{ cursor: "pointer" }}>
               <button className="Navbarbtns" id="Categoriesbtn">
@@ -207,9 +233,14 @@ const Navbar = ({ match, history }) => {
               </button>
             </Popover>
             <Link to="/cart">
-            <Badge style={{ backgroundColor: '#FF9F3E' }}  title="Your Cart"  count={cartItems.length} showZero  >
-              <CgShoppingCart size="25"/>
-             </Badge>
+              <Badge
+                style={{ backgroundColor: "#FF9F3E" }}
+                title="Your Cart"
+                count={cartItems.length}
+                showZero
+              >
+                <CgShoppingCart size="25" />
+              </Badge>
             </Link>
 
             {isLogged ? (
@@ -237,11 +268,15 @@ const Navbar = ({ match, history }) => {
           key={"left"}
         >
           <div className={isLogged ? "" : "onRightphone"}>
-          <Link to="/register">
-            <Button className="Navbarbtns"   disabled={isLogged} id="Teacherbtn" >
-              Become a Teacher
-            </Button>
-          </Link>
+            <Link to="/register">
+              <Button
+                className="Navbarbtns"
+                disabled={isLogged}
+                id="Teacherbtn"
+              >
+                Become a Teacher
+              </Button>
+            </Link>
             {isLogged ? (
               userLinkDrawer()
             ) : (
