@@ -290,7 +290,7 @@ export const ListcoursesSearched = (keyword, page) => async (dispatch) => {
 export const Getcoursedetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: LIST_COURSE_DETAILS_REQUEST });
-    const { data } = await axios.get(`/courses/${id}`);
+    const { data } = await axios.get(`/courses/details/${id}`);
     console.log(data);
 
     dispatch({ type: LIST_COURSE_DETAILS_SUCCESS, payload: data });

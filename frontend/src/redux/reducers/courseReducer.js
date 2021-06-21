@@ -327,7 +327,7 @@ export const courseUpdateReducer = (state = { course: {} }, action) => {
     case COURSE_UPDATE_FAIL:
       return { loading: false, err: action.payload };
     case COURSE_UPDATE_RESET:
-      return { course: {} };
+      return { course: {}, success: false };
     default:
       return state;
   }
@@ -341,7 +341,7 @@ export const courseCreateReducer = (state = {}, action) => {
     case COURSE_CREATE_FAIL:
       return { loading: false, error: action.payload };
     case COURSE_CREATE_RESET:
-      return {};
+      return { success: false };
     default:
       return state;
   }

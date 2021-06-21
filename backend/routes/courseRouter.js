@@ -25,7 +25,7 @@ router.get("/subcg/:subcg", coursesCtrl.getcoursesbysubcg);
 //login as a student -> refresh_token -> getallCoursespurshased
 router.post("/createreview/:id", auth, coursesCtrl.createcoursereview);
 //visit ->  Get course details
-router.get("/:id", coursesCtrl.getcoursedetails);
+router.get("/details/:id", coursesCtrl.getcoursedetails);
 router.put("/updatecourse/:id", coursesCtrl.updateCourse);
 router.delete("/deletecourse/:id", coursesCtrl.deleteCourse);
 router.post("/addcourse", auth, isTeacher, coursesCtrl.addCourse);

@@ -272,12 +272,12 @@ const coursesCtrl = {
         goals: ["goals"],
         content: [],
         user: req.user.id,
-        Prerequisites: [],
+        Prerequisites: ["Prerequisites"],
         description: "Sample Description",
-        audience: [],
+        audience: ["audience"],
         image: "https://i.imgur.com/wCdx6Zs.png",
         students: [],
-        subcategorys: [],
+        subcategorys: ["subcatgory"],
         rating: 0,
         numReviews: 0,
         price: 0,
@@ -373,7 +373,7 @@ const coursesCtrl = {
           $and: [{ ...Topic }, { price: { $gte: Price } }],
         });
       } else {
-        courses = await Courses.find({ 
+        courses = await Courses.find({
           $and: [{ ...Topic }, { price: { $eq: Price } }],
         });
       }

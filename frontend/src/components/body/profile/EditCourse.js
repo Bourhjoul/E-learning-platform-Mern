@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 
-import { Card, Table, Skeleton, Button } from "antd";
+import { Card, Table, Skeleton, Button, message, Popconfirm } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Getcoursedetails,
@@ -70,7 +70,6 @@ const EditCourse = ({ history }) => {
   const [loading, setLoading] = useState(false);
   const handleChange = async (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
-  
   };
 
   const [size, setSize] = useState("middle");
@@ -105,28 +104,32 @@ const EditCourse = ({ history }) => {
   );
 
   const handleUpdate = () => {
-    dispatch(
-      UpdateCourse({
-        _id: editCourse._id,
-        name,
-        price,
-        goals,
-        category,
-        image,
-        Prerequisites,
-        description,
-        audience,
-        subcategorys,
-        content,
-        shortdescription,
-      })
-    );
+    if (content.length === 0) {
+      message.error("You must add some content to the course.");
+    } else {
+      dispatch(
+        UpdateCourse({
+          _id: editCourse._id,
+          name,
+          price,
+          goals,
+          category,
+          image,
+          Prerequisites,
+          description,
+          audience,
+          subcategorys,
+          content,
+          shortdescription,
+        })
+      );
+    }
   };
   useEffect(() => {
     if (succUpdate) {
       dispatch({ type: COURSE_CREATE_RESET });
       dispatch({ type: COURSE_UPDATE_RESET });
-      history.push("/profile");
+      history.push(`/courses/${id}`);
     } else {
       if (!course.name || course._id !== id) {
         dispatch(Getcoursedetails(id));
@@ -191,6 +194,11 @@ const EditCourse = ({ history }) => {
       setData({ ...data, err: err.response.data.msg, success: "" });
     }
   };
+  const goback = () => {
+    dispatch({ type: COURSE_CREATE_RESET });
+    dispatch({ type: COURSE_UPDATE_RESET });
+    history.push("/profile");
+  };
   return (
     <>
       <Helmet>
@@ -211,7 +219,7 @@ const EditCourse = ({ history }) => {
                   <div className="btn-crs">
                     <Button
                       className="btn-back"
-                      onClick={() => history.goBack()}
+                      onClick={goback}
                       size={size}
                       type="primary"
                       shape="round"
@@ -219,14 +227,16 @@ const EditCourse = ({ history }) => {
                     >
                       Go Back
                     </Button>
-                    <Button
-                      shape="round"
-                      onClick={handleUpdate}
-                      size="middle"
-                      type="primary"
+                    <Popconfirm
+                      title="Are you sure fiiled all fields?"
+                      onConfirm={handleUpdate}
+                      okText="Yes"
+                      cancelText="No"
                     >
-                      Update <RetweetOutlined />
-                    </Button>
+                      <Button shape="round" size="middle" type="primary">
+                        Update <RetweetOutlined />
+                      </Button>
+                    </Popconfirm>
                   </div>
                   {loadingImage && (
                     <div className="loading">
@@ -322,7 +332,7 @@ const EditCourse = ({ history }) => {
                           onClick={() => {
                             setAudience((currentAudience) => [
                               ...currentAudience,
-                              {},
+                              "Audience",
                             ]);
                           }}
                         >
@@ -359,7 +369,10 @@ const EditCourse = ({ history }) => {
                           className="btn-add-item"
                           type="primary"
                           onClick={() => {
-                            setGoals((currentGoals) => [...currentGoals, {}]);
+                            setGoals((currentGoals) => [
+                              ...currentGoals,
+                              "GOAL",
+                            ]);
                           }}
                         >
                           Add Goal
@@ -397,7 +410,7 @@ const EditCourse = ({ history }) => {
                           onClick={() => {
                             setPrerequisites((currentPrerequisites) => [
                               ...currentPrerequisites,
-                              {},
+                              "Prerequisites",
                             ]);
                           }}
                         >
@@ -440,7 +453,7 @@ const EditCourse = ({ history }) => {
                           onClick={() => {
                             setSubcategorys((currentSubcategorys) => [
                               ...currentSubcategorys,
-                              {},
+                              "subcategory",
                             ]);
                           }}
                         >
@@ -482,11 +495,11 @@ const EditCourse = ({ history }) => {
                               setContent((currentContent) => [
                                 ...currentContent,
                                 {
-                                  name: "",
+                                  name: "Section",
                                   lectures: [
-                                    { link: "", name: " " },
-                                    { link: "", name: " " },
-                                    { link: "", name: " " },
+                                    { link: "Link", name: "Lecture" },
+                                    { link: "Link", name: "Lecture" },
+                                    { link: "Link", name: "Lecture" },
                                   ],
                                 },
                               ]);
@@ -546,6 +559,7 @@ const EditCourse = ({ history }) => {
                                       <div key={lect._id}>
                                         <h1>Lecture {indexlec + 1} </h1>
                                         <input
+                                          required
                                           placeholder="Name"
                                           defaultValue={lect.name}
                                           onChange={(e) => {
@@ -559,6 +573,7 @@ const EditCourse = ({ history }) => {
                                           }}
                                         />
                                         <input
+                                          required
                                           placeholder="Link"
                                           defaultValue={lect.link}
                                           onChange={(e) => {
