@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
 import Productcart from "./Productcart";
 import { Helmet } from "react-helmet";
+import { useParams } from "react-router";
 
 import { Input } from "antd";
 import "./Cart.css";
@@ -13,9 +14,10 @@ const Cart = ({ match, history }) => {
   const dispatch = useDispatch();
   const cartReducer = useSelector((state) => state.cartReducer);
   const { cartItems } = cartReducer;
-  const { id } = match.params;
+  const { id } = useParams();
   useEffect(() => {
     if (id) {
+      console.log(id);
       dispatch(addToCart(id));
     }
   }, [id, dispatch]);

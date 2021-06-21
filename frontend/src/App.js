@@ -76,24 +76,64 @@ function App() {
             <Switch>
               <Route path="/" exact component={Home} />
               <Route path="/courses/:id" component={Coursepage} />
-              <Route path="/cart/:id?" component={Cart} />
+              <Route path="/cart/:id" component={Cart} />
               <Route path="/coursesfilter/:topic" component={CourseFilter} />
-              <Route path="/Mycourses"component={isLogged ? Mycourses : NotFound}/>
-              <Route path="/checkout" component={isLogged ? CheckoutScreen : Login}/>
-              <Route path="/placeorder" component={isLogged ? PlaceOrder : Login}/>
-              <Route path="/order/:id"component={isLogged ? OrderScreen : Login} />
-              <Route exact path="/login"component={isLogged ? NotFound : Login} />
-              <Route exact path="/register" component={isLogged ? NotFound : Register}/>
-              <Route exact path="/user/activate/:activation_token" component={ActivationEmail}  />
-              <Route exact path="/forgot_password" component={isLogged ? NotFound : ForgotPass}/>
+              <Route
+                path="/Mycourses"
+                component={isLogged ? Mycourses : NotFound}
+              />
+              <Route
+                path="/checkout"
+                component={isLogged ? CheckoutScreen : Login}
+              />
+              <Route
+                path="/placeorder"
+                component={isLogged ? PlaceOrder : Login}
+              />
+              <Route
+                path="/order/:id"
+                component={isLogged ? OrderScreen : Login}
+              />
+              <Route
+                exact
+                path="/login"
+                component={isLogged ? NotFound : Login}
+              />
+              <Route
+                exact
+                path="/register"
+                component={isLogged ? NotFound : Register}
+              />
+              <Route
+                exact
+                path="/user/activate/:activation_token"
+                component={ActivationEmail}
+              />
+              <Route
+                exact
+                path="/forgot_password"
+                component={isLogged ? NotFound : ForgotPass}
+              />
               <Route
                 path="/user/reset/:token"
                 component={isLogged ? NotFound : ResetPass}
                 exact
               />
-              <Route path="/profile" component={isLogged ? Profile : NotFound}  exact />
-              <Route path="/edit_user/:id" component={isAdmin ? EditUser : NotFound} exact />
-              <Route path="/editcourse/:id" component={user.Teacher || isAdmin ? EditCourse : NotFound} exact/>
+              <Route
+                path="/profile"
+                component={isLogged ? Profile : NotFound}
+                exact
+              />
+              <Route
+                path="/edit_user/:id"
+                component={isAdmin ? EditUser : NotFound}
+                exact
+              />
+              <Route
+                path="/editcourse/:id"
+                component={user.Teacher || isAdmin ? EditCourse : NotFound}
+                exact
+              />
               <Route path="/search/:keyword" component={CourseSeacrh} />
               <Route path="/subcategory/:subcategory" component={Subcategory} />
 
